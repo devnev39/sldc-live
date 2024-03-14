@@ -11,9 +11,15 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "antd": "^5.15.0",
+    "@ant-design/icons": "^5.3.1",
+    "@reduxjs/toolkit": "^2.2.1",
+    "@svgr/webpack": "^8.1.0",
+    "antd": "^5.15.2",
+    "firebase": "^10.8.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-redux": "^9.1.0",
+    "vite-plugin-svgr": "^4.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.56",
