@@ -38,6 +38,48 @@ const clipDifference = (data, value) => {
   return parseInt(value);
 };
 
+const average = (nums) => {
+  let sum = 0;
+  let len = nums.length;
+  for (let i = 0; i < nums.length; i++) {
+    if (!isNaN(nums[i])) {
+      sum += nums[i];
+    } else {
+      len -= 1;
+    }
+  }
+  return sum / len;
+};
+
+const filterDifference = (chartData) => {
+  // for each dataset
+  // calculate avg value
+  // remove the labels and datapoints which are not consistent from labels and other datasets
+
+  for (let dataset of chartData.data.datasets) {
+    // Remove all NaN values
+    // for (let i=0; i<dataset.data.length; i++) {
+    //   if (isNaN(dataset.data[i])) {
+    //     chartData.data.labels.splice(i, 1);
+    //     for (let ds of chartData.data.datasets) {
+    //       ds.data.splice(i, 1);
+    //     }
+    //   }
+    // }
+    const avg = average(dataset.data);
+    console.log(dataset.label, avg);
+    for (let i = 0; i < dataset.data.length; i++) {
+      if (!isNaN(dataset.data[i])) {
+        let diff = dataset.data[i] - avg;
+        diff = diff < 0 ? diff * -1 : diff;
+        if (diff > avg) {
+          dataset.data[i] = NaN;
+        }
+      }
+    }
+  }
+};
+
 export const counterSlice = createSlice({
   name: "data",
   initialState,
@@ -110,6 +152,10 @@ export const counterSlice = createSlice({
         // Set fields and
       });
     },
+    filterData: (state) => {
+      filterDifference(state.charts.stateGenChart);
+      filterDifference(state.charts.generationDistChart);
+    },
     clearData: (state) => {
       state.fields = [];
       state.charts = {
@@ -125,6 +171,7 @@ export const counterSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { updateData, parseData, clearData } = counterSlice.actions;
+export const { updateData, parseData, clearData, filterData } =
+  counterSlice.actions;
 
 export default counterSlice.reducer;

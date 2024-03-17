@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 // import data from "./testdata.test.json";
-import { clearData, parseData } from "./features/data";
+import { clearData, filterData, parseData } from "./features/data";
 import { DatePicker, Flex, Menu } from "antd";
 import transmission from "./assets/transmission.svg?react";
 import Icon from "@ant-design/icons/lib/components/Icon";
@@ -43,6 +43,7 @@ function App() {
   useEffect(() => {
     api.getDateData(date.format("YYYY-MM-DD")).then((docs) => {
       dispatch(parseData(docs));
+      dispatch(filterData());
     });
     return () => {
       dispatch(clearData());
