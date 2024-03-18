@@ -1,9 +1,9 @@
-const stateGenChart = {
+const serverUsageChart = {
   options: {
     plugins: {
       title: {
         display: true,
-        text: "State Generated And Demand For Today",
+        text: "Server Time Usage For Today",
         font: {
           size: "20px",
         },
@@ -23,14 +23,29 @@ const stateGenChart = {
       },
       y: {
         display: true,
+        position: "left",
         title: {
           display: true,
-          text: "MW",
+          text: "Seconds",
           font: {
             size: "16px",
             weight: "500",
           },
         },
+      },
+      y1: {
+        display: true,
+        type: "linear",
+        position: "right",
+        title: {
+          display: true,
+          text: "Memory Used (GiB)",
+          font: {
+            size: "16px",
+            weight: "500",
+          },
+        },
+        suggestedMax: 0.5,
       },
     },
   },
@@ -38,12 +53,12 @@ const stateGenChart = {
     labels: [],
     datasets: [
       {
-        label: "STATE GENERATED",
-        type: "bar",
+        label: "Time",
+        type: "line",
         data: [],
       },
       {
-        label: "STATE DEMAND",
+        label: "Memory (GiB)",
         type: "line",
         data: [],
       },
@@ -51,4 +66,4 @@ const stateGenChart = {
   },
 };
 
-export default stateGenChart;
+export default serverUsageChart;

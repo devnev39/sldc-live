@@ -1,5 +1,85 @@
+import { Card, Col, Divider, Flex, Row, Statistic, Typography } from "antd";
+import { ArrowDownOutlined, ArrowUpOutlined } from "@ant-design/icons";
+import { useSelector } from "react-redux";
+import { Line } from "react-chartjs-2";
+
 const Stats = () => {
-  return <>Stats Component !</>;
+  const charts = useSelector((state) => state.data.charts);
+
+  return (
+    <>
+      <Divider />
+      <Row>
+        <Col span={10}>
+          <Flex justify="space-evenly">
+            <Card>
+              <Statistic
+                title={
+                  <Typography.Text type="warning" underline>
+                    Last Running Time
+                  </Typography.Text>
+                }
+                value={charts.serverUsageChart.data.datasets[0].data.slice(-1)}
+                valueStyle={{
+                  color: `${charts.serverUsageChart.data.datasets[0].data.slice(-1) < charts.frequencyChart.data.datasets[0].data.slice(-2) ? "#cf1322" : "#3f8600"}`,
+                }}
+                prefix={
+                  charts.serverUsageChart.data.datasets[0].data.slice(-1) <
+                  charts.serverUsageChart.data.datasets[0].data.slice(-2) ? (
+                    <ArrowDownOutlined />
+                  ) : (
+                    <ArrowUpOutlined />
+                  )
+                }
+                precision={2}
+                suffix="Sec"
+              />
+            </Card>
+            <Card>
+              <Statistic
+                title={
+                  <Typography.Text type="warning" underline>
+                    Memory Used
+                  </Typography.Text>
+                }
+                value={charts.serverUsageChart.data.datasets[1].data.slice(-1)}
+                valueStyle={{
+                  color: `${charts.serverUsageChart.data.datasets[1].data.slice(-1) < charts.frequencyChart.data.datasets[0].data.slice(-2) ? "#cf1322" : "#3f8600"}`,
+                }}
+                prefix={
+                  charts.serverUsageChart.data.datasets[1].data.slice(-1) <
+                  charts.serverUsageChart.data.datasets[1].data.slice(-2) ? (
+                    <ArrowDownOutlined />
+                  ) : (
+                    <ArrowUpOutlined />
+                  )
+                }
+                precision={2}
+                suffix="GiB"
+              />
+            </Card>
+          </Flex>
+        </Col>
+        <Col span={2}>
+          <Flex justify="center">
+            <Divider type="vertical" style={{ height: "25vh" }} />
+          </Flex>
+        </Col>
+        <Col span={10}>
+          <Flex justify="center">
+            <Card>
+              <div style={{ height: "40vh", width: "40vw" }}>
+                <Line
+                  data={charts.serverUsageChart.data}
+                  options={charts.serverUsageChart.options}
+                />
+              </div>
+            </Card>
+          </Flex>
+        </Col>
+      </Row>
+    </>
+  );
 };
 
 export default Stats;

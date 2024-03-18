@@ -3,6 +3,7 @@ import frequencyChart from "../charts/frequencyChart";
 import stateGenChart from "../charts/stateGenChart";
 import generationDistributionChart from "../charts/generationDistributionChart";
 import { Timestamp } from "firebase/firestore";
+import serverUsageChart from "../charts/serverUsageChart";
 
 // fields, stats, serverStats contains the latest object only
 // The series data is converted into
@@ -16,26 +17,27 @@ const initialState = {
     frequencyChart: frequencyChart,
     stateGenChart: stateGenChart,
     generationDistChart: generationDistributionChart,
+    serverUsageChart: serverUsageChart,
   },
 };
 
 // chart.frequencyChart
 
 const clipDifference = (data, value) => {
-  if (data.length && parseInt(value)) {
+  if (data.length && parseFloat(value)) {
     let last = data[data.length - 1];
     if (isNaN(last) && data.length > 2) {
       last = data[data.length - 2];
     }
-    if (isNaN(last)) return parseInt(value);
-    let diff = last - parseInt(value);
+    if (isNaN(last)) return parseFloat(value);
+    let diff = last - parseFloat(value);
     if (diff < 0) diff *= -1;
     if (diff < last * 0.5) {
-      return parseInt(value);
+      return parseFloat(value);
     }
     return NaN;
   }
-  return parseInt(value);
+  return parseFloat(value);
 };
 
 const average = (nums) => {
@@ -57,15 +59,6 @@ const filterDifference = (chartData) => {
   // remove the labels and datapoints which are not consistent from labels and other datasets
 
   for (let dataset of chartData.data.datasets) {
-    // Remove all NaN values
-    // for (let i=0; i<dataset.data.length; i++) {
-    //   if (isNaN(dataset.data[i])) {
-    //     chartData.data.labels.splice(i, 1);
-    //     for (let ds of chartData.data.datasets) {
-    //       ds.data.splice(i, 1);
-    //     }
-    //   }
-    // }
     const avg = average(dataset.data);
     console.log(dataset.label, avg);
     for (let i = 0; i < dataset.data.length; i++) {
@@ -106,7 +99,7 @@ export const counterSlice = createSlice({
           state.charts.frequencyChart.data.labels.concat(ts);
         state.charts.frequencyChart.data.datasets[0].data =
           state.charts.frequencyChart.data.datasets[0].data.concat(
-            parseInt(dataPoint.fields.frequency),
+            parseFloat(dataPoint.fields.frequency),
           );
         // State Gen field
         const stateGen = clipDifference(
@@ -149,6 +142,18 @@ export const counterSlice = createSlice({
           state.charts.generationDistChart.data.datasets[2].data.concat(
             othersTtl,
           );
+
+        state.charts.serverUsageChart.data.labels =
+          state.charts.serverUsageChart.data.labels.concat(ts);
+        state.charts.serverUsageChart.data.datasets[0].data =
+          state.charts.serverUsageChart.data.datasets[0].data.concat(
+            parseFloat(dataPoint.server_stats.time),
+          );
+        state.charts.serverUsageChart.data.datasets[1].data =
+          state.charts.serverUsageChart.data.datasets[1].data.concat(
+            parseFloat(dataPoint.server_stats.memory),
+          );
+
         // Set fields and
       });
     },
@@ -162,6 +167,7 @@ export const counterSlice = createSlice({
         frequencyChart: frequencyChart,
         stateGenChart: stateGenChart,
         generationDistChart: generationDistributionChart,
+        serverUsageChart: serverUsageChart,
       };
       state.tables = [];
       state.serverStats = [];
