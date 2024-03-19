@@ -40,7 +40,7 @@ const Home = () => {
       <Row style={{ marginBottom: "1rem" }}>
         <Col>
           <Alert
-            message="Frequency is rounded (ceiled) ! Datapoints are not present in some times due to poor accuracy scores !"
+            message="Data updates occur at rounded hourly intervals. Be aware that some timestamps might be absent due to unreliable data in the source image."
             type="warning"
             showIcon
             closable
