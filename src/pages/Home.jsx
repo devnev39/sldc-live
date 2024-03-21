@@ -3,6 +3,7 @@ import Statistic from "antd/es/statistic/Statistic";
 import { ArrowDownOutlined, ArrowUpOutlined } from "@ant-design/icons";
 import { Line } from "react-chartjs-2";
 import { useSelector } from "react-redux";
+import "./styles.css";
 
 const Home = () => {
   const charts = useSelector((state) => state.data.charts);
@@ -49,7 +50,7 @@ const Home = () => {
       </Row>
       <Row>
         {/*  Two scetions one for main params and one for sub params */}
-        <Col span={11}>
+        <Col span={11} xs={{ span: 24 }} md={{ span: 11 }}>
           {/* Main Param Section */}
           <Flex justify="space-evenly">
             <Card>
@@ -121,12 +122,12 @@ const Home = () => {
             </Card>
           </Flex>
         </Col>
-        <Col span={1}>
+        <Col span={1} xs={{ span: 0 }} md={{ span: 1 }}>
           <Flex justify="center">
             <Divider type="vertical" style={{ height: "25vh" }} />
           </Flex>
         </Col>
-        <Col span={12}>
+        <Col span={12} xs={{ span: 24 }} md={{ span: 12 }}>
           {/* Sub Param Section */}
           <Flex justify="space-evenly">
             <Card>
@@ -210,10 +211,10 @@ const Home = () => {
       </Row>
       <Divider />
       <Row>
-        <Col span={11}>
+        <Col span={11} xs={{ span: 24 }} md={{ span: 11 }}>
           <Flex justify="center">
             <Card>
-              <div style={{ height: "40vh", width: "40vw" }}>
+              <div className="chartjs-width">
                 <Line
                   data={charts.frequencyChart.data}
                   options={charts.frequencyChart.options}
@@ -222,15 +223,15 @@ const Home = () => {
             </Card>
           </Flex>
         </Col>
-        <Col span={1}>
+        <Col span={1} xs={{ span: 0 }} md={{ span: 1 }}>
           <Flex justify="center">
             <Divider type="vertical" style={{ height: "50vh" }} />
           </Flex>
         </Col>
-        <Col span={11}>
+        <Col span={11} xs={{ span: 24 }} md={{ span: 11 }}>
           <Flex justify="center">
             <Card>
-              <div style={{ height: "40vh", width: "40vw" }}>
+              <div className="chartjs-width">
                 <Line
                   data={charts.generationDistChart.data}
                   options={charts.generationDistChart.options}
@@ -242,10 +243,10 @@ const Home = () => {
       </Row>
       <Divider />
       <Row>
-        <Col span={11}>
+        <Col xs={{ span: 24 }} md={{ span: 11 }}>
           <Flex justify="center">
             <Card>
-              <div style={{ height: "40vh", width: "40vw" }}>
+              <div className="chartjs-width">
                 <Line
                   data={charts.stateGenChart.data}
                   options={charts.stateGenChart.options}

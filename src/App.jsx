@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
 // import data from "./testdata.test.json";
 import { clearData, filterData, parseData } from "./features/data";
-import { Button, DatePicker, Divider, Flex, Menu, Typography } from "antd";
+import {
+  Button,
+  DatePicker,
+  Divider,
+  Flex,
+  Layout,
+  Menu,
+  Typography,
+} from "antd";
 import transmission from "./assets/transmission.svg?react";
 import Icon from "@ant-design/icons/lib/components/Icon";
 import Title from "antd/es/typography/Title";
@@ -12,7 +20,7 @@ import { useDispatch } from "react-redux";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import api from "./query/query";
-import { Footer } from "antd/es/layout/layout";
+import { Content, Footer } from "antd/es/layout/layout";
 import { GithubOutlined, LinkedinOutlined } from "@ant-design/icons";
 dayjs.extend(customParseFormat);
 
@@ -95,35 +103,39 @@ function App() {
           </div>
         </div>
       </div>
-      {current == "home" ? <Home /> : null}
-      {current == "stats" ? <Stats /> : null}
-      {current == "about" ? <About /> : null}
-      <Divider />
-      <Footer>
-        <Flex justify="center">
-          <div>
+      <Layout>
+        <Content>
+          {current == "home" ? <Home /> : null}
+          {current == "stats" ? <Stats /> : null}
+          {current == "about" ? <About /> : null}
+        </Content>
+        <Divider />
+        <Footer>
+          <Flex justify="center">
             <div>
-              <Typography.Text style={{ fontSize: "16px" }}>
-                Developed and maintained by @devnev39
-              </Typography.Text>
+              <div>
+                <Typography.Text style={{ fontSize: "16px" }}>
+                  Developed and maintained by @devnev39
+                </Typography.Text>
+              </div>
+              <div>
+                <Flex justify="center">
+                  <Button type="text" href="https://github.com/devnev39">
+                    <GithubOutlined style={{ fontSize: "2rem" }} />
+                  </Button>
+                  <Divider style={{ height: "2vw" }} type="vertical" />
+                  <Button
+                    type="text"
+                    href="https://www.linkedin.com/in/bhuvanesh-bonde-58793615b"
+                  >
+                    <LinkedinOutlined style={{ fontSize: "2rem" }} />
+                  </Button>
+                </Flex>
+              </div>
             </div>
-            <div>
-              <Flex justify="center">
-                <Button type="text" href="https://github.com/devnev39">
-                  <GithubOutlined style={{ fontSize: "2rem" }} />
-                </Button>
-                <Divider style={{ height: "2vw" }} type="vertical" />
-                <Button
-                  type="text"
-                  href="https://www.linkedin.com/in/bhuvanesh-bonde-58793615b"
-                >
-                  <LinkedinOutlined style={{ fontSize: "2rem" }} />
-                </Button>
-              </Flex>
-            </div>
-          </div>
-        </Flex>
-      </Footer>
+          </Flex>
+        </Footer>
+      </Layout>
     </>
   );
 }

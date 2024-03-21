@@ -1,5 +1,6 @@
 const generationDistributionChart = {
   options: {
+    maintainAspectRatio: false,
     plugins: {
       title: {
         display: true,

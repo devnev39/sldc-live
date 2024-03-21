@@ -1,5 +1,6 @@
 const frequencyChart = {
   options: {
+    maintainAspectRatio: false,
     plugins: {
       title: {
         display: true,

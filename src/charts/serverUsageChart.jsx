@@ -1,5 +1,6 @@
 const serverUsageChart = {
   options: {
+    maintainAspectRatio: false,
     plugins: {
       title: {
         display: true,

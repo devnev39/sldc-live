@@ -1,5 +1,6 @@
 const stateGenChart = {
   options: {
+    maintainAspectRatio: false,
     plugins: {
       title: {
         display: true,
