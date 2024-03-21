@@ -255,6 +255,55 @@ const Home = () => {
             </Card>
           </Flex>
         </Col>
+        <Col span={1} xs={{ span: 0 }} md={{ span: 1 }}>
+          <Flex justify="center">
+            <Divider type="vertical" style={{ height: "50vh" }} />
+          </Flex>
+        </Col>
+        <Col span={11} xs={{ span: 24 }} md={{ span: 11 }}>
+          <Flex justify="center">
+            <Card>
+              <div className="chartjs-width">
+                <Line
+                  data={charts.coalGenerationChart.data}
+                  options={charts.coalGenerationChart.options}
+                />
+              </div>
+            </Card>
+          </Flex>
+        </Col>
+      </Row>
+      <Divider />
+      <Row>
+        <Col xs={{ span: 24 }} md={{ span: 11 }}>
+          <Flex justify="center">
+            <Card>
+              <div className="chartjs-width">
+                <Line
+                  data={charts.mumbaiExchangeChart.data}
+                  options={charts.mumbaiExchangeChart.options}
+                />
+              </div>
+            </Card>
+          </Flex>
+        </Col>
+        <Col span={1} xs={{ span: 0 }} md={{ span: 1 }}>
+          <Flex justify="center">
+            <Divider type="vertical" style={{ height: "50vh" }} />
+          </Flex>
+        </Col>
+        <Col span={11} xs={{ span: 24 }} md={{ span: 11 }}>
+          <Flex justify="center">
+            <Card>
+              <div className="chartjs-width">
+                <Line
+                  data={charts.privateGenerationChart.data}
+                  options={charts.privateGenerationChart.options}
+                />
+              </div>
+            </Card>
+          </Flex>
+        </Col>
       </Row>
     </>
   );

@@ -4,6 +4,9 @@ import stateGenChart from "../charts/stateGenChart";
 import generationDistributionChart from "../charts/generationDistributionChart";
 import { Timestamp } from "firebase/firestore";
 import serverUsageChart from "../charts/serverUsageChart";
+import coalGenerationChart from "../charts/coalGenerationChart";
+import mumbaiExchangeChart from "../charts/mumbaiExchange";
+import privateGenerationChart from "../charts/privateGenerationChart";
 
 // fields, stats, serverStats contains the latest object only
 // The series data is converted into
@@ -18,6 +21,9 @@ const initialState = {
     stateGenChart: stateGenChart,
     generationDistChart: generationDistributionChart,
     serverUsageChart: serverUsageChart,
+    coalGenerationChart: coalGenerationChart,
+    mumbaiExchangeChart: mumbaiExchangeChart,
+    privateGenerationChart: privateGenerationChart,
   },
 };
 
@@ -60,7 +66,6 @@ const filterDifference = (chartData) => {
 
   for (let dataset of chartData.data.datasets) {
     const avg = average(dataset.data);
-    console.log(dataset.label, avg);
     for (let i = 0; i < dataset.data.length; i++) {
       if (!isNaN(dataset.data[i])) {
         let diff = dataset.data[i] - avg;
@@ -154,12 +159,60 @@ export const counterSlice = createSlice({
             parseFloat(dataPoint.server_stats.memory),
           );
 
+        state.charts.coalGenerationChart.data.labels =
+          state.charts.coalGenerationChart.data.labels.concat(ts);
+
+        // Coal+GAS Generation
+        for (let i = 0; i < dataPoint.tables[0].rows.length; i++) {
+          const value = clipDifference(
+            state.charts.coalGenerationChart.data.datasets[i].data,
+            dataPoint.tables[0].rows[i].generated,
+          );
+          state.charts.coalGenerationChart.data.datasets[i].data =
+            state.charts.coalGenerationChart.data.datasets[i].data.concat(
+              value,
+            );
+        }
+
+        state.charts.mumbaiExchangeChart.data.labels =
+          state.charts.mumbaiExchangeChart.data.labels.concat(ts);
+        // Mumbai Exch.
+        for (let i = 0; i < dataPoint.tables[4].rows.length; i++) {
+          const value = clipDifference(
+            state.charts.mumbaiExchangeChart.data.datasets[i].data,
+            dataPoint.tables[4].rows[i].generated,
+          );
+          state.charts.mumbaiExchangeChart.data.datasets[i].data =
+            state.charts.mumbaiExchangeChart.data.datasets[i].data.concat(
+              value,
+            );
+        }
+
+        state.charts.privateGenerationChart.data.labels =
+          state.charts.privateGenerationChart.data.labels.concat(ts);
+        // Pvt. Generation Chart
+        for (let i = 0; i < dataPoint.tables[3].rows.length; i++) {
+          if (i < state.charts.privateGenerationChart.data.datasets.length) {
+            const value = clipDifference(
+              state.charts.privateGenerationChart.data.datasets[i].data,
+              dataPoint.tables[3].rows[i].generated,
+            );
+            state.charts.privateGenerationChart.data.datasets[i].data =
+              state.charts.privateGenerationChart.data.datasets[i].data.concat(
+                value,
+              );
+          }
+        }
+
         // Set fields and
       });
     },
     filterData: (state) => {
       filterDifference(state.charts.stateGenChart);
       filterDifference(state.charts.generationDistChart);
+      filterDifference(state.charts.coalGenerationChart);
+      filterDifference(state.charts.privateGenerationChart);
+      filterDifference(state.charts.mumbaiExchangeChart);
     },
     clearData: (state) => {
       state.fields = [];
@@ -168,6 +221,9 @@ export const counterSlice = createSlice({
         stateGenChart: stateGenChart,
         generationDistChart: generationDistributionChart,
         serverUsageChart: serverUsageChart,
+        coalGenerationChart: coalGenerationChart,
+        mumbaiExchangeChart: mumbaiExchangeChart,
+        privateGenerationChart: privateGenerationChart,
       };
       state.tables = [];
       state.serverStats = [];
