@@ -12,6 +12,7 @@ const coalGenerationChart = {
     },
     interaction: {
       intersect: false,
+      mode: "index",
     },
     scales: {
       x: {

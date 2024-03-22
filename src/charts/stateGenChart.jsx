@@ -10,6 +10,10 @@ const stateGenChart = {
         },
       },
     },
+    interaction: {
+      intersect: false,
+      mode: "index",
+    },
     scales: {
       x: {
         display: true,

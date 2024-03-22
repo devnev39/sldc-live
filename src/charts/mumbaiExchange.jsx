@@ -12,6 +12,7 @@ const mumbaiExchangeChart = {
     },
     interaction: {
       intersect: false,
+      mode: "index",
     },
     scales: {
       x: {

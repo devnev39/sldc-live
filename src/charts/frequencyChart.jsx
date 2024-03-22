@@ -12,6 +12,7 @@ const frequencyChart = {
     },
     interaction: {
       intersect: false,
+      mode: "index",
     },
     scales: {
       x: {

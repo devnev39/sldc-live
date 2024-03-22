@@ -12,6 +12,7 @@ const generationDistributionChart = {
     },
     interaction: {
       intersect: false,
+      mode: "index",
     },
     scales: {
       x: {
