@@ -1,4 +1,4 @@
-import { Alert, Card, Col, Divider, Flex, Row, Typography } from "antd";
+import { Alert, Card, Col, Divider, Flex, Row, Table, Typography } from "antd";
 import Statistic from "antd/es/statistic/Statistic";
 import { ArrowDownOutlined, ArrowUpOutlined } from "@ant-design/icons";
 import { Line } from "react-chartjs-2";
@@ -7,6 +7,7 @@ import "./styles.css";
 
 const Home = () => {
   const charts = useSelector((state) => state.data.charts);
+  const tables = useSelector((state) => state.data.tables);
 
   const getValue = (data) => {
     let len = data.length;
@@ -56,7 +57,7 @@ const Home = () => {
             <Card>
               <Statistic
                 title={
-                  <Typography.Text type="warning" underline>
+                  <Typography.Text underline className="font-600">
                     Frequency
                   </Typography.Text>
                 }
@@ -79,7 +80,7 @@ const Home = () => {
             <Card>
               <Statistic
                 title={
-                  <Typography.Text type="warning" underline>
+                  <Typography.Text className="font-600" underline>
                     State Demand
                   </Typography.Text>
                 }
@@ -101,7 +102,7 @@ const Home = () => {
             <Card>
               <Statistic
                 title={
-                  <Typography.Text type="warning" underline>
+                  <Typography.Text className="font-600" underline>
                     State Generated
                   </Typography.Text>
                 }
@@ -133,7 +134,7 @@ const Home = () => {
             <Card>
               <Statistic
                 title={
-                  <Typography.Text type="warning" underline>
+                  <Typography.Text className="font-600" underline>
                     COAL+GAS
                   </Typography.Text>
                 }
@@ -159,7 +160,7 @@ const Home = () => {
             <Card>
               <Statistic
                 title={
-                  <Typography.Text type="warning" underline>
+                  <Typography.Text className="font-600" underline>
                     HYDRO
                   </Typography.Text>
                 }
@@ -184,7 +185,7 @@ const Home = () => {
             <Card>
               <Statistic
                 title={
-                  <Typography.Text type="warning" underline>
+                  <Typography.Text className="font-600" underline>
                     OTHER PROVIDERS TOTAL
                   </Typography.Text>
                 }
@@ -221,6 +222,14 @@ const Home = () => {
                 />
               </div>
             </Card>
+          </Flex>
+          <Flex justify="center" style={{ marginTop: "1rem" }}>
+            <Alert
+              message="Frequency data is rounded to 49 sometimes due to no detection of decimal !"
+              type="warning"
+              showIcon
+              closable
+            />
           </Flex>
         </Col>
         <Col span={1} xs={{ span: 0 }} md={{ span: 1 }}>
@@ -302,6 +311,41 @@ const Home = () => {
                 />
               </div>
             </Card>
+          </Flex>
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={{ span: 24 }} md={{ span: 11 }}>
+          <Flex justify="center">
+            <Card>
+              <div className="chartjs-width" style={{ height: "60vh" }}>
+                <Table
+                  columns={tables.centralSectorTable.columns}
+                  dataSource={tables.centralSectorTable.data}
+                  bordered
+                  title={() => (
+                    <Typography.Text
+                      style={{ fontWeight: "600", fontSize: "24px" }}
+                    >
+                      Central Sector
+                    </Typography.Text>
+                  )}
+                />
+              </div>
+            </Card>
+          </Flex>
+          <Flex justify="center" style={{ marginTop: "1rem" }}>
+            <Alert
+              message="These values aren't filtered !"
+              type="warning"
+              showIcon
+              closable
+            />
+          </Flex>
+        </Col>
+        <Col span={1} xs={{ span: 0 }} md={{ span: 1 }}>
+          <Flex justify="center">
+            <Divider type="vertical" style={{ height: "50vh" }} />
           </Flex>
         </Col>
       </Row>

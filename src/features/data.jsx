@@ -7,6 +7,10 @@ import serverUsageChart from "../charts/serverUsageChart";
 import coalGenerationChart from "../charts/coalGenerationChart";
 import mumbaiExchangeChart from "../charts/mumbaiExchange";
 import privateGenerationChart from "../charts/privateGenerationChart";
+import {
+  centralSectorColumns,
+  centralSectorData,
+} from "../tables/centralSectorTabel";
 
 // fields, stats, serverStats contains the latest object only
 // The series data is converted into
@@ -15,7 +19,12 @@ const initialState = {
   fields: [],
   serverStats: [],
   stats: [],
-  tables: [],
+  tables: {
+    centralSectorTable: {
+      columns: centralSectorColumns,
+      data: centralSectorData,
+    },
+  },
   charts: {
     frequencyChart: frequencyChart,
     stateGenChart: stateGenChart,
@@ -203,9 +212,13 @@ export const counterSlice = createSlice({
               );
           }
         }
-
-        // Set fields and
       });
+
+      const len = action.payload.length;
+      const latest = action.payload[len - 1];
+      state.tables.centralSectorTable.data = latest.tables.filter(
+        (tbl) => tbl.name == "CENTRAL SECTOR",
+      )[0].rows;
     },
     filterData: (state) => {
       filterDifference(state.charts.stateGenChart);
@@ -225,7 +238,12 @@ export const counterSlice = createSlice({
         mumbaiExchangeChart: mumbaiExchangeChart,
         privateGenerationChart: privateGenerationChart,
       };
-      state.tables = [];
+      state.tables = {
+        centralSectorTable: {
+          columns: centralSectorColumns,
+          data: centralSectorData,
+        },
+      };
       state.serverStats = [];
       state.stats = [];
     },
