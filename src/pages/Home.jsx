@@ -123,6 +123,7 @@ const Home = () => {
             </Card>
           </Flex>
         </Col>
+        <Divider className="small-screen-divider" />
         <Col span={1} xs={{ span: 0 }} md={{ span: 1 }}>
           <Flex justify="center">
             <Divider type="vertical" style={{ height: "25vh" }} />
@@ -232,6 +233,7 @@ const Home = () => {
             />
           </Flex>
         </Col>
+        <Divider className="small-screen-divider" />
         <Col span={1} xs={{ span: 0 }} md={{ span: 1 }}>
           <Flex justify="center">
             <Divider type="vertical" style={{ height: "50vh" }} />
@@ -264,6 +266,7 @@ const Home = () => {
             </Card>
           </Flex>
         </Col>
+        <Divider className="small-screen-divider" />
         <Col span={1} xs={{ span: 0 }} md={{ span: 1 }}>
           <Flex justify="center">
             <Divider type="vertical" style={{ height: "50vh" }} />
@@ -296,6 +299,7 @@ const Home = () => {
             </Card>
           </Flex>
         </Col>
+        <Divider className="small-screen-divider" />
         <Col span={1} xs={{ span: 0 }} md={{ span: 1 }}>
           <Flex justify="center">
             <Divider type="vertical" style={{ height: "50vh" }} />
@@ -314,6 +318,7 @@ const Home = () => {
           </Flex>
         </Col>
       </Row>
+      <Divider />
       <Row>
         <Col xs={{ span: 24 }} md={{ span: 11 }}>
           <Flex justify="center">

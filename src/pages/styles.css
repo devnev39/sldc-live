@@ -3,12 +3,35 @@
         width: 80vw;
         height: 40vh;
     }
+
+    .small-screen-divider {
+        display: block;
+    }
+
+    .icon-size {
+        font-size: 3rem;
+    }
+
+    .arrow-icon-size {
+        font-size: 1.5rem;
+    }
 }
 
 @media only screen and (min-width: 700px) {
     .chartjs-width {
         width: 40vw;
         height: 40vh;
+    }
+    .small-screen-divider {
+        display: none;
+    }
+
+    .icon-size {
+        font-size: 4rem;
+    }
+
+    .arrow-icon-size {
+        font-size: 2rem;
     }
 }
 

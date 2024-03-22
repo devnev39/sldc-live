@@ -2,6 +2,7 @@ import { Card, Col, Divider, Flex, Row, Statistic, Typography } from "antd";
 import { ArrowDownOutlined, ArrowUpOutlined } from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import { Line } from "react-chartjs-2";
+import "./styles.css";
 
 const Stats = () => {
   const charts = useSelector((state) => state.data.charts);
@@ -10,7 +11,7 @@ const Stats = () => {
     <>
       <Divider />
       <Row>
-        <Col span={10}>
+        <Col span={10} xs={{ span: 24 }} md={{ span: 10 }}>
           <Flex justify="space-evenly">
             <Card>
               <Statistic
@@ -60,15 +61,16 @@ const Stats = () => {
             </Card>
           </Flex>
         </Col>
-        <Col span={2}>
+        <Col xs={{ span: 0 }} md={{ span: 2 }}>
           <Flex justify="center">
             <Divider type="vertical" style={{ height: "25vh" }} />
           </Flex>
         </Col>
-        <Col span={10}>
+        <Divider className="small-screen-divider" />
+        <Col span={10} xs={{ span: 24 }} md={{ span: 10 }}>
           <Flex justify="center">
             <Card>
-              <div style={{ height: "40vh", width: "40vw" }}>
+              <div className="chartjs-width">
                 <Line
                   data={charts.serverUsageChart.data}
                   options={charts.serverUsageChart.options}

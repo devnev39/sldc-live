@@ -40,37 +40,41 @@ const About = () => {
                 Google Cloud
               </Typography.Text>
             </Flex>
-            <Flex justify="space-evenly" style={{ marginTop: "2rem" }}>
+            <Flex
+              justify="space-evenly"
+              align="center"
+              style={{ marginTop: "2rem" }}
+            >
               <div>
                 <Flex justify="center">
-                  <Icon component={eventarc} style={{ fontSize: "4rem" }} />
+                  <Icon component={eventarc} className="icon-size" />
                 </Flex>
                 <Flex justify="center" style={{ marginTop: "1rem" }}>
                   <Typography.Text>Event Arc</Typography.Text>
                 </Flex>
               </div>
-              <Icon component={arrow} style={{ fontSize: "2rem" }} />
+              <Icon component={arrow} className="arrow-icon-size" />
               <div>
                 <Flex justify="center">
-                  <Icon component={cloudRun} style={{ fontSize: "4rem" }} />
+                  <Icon component={cloudRun} className="icon-size" />
                 </Flex>
                 <Flex justify="center" style={{ marginTop: "1rem" }}>
                   <Typography.Text>Cloud Run Service</Typography.Text>
                 </Flex>
               </div>
-              <Icon component={arrow} style={{ fontSize: "2rem" }} />
+              <Icon component={arrow} className="arrow-icon-size" />
               <div>
                 <Flex justify="center">
-                  <Icon component={ocr} style={{ fontSize: "4rem" }} />
+                  <Icon component={ocr} className="icon-size" />
                 </Flex>
                 <Flex justify="center" style={{ marginTop: "1rem" }}>
                   <Typography.Text>OCR Detection</Typography.Text>
                 </Flex>
               </div>
-              <Icon component={arrow} style={{ fontSize: "2rem" }} />
+              <Icon component={arrow} className="arrow-icon-size" />
               <div>
                 <Flex justify="center">
-                  <Icon component={firebase} style={{ fontSize: "4rem" }} />
+                  <Icon component={firebase} className="icon-size" />
                 </Flex>
                 <Flex justify="center" style={{ marginTop: "1rem" }}>
                   <Typography.Text>Firestore DB</Typography.Text>
@@ -85,7 +89,7 @@ const About = () => {
           <Flex justify="space-evenly" style={{ marginTop: "2rem" }}>
             <div>
               <Flex justify="center">
-                <Icon component={react} style={{ fontSize: "4rem" }} />
+                <Icon component={react} className="icon-size" />
               </Flex>
               <Flex justify="center" style={{ marginTop: "1rem" }}>
                 <Typography.Text>React</Typography.Text>
@@ -93,7 +97,7 @@ const About = () => {
             </div>
             <div>
               <Flex justify="center">
-                <Icon component={ant} style={{ fontSize: "4rem" }} />
+                <Icon component={ant} className="icon-size" />
               </Flex>
               <Flex justify="center" style={{ marginTop: "1rem" }}>
                 <Typography.Text>Ant Design UI</Typography.Text>
@@ -101,7 +105,7 @@ const About = () => {
             </div>
             <div>
               <Flex justify="center">
-                <Icon component={redux} style={{ fontSize: "4rem" }} />
+                <Icon component={redux} className="icon-size" />
               </Flex>
               <Flex justify="center" style={{ marginTop: "1rem" }}>
                 <Typography.Text>Redux</Typography.Text>

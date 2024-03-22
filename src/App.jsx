@@ -97,7 +97,7 @@ function App() {
               onChange={(e) => {
                 setDate(dayjs(e, dateFormat));
               }}
-              minDate={dayjs("2024-03-14", dateFormat)}
+              minDate={dayjs(dayjs().subtract(15, "days"), dateFormat)}
               maxDate={dayjs(dayjs(), dateFormat)}
             />
           </div>
