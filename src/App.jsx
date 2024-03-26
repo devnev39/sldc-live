@@ -151,7 +151,7 @@ function App() {
                   <Button
                     onClick={() => setIsDarkTheme(!isDarkTheme)}
                     style={{ marginLeft: "1rem" }}
-                    icon={isDarkTheme ? <MoonOutlined /> : <SunOutlined />}
+                    icon={isDarkTheme ? <SunOutlined /> : <MoonOutlined />}
                   ></Button>
                 </Flex>
               </Flex>
