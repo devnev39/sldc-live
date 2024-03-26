@@ -219,6 +219,12 @@ export const counterSlice = createSlice({
       state.tables.centralSectorTable.data = latest.tables.filter(
         (tbl) => tbl.name == "CENTRAL SECTOR",
       )[0].rows;
+
+      state.tables.centralSectorTable.data =
+        state.tables.centralSectorTable.data.map((t) => ({
+          ...t,
+          key: t["state"],
+        }));
     },
     filterData: (state) => {
       filterDifference(state.charts.stateGenChart);

@@ -4,17 +4,25 @@ import eventarc from "../assets/eventarc.svg?react";
 import firebase from "../assets/firebase.svg?react";
 import google_cloud from "../assets/google_cloud.svg?react";
 import ocr from "../assets/ocr.svg?react";
+import ocr_white from "../assets/ocr_white.svg?react";
 import arrow from "../assets/arrow.svg?react";
+import arrow_white from "../assets/arrow_white.svg?react";
 import react from "../assets/react.svg?react";
 import redux from "../assets/redux.svg?react";
 import ant from "../assets/ant.svg?react";
 import Icon from "@ant-design/icons/lib/components/Icon";
+import { useContext, useEffect } from "react";
+import { DarkThemeContext } from "../context/themeContext";
+import "./styles.css";
 
 const About = () => {
+  const theme = useContext(DarkThemeContext);
+  useEffect(() => {
+    console.log(theme);
+  }, [theme]);
   return (
     <>
-      <Divider />
-      <Flex justify="center">
+      <Flex style={{ marginTop: "1rem" }} justify="center">
         <div style={{ width: "75vw" }}>
           <Typography.Text style={{ fontSize: "24px" }}>
             SLDC Live fetches real-time generation data for Maharashtra from
@@ -24,7 +32,7 @@ const About = () => {
           </Typography.Text>
           <Divider />
           <div>
-            <Typography.Title level={3}>Architecture</Typography.Title>
+            <Typography.Title level={2}>Architecture</Typography.Title>
           </div>
           <Typography.Text style={{ fontSize: "24px" }}>
             The image processing and data extraction service runs on Google
@@ -53,7 +61,10 @@ const About = () => {
                   <Typography.Text>Event Arc</Typography.Text>
                 </Flex>
               </div>
-              <Icon component={arrow} className="arrow-icon-size" />
+              <Icon
+                component={theme ? arrow_white : arrow}
+                className="arrow-icon-size"
+              />
               <div>
                 <Flex justify="center">
                   <Icon component={cloudRun} className="icon-size" />
@@ -62,16 +73,25 @@ const About = () => {
                   <Typography.Text>Cloud Run Service</Typography.Text>
                 </Flex>
               </div>
-              <Icon component={arrow} className="arrow-icon-size" />
+              <Icon
+                component={theme ? arrow_white : arrow}
+                className="arrow-icon-size"
+              />
               <div>
                 <Flex justify="center">
-                  <Icon component={ocr} className="icon-size" />
+                  <Icon
+                    component={theme ? ocr_white : ocr}
+                    className="icon-size"
+                  />
                 </Flex>
                 <Flex justify="center" style={{ marginTop: "1rem" }}>
                   <Typography.Text>OCR Detection</Typography.Text>
                 </Flex>
               </div>
-              <Icon component={arrow} className="arrow-icon-size" />
+              <Icon
+                component={theme ? arrow_white : arrow}
+                className="arrow-icon-size"
+              />
               <div>
                 <Flex justify="center">
                   <Icon component={firebase} className="icon-size" />
@@ -84,7 +104,7 @@ const About = () => {
           </div>
           <Divider />
           <div>
-            <Typography.Title level={3}>FrontEnd</Typography.Title>
+            <Typography.Title level={2}>FrontEnd</Typography.Title>
           </div>
           <Flex justify="space-evenly" style={{ marginTop: "2rem" }}>
             <div>

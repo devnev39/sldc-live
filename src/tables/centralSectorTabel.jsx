@@ -5,7 +5,7 @@ const columns = [
     dataIndex: "state",
     title: "State",
     render: (item) => (
-      <Typography.Text style={{ fontWeight: "600" }}>{item}</Typography.Text>
+      <Typography.Text style={{ fontWeight: "bold" }}>{item}</Typography.Text>
     ),
     key: "state",
     sorter: (a, b) => a.state.localeCompare(b.state),

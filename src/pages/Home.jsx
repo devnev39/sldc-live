@@ -39,7 +39,6 @@ const Home = () => {
 
   return (
     <>
-      <Divider />
       <Row style={{ marginBottom: "1rem" }}>
         <Col>
           <Alert
@@ -127,7 +126,7 @@ const Home = () => {
         <Divider className="small-screen-divider" />
         <Col span={1} xs={{ span: 0 }} md={{ span: 1 }}>
           <Flex justify="center">
-            <Divider type="vertical" style={{ height: "25vh" }} />
+            <Divider type="vertical" style={{ height: "20vh" }} />
           </Flex>
         </Col>
         <Col span={12} xs={{ span: 24 }} md={{ span: 12 }}>
@@ -330,9 +329,7 @@ const Home = () => {
                   dataSource={tables.centralSectorTable.data}
                   bordered
                   title={() => (
-                    <Typography.Text
-                      style={{ fontWeight: "600", fontSize: "24px" }}
-                    >
+                    <Typography.Text style={{ fontSize: "24px" }}>
                       Central Sector
                     </Typography.Text>
                   )}
