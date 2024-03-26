@@ -30,7 +30,7 @@ import {
   SunOutlined,
 } from "@ant-design/icons";
 import { DarkThemeContext } from "./context/themeContext";
-import { inject } from "@vercel/analytics/*";
+import { inject } from "@vercel/analytics";
 
 inject();
 
