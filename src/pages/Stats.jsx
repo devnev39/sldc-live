@@ -10,7 +10,7 @@ const Stats = () => {
   return (
     <>
       <Divider />
-      <Row>
+      <Row className="stats-page-size">
         <Col span={10} xs={{ span: 24 }} md={{ span: 10 }}>
           <Flex justify="space-evenly">
             <Card>

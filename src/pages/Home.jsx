@@ -4,6 +4,7 @@ import { ArrowDownOutlined, ArrowUpOutlined } from "@ant-design/icons";
 import { Line } from "react-chartjs-2";
 import { useSelector } from "react-redux";
 import "./styles.css";
+import { green, red } from "@ant-design/colors";
 
 const Home = () => {
   const charts = useSelector((state) => state.data.charts);
@@ -63,7 +64,7 @@ const Home = () => {
                 }
                 value={charts.frequencyChart.data.datasets[0].data.slice(-1)}
                 valueStyle={{
-                  color: `${charts.frequencyChart.data.datasets[0].data.slice(-1) < charts.frequencyChart.data.datasets[0].data.slice(-2) ? "#cf1322" : "#3f8600"}`,
+                  color: `${charts.frequencyChart.data.datasets[0].data.slice(-1) < charts.frequencyChart.data.datasets[0].data.slice(-2) ? red.primary : green.primary}`,
                 }}
                 prefix={
                   charts.frequencyChart.data.datasets[0].data.slice(-1) <
@@ -86,7 +87,7 @@ const Home = () => {
                 }
                 value={getValue(charts.stateGenChart.data.datasets[1].data)}
                 valueStyle={{
-                  color: `${getMovement(charts.stateGenChart.data.datasets[1].data) == -1 ? "#cf1322" : "#3f8600"}`,
+                  color: `${getMovement(charts.stateGenChart.data.datasets[1].data) == -1 ? red.primary : green.primary}`,
                 }}
                 prefix={
                   getMovement(charts.stateGenChart.data.datasets[1].data) ==
@@ -108,7 +109,7 @@ const Home = () => {
                 }
                 value={getValue(charts.stateGenChart.data.datasets[0].data)}
                 valueStyle={{
-                  color: `${getMovement(charts.stateGenChart.data.datasets[0].data) == -1 ? "#cf1322" : "#3f8600"}`,
+                  color: `${getMovement(charts.stateGenChart.data.datasets[0].data) == -1 ? red.primary : green.primary}`,
                 }}
                 prefix={
                   getMovement(charts.stateGenChart.data.datasets[0].data) ==
@@ -143,7 +144,7 @@ const Home = () => {
                   charts.generationDistChart.data.datasets[0].data,
                 )}
                 valueStyle={{
-                  color: `${getMovement(charts.generationDistChart.data.datasets[0].data) == -1 ? "#cf1322" : "#3f8600"}`,
+                  color: `${getMovement(charts.generationDistChart.data.datasets[0].data) == -1 ? red.primary : green.primary}`,
                 }}
                 prefix={
                   getMovement(
@@ -169,7 +170,7 @@ const Home = () => {
                   charts.generationDistChart.data.datasets[1].data,
                 )}
                 valueStyle={{
-                  color: `${getMovement(charts.generationDistChart.data.datasets[1].data) == -1 ? "#cf1322" : "#3f8600"}`,
+                  color: `${getMovement(charts.generationDistChart.data.datasets[1].data) == -1 ? red.primary : green.primary}`,
                 }}
                 prefix={
                   getMovement(
@@ -194,7 +195,7 @@ const Home = () => {
                   charts.generationDistChart.data.datasets[2].data,
                 )}
                 valueStyle={{
-                  color: `${getMovement(charts.generationDistChart.data.datasets[2].data) == -1 ? "#cf1322" : "#3f8600"}`,
+                  color: `${getMovement(charts.generationDistChart.data.datasets[2].data) == -1 ? red.primary : green.primary}`,
                 }}
                 prefix={
                   getMovement(

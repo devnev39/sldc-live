@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import { clearData, filterData, parseData } from "./features/data";
 import {
   Button,
+  ConfigProvider,
   DatePicker,
   Divider,
   Flex,
   Layout,
   Menu,
   Typography,
+  theme,
 } from "antd";
 import transmission from "./assets/transmission.svg?react";
 import Icon from "@ant-design/icons/lib/components/Icon";
@@ -20,8 +22,13 @@ import { useDispatch } from "react-redux";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import api from "./query/query";
-import { Content, Footer } from "antd/es/layout/layout";
-import { GithubOutlined, LinkedinOutlined } from "@ant-design/icons";
+import { Content, Footer, Header } from "antd/es/layout/layout";
+import {
+  GithubOutlined,
+  LinkedinOutlined,
+  MoonOutlined,
+  SunOutlined,
+} from "@ant-design/icons";
 dayjs.extend(customParseFormat);
 
 const dateFormat = "YYYY-MM-DD";
@@ -47,6 +54,7 @@ function App() {
   const dispatch = useDispatch();
 
   const [date, setDate] = useState(dayjs(dayjs(), dateFormat));
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   // TODO: Fetch the local data for testing
 
@@ -69,73 +77,92 @@ function App() {
 
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-        <Flex justify="center" align="center">
-          <Icon component={transmission} style={{ fontSize: "2.5rem" }} />
-          <Title level={4}>SLDC Live (Kalwa)</Title>
-        </Flex>
-        <div
-          style={{
-            width: "35vw",
-            justifyContent: "center",
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <div style={{ width: "25vw" }}>
-            <Menu
-              onClick={onClick}
-              selectedKeys={[current]}
-              mode="horizontal"
-              items={items}
-            />
-          </div>
+      <ConfigProvider
+        theme={{
+          algorithm: isDarkTheme ? theme.darkAlgorithm : theme.defaultAlgorithm,
+        }}
+      >
+        <Layout>
+          <Header>
+            <Flex justify="space-evenly">
+              <Flex justify="center" align="center">
+                <Icon
+                  component={transmission}
+                  style={{ fontSize: "2.5rem", color: "white" }}
+                />
+                <Title style={{ color: "#FFFFFFD9" }} level={4}>
+                  SLDC Live (Kalwa)
+                </Title>
+              </Flex>
+              <Flex
+                style={{
+                  width: "35vw",
+                  justifyContent: "center",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <div style={{ width: "25vw" }}>
+                  <Menu
+                    onClick={onClick}
+                    selectedKeys={[current]}
+                    mode="horizontal"
+                    items={items}
+                    theme="dark"
+                  />
+                </div>
 
-          <div>
-            <DatePicker
-              defaultValue={dayjs(date, dateFormat)}
-              onChange={(e) => {
-                setDate(dayjs(e, dateFormat));
-              }}
-              minDate={dayjs(dayjs().subtract(15, "days"), dateFormat)}
-              maxDate={dayjs(dayjs(), dateFormat)}
-            />
-          </div>
-        </div>
-      </div>
-      <Layout>
-        <Content>
-          {current == "home" ? <Home /> : null}
-          {current == "stats" ? <Stats /> : null}
-          {current == "about" ? <About /> : null}
-        </Content>
-        <Divider />
-        <Footer>
-          <Flex justify="center">
-            <div>
+                <div>
+                  <DatePicker
+                    defaultValue={dayjs(date, dateFormat)}
+                    onChange={(e) => {
+                      setDate(dayjs(e, dateFormat));
+                    }}
+                    minDate={dayjs(dayjs().subtract(15, "days"), dateFormat)}
+                    maxDate={dayjs(dayjs(), dateFormat)}
+                  />
+                </div>
+                <Button
+                  onClick={() => setIsDarkTheme(!isDarkTheme)}
+                  style={{ marginLeft: "2rem" }}
+                  icon={isDarkTheme ? <MoonOutlined /> : <SunOutlined />}
+                ></Button>
+              </Flex>
+            </Flex>
+          </Header>
+          <Content>
+            {current == "home" ? <Home /> : null}
+            {current == "stats" ? <Stats /> : null}
+            {current == "about" ? <About /> : null}
+          </Content>
+          <Divider />
+          <Footer>
+            <Flex justify="center">
               <div>
-                <Typography.Text style={{ fontSize: "16px" }}>
-                  Developed and maintained by @devnev39
-                </Typography.Text>
+                <div>
+                  <Typography.Text style={{ fontSize: "16px" }}>
+                    Developed and maintained by @devnev39
+                  </Typography.Text>
+                </div>
+                <div>
+                  <Flex justify="center">
+                    <Button type="text" href="https://github.com/devnev39">
+                      <GithubOutlined style={{ fontSize: "2rem" }} />
+                    </Button>
+                    <Divider style={{ height: "2vw" }} type="vertical" />
+                    <Button
+                      type="text"
+                      href="https://www.linkedin.com/in/bhuvanesh-bonde-58793615b"
+                    >
+                      <LinkedinOutlined style={{ fontSize: "2rem" }} />
+                    </Button>
+                  </Flex>
+                </div>
               </div>
-              <div>
-                <Flex justify="center">
-                  <Button type="text" href="https://github.com/devnev39">
-                    <GithubOutlined style={{ fontSize: "2rem" }} />
-                  </Button>
-                  <Divider style={{ height: "2vw" }} type="vertical" />
-                  <Button
-                    type="text"
-                    href="https://www.linkedin.com/in/bhuvanesh-bonde-58793615b"
-                  >
-                    <LinkedinOutlined style={{ fontSize: "2rem" }} />
-                  </Button>
-                </Flex>
-              </div>
-            </div>
-          </Flex>
-        </Footer>
-      </Layout>
+            </Flex>
+          </Footer>
+        </Layout>
+      </ConfigProvider>
     </>
   );
 }
