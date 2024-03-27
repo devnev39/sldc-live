@@ -244,8 +244,8 @@ const Home = () => {
             <Card>
               <div className="chartjs-width">
                 <Line
-                  data={charts.generationDistChart.data}
-                  options={charts.generationDistChart.options}
+                  data={charts.stateGenChart.data}
+                  options={charts.stateGenChart.options}
                 />
               </div>
             </Card>
@@ -259,8 +259,8 @@ const Home = () => {
             <Card>
               <div className="chartjs-width">
                 <Line
-                  data={charts.stateGenChart.data}
-                  options={charts.stateGenChart.options}
+                  data={charts.generationDistChart.data}
+                  options={charts.generationDistChart.options}
                 />
               </div>
             </Card>

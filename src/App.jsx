@@ -31,6 +31,8 @@ import {
 } from "@ant-design/icons";
 import { DarkThemeContext } from "./context/themeContext";
 import { inject } from "@vercel/analytics";
+import { Chart } from "chart.js";
+import { each } from "chart.js/helpers";
 
 inject();
 
@@ -53,6 +55,12 @@ const items = [
   },
 ];
 
+const chartJsDarkColor = "#FFFFFFD9";
+const chartJsDarkBorderColor = "#FFFFFF40";
+
+const chartJsLightColor = "#666";
+const chartJsLightBorderColor = "#00000040";
+
 function App() {
   // Fetch the data and set to store
 
@@ -66,9 +74,37 @@ function App() {
   const changeColorTheme = (event) => {
     if (event.matches) {
       setIsDarkTheme(true);
+      Chart.defaults.color = chartJsDarkColor;
     } else {
       setIsDarkTheme(false);
+      Chart.defaults.color = chartJsLightColor;
     }
+    each(Chart.instances, (i) => {
+      for (let scale in i.config.options.scales) {
+        i.config.options.scales[scale].grid.color = event.matches
+          ? chartJsDarkBorderColor
+          : chartJsLightBorderColor;
+        i.config.options.scales[scale].grid.color = event.matches
+          ? chartJsDarkBorderColor
+          : chartJsLightBorderColor;
+
+        i.config.options.scales[scale].grid.borderColor = event.matches
+          ? chartJsDarkColor
+          : chartJsLightColor;
+        i.config.options.scales[scale].grid.borderColor = event.matches
+          ? chartJsDarkColor
+          : chartJsLightColor;
+
+        // Update axes label font color
+        i.config.options.scales[scale].ticks.color = event.matches
+          ? chartJsDarkColor
+          : chartJsLightColor;
+        i.config.options.scales[scale].ticks.color = event.matches
+          ? chartJsDarkColor
+          : chartJsLightColor;
+      }
+      i.update();
+    });
   };
 
   useEffect(() => {
@@ -77,10 +113,23 @@ function App() {
       window.matchMedia("(prefers-color-scheme: dark)").matches
     ) {
       setIsDarkTheme(true);
+      Chart.defaults.color = chartJsDarkColor;
+    } else {
+      setIsDarkTheme(false);
+      Chart.defaults.color = chartJsLightColor;
     }
     window
       .matchMedia("(prefers-color-scheme: dark)")
       .addEventListener("change", changeColorTheme);
+
+    return () => {
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .removeEventListener("change", changeColorTheme);
+    };
+  }, []);
+
+  useEffect(() => {
     api.getDateData(date.format("YYYY-MM-DD")).then((docs) => {
       dispatch(clearData());
       dispatch(parseData(docs));
@@ -88,9 +137,6 @@ function App() {
     });
     return () => {
       dispatch(clearData());
-      window
-        .matchMedia("(prefers-color-scheme: dark)")
-        .removeEventListener("change", changeColorTheme);
     };
   }, [date, dispatch]);
 
@@ -149,7 +195,7 @@ function App() {
                     />
                   </div>
                   <Button
-                    onClick={() => setIsDarkTheme(!isDarkTheme)}
+                    onClick={() => changeColorTheme({ matches: !isDarkTheme })}
                     style={{ marginLeft: "1rem" }}
                     icon={isDarkTheme ? <SunOutlined /> : <MoonOutlined />}
                   ></Button>
