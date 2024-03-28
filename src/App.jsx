@@ -112,11 +112,9 @@ function App() {
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches
     ) {
-      setIsDarkTheme(true);
-      Chart.defaults.color = chartJsDarkColor;
+      changeColorTheme({ matches: true });
     } else {
-      setIsDarkTheme(false);
-      Chart.defaults.color = chartJsLightColor;
+      changeColorTheme({ matches: false });
     }
     window
       .matchMedia("(prefers-color-scheme: dark)")
