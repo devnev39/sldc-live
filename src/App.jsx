@@ -102,6 +102,10 @@ function App() {
         i.config.options.scales[scale].ticks.color = event.matches
           ? chartJsDarkColor
           : chartJsLightColor;
+
+        i.config.options.scales[scale].title.color = event.matches
+          ? chartJsDarkColor
+          : chartJsLightColor;
       }
       i.update();
     });

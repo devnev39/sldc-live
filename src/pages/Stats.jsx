@@ -3,6 +3,7 @@ import { ArrowDownOutlined, ArrowUpOutlined } from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import { Line } from "react-chartjs-2";
 import "./styles.css";
+import { green, red } from "@ant-design/colors";
 
 const Stats = () => {
   const charts = useSelector((state) => state.data.charts);
@@ -21,7 +22,7 @@ const Stats = () => {
                 }
                 value={charts.serverUsageChart.data.datasets[0].data.slice(-1)}
                 valueStyle={{
-                  color: `${charts.serverUsageChart.data.datasets[0].data.slice(-1) < charts.frequencyChart.data.datasets[0].data.slice(-2) ? "#cf1322" : "#3f8600"}`,
+                  color: `${charts.serverUsageChart.data.datasets[0].data.slice(-1) < charts.frequencyChart.data.datasets[0].data.slice(-2) ? green.primary : red.primary}`,
                 }}
                 prefix={
                   charts.serverUsageChart.data.datasets[0].data.slice(-1) <
@@ -44,7 +45,7 @@ const Stats = () => {
                 }
                 value={charts.serverUsageChart.data.datasets[1].data.slice(-1)}
                 valueStyle={{
-                  color: `${charts.serverUsageChart.data.datasets[1].data.slice(-1) < charts.frequencyChart.data.datasets[0].data.slice(-2) ? "#cf1322" : "#3f8600"}`,
+                  color: `${charts.serverUsageChart.data.datasets[1].data.slice(-1) < charts.frequencyChart.data.datasets[0].data.slice(-2) ? green.primary : red.primary}`,
                 }}
                 prefix={
                   charts.serverUsageChart.data.datasets[1].data.slice(-1) <
