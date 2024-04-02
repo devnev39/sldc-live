@@ -22,7 +22,12 @@ const Stats = () => {
                 }
                 value={charts.serverUsageChart.data.datasets[0].data.slice(-1)}
                 valueStyle={{
-                  color: `${charts.serverUsageChart.data.datasets[0].data.slice(-1) < charts.frequencyChart.data.datasets[0].data.slice(-2) ? green.primary : red.primary}`,
+                  color: `${
+                    charts.serverUsageChart.data.datasets[0].data.slice(-1) <
+                    charts.serverUsageChart.data.datasets[0].data.slice(-2)
+                      ? green.primary
+                      : red.primary
+                  }`,
                 }}
                 prefix={
                   charts.serverUsageChart.data.datasets[0].data.slice(-1) <
