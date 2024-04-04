@@ -5,10 +5,37 @@ import { Line } from "react-chartjs-2";
 import { useSelector } from "react-redux";
 import "./styles.css";
 import { green, red } from "@ant-design/colors";
+import { useEffect, useState } from "react";
+
+const getAverage = (lst) => {
+  let size = lst.length;
+  let sum = 0;
+  for (let dp of lst) {
+    if (dp && !isNaN(dp)) sum += dp;
+    else size -= 1;
+  }
+  return Math.round(sum / size);
+};
 
 const Home = () => {
   const charts = useSelector((state) => state.data.charts);
   const tables = useSelector((state) => state.data.tables);
+
+  const [freqAvg, setFreqAvg] = useState(0);
+  const [stateGen, setStateGenAvg] = useState(0);
+  const [stateDemand, setStateDemandAvg] = useState(0);
+  const [coalGasAvg, setCoalGasAvg] = useState(0);
+  const [hydroAvg, setHydroAvg] = useState(0);
+  const [othersAvg, setOthersAvg] = useState(0);
+
+  useEffect(() => {
+    setFreqAvg(getAverage(charts.frequencyChart.data.datasets[0].data));
+    setStateGenAvg(getAverage(charts.stateGenChart.data.datasets[0].data));
+    setStateDemandAvg(getAverage(charts.stateGenChart.data.datasets[1].data));
+    setCoalGasAvg(getAverage(charts.generationDistChart.data.datasets[0].data));
+    setHydroAvg(getAverage(charts.generationDistChart.data.datasets[1].data));
+    setOthersAvg(getAverage(charts.generationDistChart.data.datasets[2].data));
+  }, [charts]);
 
   const getValue = (data) => {
     let len = data.length;
@@ -54,7 +81,9 @@ const Home = () => {
         <Col span={11} xs={{ span: 24 }} md={{ span: 11 }}>
           {/* Main Param Section */}
           <Flex justify="space-evenly">
-            <Card>
+            <Card
+              loading={charts.frequencyChart.data.datasets[0].data.length == 0}
+            >
               <Statistic
                 title={
                   <Typography.Text underline className="font-600">
@@ -76,8 +105,13 @@ const Home = () => {
                 precision={2}
                 suffix="Hz"
               />
+              <Typography.Text>
+                Avg :<Typography.Text mark>{freqAvg}</Typography.Text>
+              </Typography.Text>
             </Card>
-            <Card>
+            <Card
+              loading={charts.frequencyChart.data.datasets[0].data.length == 0}
+            >
               <Statistic
                 title={
                   <Typography.Text className="font-600" underline>
@@ -98,8 +132,13 @@ const Home = () => {
                 }
                 suffix="MW"
               />
+              <Typography.Text>
+                Avg :<Typography.Text mark>{stateDemand}</Typography.Text>
+              </Typography.Text>
             </Card>
-            <Card>
+            <Card
+              loading={charts.frequencyChart.data.datasets[0].data.length == 0}
+            >
               <Statistic
                 title={
                   <Typography.Text className="font-600" underline>
@@ -120,6 +159,9 @@ const Home = () => {
                 }
                 suffix="MW"
               />
+              <Typography.Text>
+                Avg :<Typography.Text mark>{stateGen}</Typography.Text>
+              </Typography.Text>
             </Card>
           </Flex>
         </Col>
@@ -132,7 +174,9 @@ const Home = () => {
         <Col span={12} xs={{ span: 24 }} md={{ span: 12 }}>
           {/* Sub Param Section */}
           <Flex justify="space-evenly">
-            <Card>
+            <Card
+              loading={charts.frequencyChart.data.datasets[0].data.length == 0}
+            >
               <Statistic
                 title={
                   <Typography.Text className="font-600" underline>
@@ -157,8 +201,13 @@ const Home = () => {
                 precision={2}
                 suffix="MW"
               />
+              <Typography.Text>
+                Avg :<Typography.Text mark>{coalGasAvg}</Typography.Text>
+              </Typography.Text>
             </Card>
-            <Card>
+            <Card
+              loading={charts.frequencyChart.data.datasets[0].data.length == 0}
+            >
               <Statistic
                 title={
                   <Typography.Text className="font-600" underline>
@@ -182,8 +231,13 @@ const Home = () => {
                 }
                 suffix="MW"
               />
+              <Typography.Text>
+                Avg :<Typography.Text mark>{hydroAvg}</Typography.Text>
+              </Typography.Text>
             </Card>
-            <Card>
+            <Card
+              loading={charts.frequencyChart.data.datasets[0].data.length == 0}
+            >
               <Statistic
                 title={
                   <Typography.Text className="font-600" underline>
@@ -207,6 +261,9 @@ const Home = () => {
                 }
                 suffix="MW"
               />
+              <Typography.Text>
+                Avg :<Typography.Text mark>{othersAvg}</Typography.Text>
+              </Typography.Text>
             </Card>
           </Flex>
         </Col>
