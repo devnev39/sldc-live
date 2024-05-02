@@ -76,6 +76,18 @@ const Home = () => {
           />
         </Col>
       </Row>
+      {freqAvg < 48 ? (
+        <Row style={{ marginBottom: "1rem" }}>
+          <Col>
+            <Alert
+              message="Data might be flawed due to skewed or padded image at the source ! Please consider previous data for reference !"
+              type="error"
+              showIcon
+              closable
+            />
+          </Col>
+        </Row>
+      ) : null}
       <Row>
         {/*  Two scetions one for main params and one for sub params */}
         <Col span={11} xs={{ span: 24 }} md={{ span: 11 }}>
