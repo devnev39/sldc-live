@@ -80,7 +80,7 @@ const Home = () => {
         <Row style={{ marginBottom: "1rem" }}>
           <Col>
             <Alert
-              message="Data might be flawed due to skewed or padded image at the source ! Please consider previous data for reference !"
+              message="ATTENTION ! The source SCADA image is skewed due to some reasons! The issue will be solved by 15th May!"
               type="error"
               showIcon
               closable
