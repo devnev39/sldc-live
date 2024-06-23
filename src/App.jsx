@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 // import data from "./testdata.test.json";
 import { clearData, filterData, parseData } from "./features/data";
 import {
+  Badge,
   Button,
   ConfigProvider,
   DatePicker,
@@ -24,9 +25,11 @@ import customParseFormat from "dayjs/plugin/customParseFormat";
 import api from "./query/query";
 import { Content, Footer, Header } from "antd/es/layout/layout";
 import {
+  CloudDownloadOutlined,
   GithubOutlined,
   LinkedinOutlined,
   MoonOutlined,
+  StarFilled,
   SunOutlined,
 } from "@ant-design/icons";
 import { DarkThemeContext } from "./context/themeContext";
@@ -40,6 +43,8 @@ dayjs.extend(customParseFormat);
 
 const dateFormat = "YYYY-MM-DD";
 
+const APPMODE = "DEBUG";
+
 const items = [
   {
     label: "SLDC LIVE",
@@ -48,6 +53,10 @@ const items = [
   {
     label: "Server stats",
     key: "stats",
+  },
+  {
+    label: "Predictions",
+    key: "preds",
   },
   {
     label: "About",
@@ -68,6 +77,8 @@ function App() {
 
   const [date, setDate] = useState(dayjs(dayjs(), dateFormat));
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  const [spin, setSpin] = useState(true);
 
   // TODO: Fetch the local data for testing
 
@@ -124,19 +135,26 @@ function App() {
       .matchMedia("(prefers-color-scheme: dark)")
       .addEventListener("change", changeColorTheme);
 
+    const i = setInterval(() => {
+      setSpin(true);
+      setTimeout(() => setSpin(false), 3000);
+    }, 5000);
     return () => {
       window
         .matchMedia("(prefers-color-scheme: dark)")
         .removeEventListener("change", changeColorTheme);
+      clearInterval(i);
     };
   }, []);
 
   useEffect(() => {
-    api.getDateData(date.format("YYYY-MM-DD")).then((docs) => {
-      dispatch(clearData());
-      dispatch(parseData(docs));
-      dispatch(filterData());
-    });
+    if (APPMODE !== "DEBUG") {
+      api.getDateData(date.format("YYYY-MM-DD")).then((docs) => {
+        dispatch(clearData());
+        dispatch(parseData(docs));
+        dispatch(filterData());
+      });
+    }
     return () => {
       dispatch(clearData());
     };
@@ -170,13 +188,19 @@ function App() {
                 </Flex>
                 <Flex
                   style={{
-                    width: "35vw",
+                    width: "50vw",
                     justifyContent: "center",
                     display: "flex",
                     alignItems: "center",
                   }}
                 >
-                  <div style={{ width: "25vw" }}>
+                  <div
+                    style={{
+                      width: "30vw",
+                      marginRight: "0",
+                      paddingRight: "0",
+                    }}
+                  >
                     <Menu
                       onClick={onClick}
                       selectedKeys={[current]}
@@ -201,6 +225,16 @@ function App() {
                     style={{ marginLeft: "1rem" }}
                     icon={isDarkTheme ? <SunOutlined /> : <MoonOutlined />}
                   ></Button>
+                  <Badge
+                    dot
+                    color="success"
+                    count={<StarFilled spin={spin} style={{ color: "#f50" }} />}
+                  >
+                    <Button
+                      style={{ marginLeft: "1rem" }}
+                      icon={<CloudDownloadOutlined />}
+                    ></Button>
+                  </Badge>
                 </Flex>
               </Flex>
             </Header>
