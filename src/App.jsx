@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 // import data from "./testdata.test.json";
 import { clearData, filterData, parseData } from "./features/data";
 import {
   Badge,
   Button,
+  Checkbox,
   ConfigProvider,
   DatePicker,
   Divider,
   Flex,
   Layout,
   Menu,
+  Modal,
   Typography,
   theme,
 } from "antd";
@@ -36,6 +38,10 @@ import { DarkThemeContext } from "./context/themeContext";
 import { inject } from "@vercel/analytics";
 import { Chart } from "chart.js";
 import { each } from "chart.js/helpers";
+import {
+  availableDownloads,
+  defaultDownloads,
+} from "./commons/downloadOptions";
 
 inject();
 
@@ -77,6 +83,47 @@ function App() {
 
   const [date, setDate] = useState(dayjs(dayjs(), dateFormat));
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  const [dateRange, setDateRange] = useState([
+    dayjs(dayjs().subtract(15, "days")),
+    dayjs(dayjs()),
+  ]);
+
+  const dateRangeRef = useRef();
+
+  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const [checkedList, setCheckedList] = useState(defaultDownloads);
+
+  const checkAll = availableDownloads.length === checkedList.length;
+  const indeterminate =
+    checkedList.length > 0 && checkedList.length < availableDownloads.length;
+
+  const onChange = (list) => {
+    console.log(list);
+    setCheckedList(list);
+  };
+
+  const onCheckAllChange = (e) => {
+    setCheckedList(e.target.checked ? availableDownloads : []);
+  };
+
+  const showModal = () => {
+    setOpen(true);
+  };
+
+  const handleOk = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setOpen(false);
+    }, 3000);
+  };
+
+  const handleCancel = () => {
+    setOpen(false);
+  };
 
   const [spin, setSpin] = useState(true);
 
@@ -122,7 +169,28 @@ function App() {
     });
   };
 
+  const downloadData = () => {
+    // Download docs
+    // Screen with selected fields
+    // Preprocess the data
+    // Arrange in sheets
+    // Download the data
+    const data = [];
+    for (
+      let day = dateRange[0];
+      day <= dateRange[1];
+      day = day.add(1, "days")
+    ) {
+      api.getDateData(day.format("YYYY-MM-DD")).then((docs) => {
+        data.push(docs);
+      });
+    }
+  };
   useEffect(() => {
+    // This useEffect is used for :
+    // Check for dark mode
+    // Check for prefers-color-scheme
+    // Spin animation code
     if (
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -148,6 +216,10 @@ function App() {
   }, []);
 
   useEffect(() => {
+    // This useffect is used for :
+    // Fetch the data
+    // Parse the data
+    // Filter the data
     if (APPMODE !== "DEBUG") {
       api.getDateData(date.format("YYYY-MM-DD")).then((docs) => {
         dispatch(clearData());
@@ -233,6 +305,7 @@ function App() {
                     <Button
                       style={{ marginLeft: "1rem" }}
                       icon={<CloudDownloadOutlined />}
+                      onClick={showModal}
                     ></Button>
                   </Badge>
                 </Flex>
@@ -270,6 +343,66 @@ function App() {
               </Flex>
             </Footer>
           </Layout>
+          <Modal
+            open={open}
+            title={<Title level={3}>Download data</Title>}
+            onOk={handleOk}
+            onCancel={handleCancel}
+            footer={[
+              <Button key={"back"} onClick={handleCancel}>
+                Close
+              </Button>,
+              <Button
+                key="submit"
+                type="primary"
+                loading={loading}
+                onClick={downloadData}
+                disabled={!dateRange}
+              >
+                Download
+              </Button>,
+            ]}
+          >
+            {/* <Flex> */}
+            <div>
+              <Checkbox
+                indeterminate={indeterminate}
+                onChange={onCheckAllChange}
+                checked={checkAll}
+              >
+                Check all
+              </Checkbox>
+              <Divider />
+              <Checkbox.Group
+                options={availableDownloads}
+                value={checkedList}
+                onChange={onChange}
+              />
+            </div>
+            {/* </Flex> */}
+            <Flex
+              justify="center"
+              align="center"
+              gap={15}
+              style={{ marginTop: "2rem" }}
+            >
+              <Typography.Text strong underline>
+                Select from and to date :
+              </Typography.Text>
+              <DatePicker.RangePicker
+                ref={dateRangeRef}
+                onChange={(date) => {
+                  setDateRange(date);
+                }}
+                value={[
+                  dayjs(dayjs().subtract(15, "days"), dateFormat),
+                  dayjs(dayjs(), dateFormat),
+                ]}
+                maxDate={dayjs(dayjs(), dateFormat)}
+                minDate={dayjs(dayjs().subtract(15, "days"), dateFormat)}
+              />
+            </Flex>
+          </Modal>
         </DarkThemeContext.Provider>
       </ConfigProvider>
     </>
