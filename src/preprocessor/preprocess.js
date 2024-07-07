@@ -129,6 +129,7 @@ export const filteredDataToWorksheet = (filteredData, fields) => {
       ...addToWorksheetWithOffset(filteredData[fields[i]], i == 0 ? 0 : i * 3),
     };
   }
+
   combinedWorkSheet["!ref"] = XLSX.utils.encode_range({
     s: { c: 0, r: 0 },
     e: { c: fields.length * 3 + 1, r: 26 },

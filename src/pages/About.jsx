@@ -11,15 +11,12 @@ import react from "../assets/react.svg?react";
 import redux from "../assets/redux.svg?react";
 import ant from "../assets/ant.svg?react";
 import Icon from "@ant-design/icons/lib/components/Icon";
-import { useContext, useEffect } from "react";
-import { DarkThemeContext } from "../context/themeContext";
 import "./styles.css";
+import { useContext } from "react";
+import { ThemeContext } from "../context/themeContext";
 
 const About = () => {
-  const theme = useContext(DarkThemeContext);
-  useEffect(() => {
-    console.log(theme);
-  }, [theme]);
+  const { isDarkTheme: theme } = useContext(ThemeContext);
   return (
     <>
       <Flex style={{ marginTop: "1rem" }} justify="center">
