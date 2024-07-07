@@ -1,7 +1,7 @@
 export const defaultDownloads = [
   "Frequency",
   "State Demand",
-  "State Generation",
+  "State Gen",
   "COAL+GAS",
   "HYDRO",
 ];
@@ -9,7 +9,7 @@ export const defaultDownloads = [
 export const availableDownloads = [
   "Frequency",
   "State Demand",
-  "State Generation",
+  "State Gen",
   "COAL+GAS",
   "HYDRO",
   "OTHERS TTL",

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 // import data from "./testdata.test.json";
 import { clearData, filterData, parseData } from "./features/data";
 import {
@@ -42,6 +42,11 @@ import {
   availableDownloads,
   defaultDownloads,
 } from "./commons/downloadOptions";
+import {
+  filteredDataToWorkbook,
+  preprocessDocs,
+  s2ab,
+} from "./preprocessor/preprocess";
 
 inject();
 
@@ -49,7 +54,7 @@ dayjs.extend(customParseFormat);
 
 const dateFormat = "YYYY-MM-DD";
 
-const APPMODE = "DEBUG";
+const APPMODE = "";
 
 const items = [
   {
@@ -85,11 +90,9 @@ function App() {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   const [dateRange, setDateRange] = useState([
-    dayjs(dayjs().subtract(15, "days")),
+    dayjs(dayjs().subtract(2, "days")),
     dayjs(dayjs()),
   ]);
-
-  const dateRangeRef = useRef();
 
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
@@ -169,21 +172,54 @@ function App() {
     });
   };
 
-  const downloadData = () => {
+  const downloadData = async () => {
     // Download docs
     // Screen with selected fields
     // Preprocess the data
     // Arrange in sheets
+
     // Download the data
-    const data = [];
-    for (
-      let day = dateRange[0];
-      day <= dateRange[1];
-      day = day.add(1, "days")
-    ) {
-      api.getDateData(day.format("YYYY-MM-DD")).then((docs) => {
+    try {
+      setLoading(true);
+      const data = [];
+      for (
+        let day = dateRange[0];
+        day <= dateRange[1];
+        day = day.add(1, "days")
+      ) {
+        const docs = await api.getDateData(day.format("YYYY-MM-DD"));
         data.push(docs);
+        // console.log(day.format("YYYY-MM-DD"));
+      }
+
+      if (!data.length) throw new Error("Data not found");
+
+      // Screen with selected fields
+      // Preprocess the data
+      for (let i = 0; i < data.length; i++) {
+        const docs = preprocessDocs(data[i], checkedList);
+        data[i] = docs;
+      }
+
+      console.log(data);
+
+      // Arrage in sheets
+      const workbookBinaryString = filteredDataToWorkbook(data, checkedList);
+
+      const blob = new Blob([s2ab(workbookBinaryString)], {
+        type: "application/octet-stream",
       });
+
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = `SLDC_${dayjs(dateRange[0]).format("MMM_DD_YYYY")}_${dayjs(dateRange[0]).format("MMM_DD_YYYY")}.xlsx`;
+      link.click();
+      URL.revokeObjectURL(link.href);
+      setLoading(false);
+    } catch (e) {
+      console.log(e);
+      window.alert(e);
+      setLoading(false);
     }
   };
   useEffect(() => {
@@ -387,19 +423,18 @@ function App() {
               style={{ marginTop: "2rem" }}
             >
               <Typography.Text strong underline>
-                Select from and to date :
+                Select FROM and TO date :
               </Typography.Text>
               <DatePicker.RangePicker
-                ref={dateRangeRef}
                 onChange={(date) => {
                   setDateRange(date);
                 }}
-                value={[
-                  dayjs(dayjs().subtract(15, "days"), dateFormat),
-                  dayjs(dayjs(), dateFormat),
+                defaultValue={[
+                  (dateRange && dateRange[0]) || dayjs(dayjs()),
+                  (dateRange && dateRange[1]) || dayjs(dayjs()),
                 ]}
                 maxDate={dayjs(dayjs(), dateFormat)}
-                minDate={dayjs(dayjs().subtract(15, "days"), dateFormat)}
+                minDate={dayjs(dayjs().subtract(14, "days"), dateFormat)}
               />
             </Flex>
           </Modal>
