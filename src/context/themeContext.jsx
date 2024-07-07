@@ -67,9 +67,9 @@ export const ThemeContextProvider = ({ children }) => {
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches
     ) {
-      setIsDarkTheme(true);
+      changeColorTheme({ matches: true });
     } else {
-      setIsDarkTheme(false);
+      changeColorTheme({ matches: false });
     }
 
     window
