@@ -29,8 +29,8 @@ const items = [
     key: "stats",
   },
   {
-    label: "Predictions",
-    key: "preds",
+    label: "Analysis",
+    key: "analysis",
   },
   {
     label: "About",

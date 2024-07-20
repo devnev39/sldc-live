@@ -1,15 +1,7 @@
 import { useContext, useEffect } from "react";
 // import data from "./testdata.test.json";
 import { clearData, filterData, parseData } from "./features/data";
-import {
-  Button,
-  ConfigProvider,
-  Divider,
-  Flex,
-  Layout,
-  Typography,
-  theme,
-} from "antd";
+import { ConfigProvider, Divider, Layout, theme } from "antd";
 import Home from "./pages/Home";
 import Stats from "./pages/Stats";
 import About from "./pages/About";
@@ -18,12 +10,13 @@ import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import api from "./query/query";
 import { Content, Footer } from "antd/es/layout/layout";
-import { GithubOutlined, LinkedinOutlined } from "@ant-design/icons";
 import { ThemeContext } from "./context/themeContext";
 import { inject } from "@vercel/analytics";
 import { Navbar } from "./components/Navbar";
 import { DownloadModal } from "./components/DownloadModal";
 import { NavbarContext } from "./context/navbarContext";
+import FooterComponent from "./components/Footer";
+import Analysis from "./pages/Analysis";
 
 inject();
 
@@ -65,33 +58,12 @@ function App() {
           <Content>
             {current == "home" ? <Home /> : null}
             {current == "stats" ? <Stats /> : null}
+            {current == "analysis" ? <Analysis /> : null}
             {current == "about" ? <About /> : null}
           </Content>
           <Divider />
           <Footer>
-            <Flex justify="center">
-              <div>
-                <div>
-                  <Typography.Text style={{ fontSize: "16px" }}>
-                    Developed and maintained by @devnev39
-                  </Typography.Text>
-                </div>
-                <div>
-                  <Flex justify="center">
-                    <Button type="text" href="https://github.com/devnev39">
-                      <GithubOutlined style={{ fontSize: "2rem" }} />
-                    </Button>
-                    <Divider style={{ height: "2vw" }} type="vertical" />
-                    <Button
-                      type="text"
-                      href="https://www.linkedin.com/in/bhuvanesh-bonde-58793615b"
-                    >
-                      <LinkedinOutlined style={{ fontSize: "2rem" }} />
-                    </Button>
-                  </Flex>
-                </div>
-              </div>
-            </Flex>
+            <FooterComponent />
           </Footer>
         </Layout>
         <DownloadModal />
