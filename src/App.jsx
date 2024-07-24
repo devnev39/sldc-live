@@ -10,13 +10,13 @@ import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import api from "./query/query";
 import { Content, Footer } from "antd/es/layout/layout";
-import { ThemeContext } from "./context/themeContext";
 import { inject } from "@vercel/analytics";
 import { Navbar } from "./components/Navbar";
 import { DownloadModal } from "./components/DownloadModal";
 import { NavbarContext } from "./context/navbarContext";
 import FooterComponent from "./components/Footer";
 import Analysis from "./pages/Analysis";
+import { ThemeContext } from "./context/themeContext";
 
 inject();
 
@@ -26,7 +26,6 @@ function App() {
   const dispatch = useDispatch();
 
   const { date, current } = useContext(NavbarContext);
-
   const { isDarkTheme } = useContext(ThemeContext);
 
   useEffect(() => {

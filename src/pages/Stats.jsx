@@ -4,9 +4,17 @@ import { useSelector } from "react-redux";
 import { Line } from "react-chartjs-2";
 import "./styles.css";
 import { green, red } from "@ant-design/colors";
+import { useContext, useEffect } from "react";
+import { ThemeContext } from "../context/themeContext";
+import changeChartColor from "../charts/changeChartColor";
 
 const Stats = () => {
   const charts = useSelector((state) => state.data.charts);
+  const { isDarkTheme } = useContext(ThemeContext);
+
+  useEffect(() => {
+    changeChartColor(isDarkTheme);
+  }, []);
 
   return (
     <>

@@ -11,12 +11,24 @@ import {
 import d from "../tmp/data.json";
 import { Line } from "react-chartjs-2";
 import dayjs from "dayjs";
+import { useContext, useEffect } from "react";
+import { ThemeContext } from "../context/themeContext";
+import changeChartColor from "../charts/changeChartColor";
 
 export default function Predictions() {
+  const { isDarkTheme } = useContext(ThemeContext);
+
+  useEffect(() => {
+    changeChartColor(isDarkTheme);
+  }, []);
+
   const data = [];
+  let j = 0;
+  let l = 48;
   for (let i of d) {
-    if (i.state_demand < 30000 && i.state_demand > 5000) {
+    if (i.state_demand < 30000 && i.state_demand > 5000 && j < l) {
       data.push(i);
+      j += 1;
     }
   }
 
@@ -28,6 +40,7 @@ export default function Predictions() {
       {
         label: "State Demand",
         data: data.map((i) => i.state_demand),
+        tension: 0.5,
       },
     ],
   };
