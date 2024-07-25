@@ -260,6 +260,18 @@ export const counterSlice = createSlice({
     clearDataFrame: (state) => {
       state.parsedDataFrame = null;
     },
+
+    setModels: (state, action) => {
+      state.models = action.payload;
+    },
+
+    clearModels: (state) => {
+      state.models = [];
+    },
+
+    updateModel: (state, action) => {
+      state.models = action.payload;
+    },
   },
 });
 
@@ -271,6 +283,9 @@ export const {
   filterData,
   createDataFrame,
   clearDataFrame,
+  setModels,
+  updateModel,
+  clearModels,
 } = counterSlice.actions;
 
 export default counterSlice.reducer;

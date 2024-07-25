@@ -40,7 +40,7 @@ export default function Predictions() {
   useEffect(() => {
     // let yl = dayjs().add(-1, "day").add(-dayjs().hour(), "hours").add(-dayjs().minute(), "minutes").toString();
     // yl = dayjs(yl).unix();
-
+    if (df == null) return;
     let tdl = dayjs()
       .add(-dayjs().hour(), "hours")
       .add(-dayjs().minute(), "minutes")
