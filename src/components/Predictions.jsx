@@ -8,12 +8,12 @@ import {
   Switch,
   Typography,
 } from "antd";
-import d from "../tmp/data.json";
 import { Line } from "react-chartjs-2";
 import dayjs from "dayjs";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../context/themeContext";
 import changeChartColor from "../charts/changeChartColor";
+import { useSelector } from "react-redux";
 
 export default function Predictions() {
   const { isDarkTheme } = useContext(ThemeContext);
@@ -22,28 +22,75 @@ export default function Predictions() {
     changeChartColor(isDarkTheme);
   }, []);
 
-  const data = [];
-  let j = 0;
-  let l = 48;
-  for (let i of d) {
-    if (i.state_demand < 30000 && i.state_demand > 5000 && j < l) {
-      data.push(i);
-      j += 1;
-    }
-  }
+  const [today, setToday] = useState(true);
+  const [subDf, setSubDf] = useState(null);
 
-  const chartData = {
-    labels: data.map((i) =>
-      dayjs(i.created_at * 1000).format("DD/MM/YYYY HH:mm:ss"),
-    ),
+  const [chartData, setChartData] = useState({
+    labels: subDf ? subDf.index.map((i) => i.toString()) : [],
     datasets: [
       {
+        data: subDf ? subDf["state_demand"].values : [],
         label: "State Demand",
-        data: data.map((i) => i.state_demand),
-        tension: 0.5,
       },
     ],
-  };
+  });
+
+  const df = useSelector((state) => state.data.parsedDataFrame);
+
+  useEffect(() => {
+    // let yl = dayjs().add(-1, "day").add(-dayjs().hour(), "hours").add(-dayjs().minute(), "minutes").toString();
+    // yl = dayjs(yl).unix();
+
+    let tdl = dayjs()
+      .add(-dayjs().hour(), "hours")
+      .add(-dayjs().minute(), "minutes")
+      .toString();
+    tdl = dayjs(tdl).unix();
+
+    let tdh = dayjs()
+      .add(24 - dayjs().hour(), "hours")
+      .add(60 - dayjs().minute(), "minutes")
+      .toString();
+    tdh = dayjs(tdh).unix();
+
+    let tomH = dayjs()
+      .add(1, "day")
+      .add(24 - dayjs().hour(), "hours")
+      .add(60 - dayjs().minute(), "minutes")
+      .toString();
+    tomH = dayjs(tomH).unix();
+
+    let sdf = null;
+    if (today) {
+      sdf = df.loc({
+        rows: df["created_at"].gt(tdl).and(df["created_at"].lt(tdh)),
+      });
+      setSubDf(sdf);
+    } else {
+      sdf = df.loc({
+        rows: df["created_at"].gt(tdh).and(df["created_at"].lt(tomH)),
+      });
+      setSubDf(sdf);
+    }
+    sdf.print();
+  }, [today, df]);
+
+  useEffect(() => {
+    // subDf.print();
+    setChartData({
+      labels: subDf ? subDf.index.map((i) => i.toString()) : [],
+      datasets: [
+        {
+          data: subDf ? subDf["state_demand"].values : [],
+          label: "State Demand",
+        },
+      ],
+    });
+  }, [subDf]);
+
+  useEffect(() => {
+    console.log(chartData);
+  }, [chartData]);
 
   const options = {
     maintainAspectRatio: false,
@@ -149,6 +196,8 @@ export default function Predictions() {
             <Switch
               checkedChildren={<>Tomorrow</>}
               unCheckedChildren={<>Today</>}
+              defaultChecked
+              onChange={(checked) => setToday(checked)}
             />
           </Flex>
           <Card style={{ marginTop: "5vh" }}>

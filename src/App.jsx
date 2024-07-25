@@ -1,6 +1,12 @@
 import { useContext, useEffect } from "react";
 // import data from "./testdata.test.json";
-import { clearData, filterData, parseData } from "./features/data";
+import {
+  clearData,
+  clearDataFrame,
+  createDataFrame,
+  filterData,
+  parseData,
+} from "./features/data";
 import { ConfigProvider, Divider, Layout, theme } from "antd";
 import Home from "./pages/Home";
 import Stats from "./pages/Stats";
@@ -17,6 +23,7 @@ import { NavbarContext } from "./context/navbarContext";
 import FooterComponent from "./components/Footer";
 import Analysis from "./pages/Analysis";
 import { ThemeContext } from "./context/themeContext";
+import { Timestamp } from "firebase/firestore";
 
 inject();
 
@@ -44,6 +51,36 @@ function App() {
       dispatch(clearData());
     };
   }, [date, dispatch]);
+
+  useEffect(() => {
+    if (import.meta.env.VITE_APPMODE !== "DEBUG") {
+      api.getAllParsedData().then((docs) => {
+        dispatch(clearDataFrame());
+        const data = [];
+        for (let d of docs) {
+          for (let key of Object.keys(d)) {
+            let ts = new Timestamp(
+              d[key].created_at.seconds,
+              d[key].created_at.nanoseconds,
+            );
+            d[key]["created_at"] = ts.seconds;
+            const ordered = Object.keys(d[key])
+              .sort()
+              .reduce((obj, k) => {
+                obj[k] = d[key][k];
+                return obj;
+              }, {});
+            data.push(ordered);
+          }
+        }
+        dispatch(createDataFrame(data));
+      });
+    }
+
+    return () => {
+      dispatch(clearDataFrame());
+    };
+  }, [dispatch]);
 
   return (
     <>

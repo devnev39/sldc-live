@@ -12,6 +12,8 @@ import {
   centralSectorData,
 } from "../tables/centralSectorTabel";
 import { clipDifference, filterDifference } from "../preprocessor/preprocess";
+import * as dfd from "danfojs/dist/danfojs-browser/src";
+import dayjs from "dayjs";
 
 // fields, stats, serverStats contains the latest object only
 // The series data is converted into
@@ -35,6 +37,8 @@ const initialState = {
     mumbaiExchangeChart: mumbaiExchangeChart,
     privateGenerationChart: privateGenerationChart,
   },
+  parsedDataFrame: null,
+  models: [],
 };
 
 export const counterSlice = createSlice({
@@ -58,7 +62,6 @@ export const counterSlice = createSlice({
         ts = ts
           .toDate()
           .toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-
         state.charts.frequencyChart.data.labels =
           state.charts.frequencyChart.data.labels.concat(ts);
 
@@ -213,11 +216,61 @@ export const counterSlice = createSlice({
       state.serverStats = [];
       state.stats = [];
     },
+
+    createDataFrame: (state, action) => {
+      // state.action.payload to be array of objects
+      // console.log(action.payload);
+      let df = new dfd.DataFrame(action.payload);
+
+      // Remove datapoints with values greater than 30000 and less than 5000
+
+      df = df.loc({
+        rows: df["state_demand"].gt(5000).and(df["state_demand"].lt(30000)),
+      });
+
+      // Set index to created_at
+
+      // console.log(df.size);
+      // df.print();
+      // console.log(df['created_at']);
+      // df['created_at'].dropDuplicates({inplace: true});
+
+      // const cr = df.column('created_at').apply((x) => {
+      //   return x + (5*60*60) + (30*60);
+      // });
+
+      // df.drop({columns: ['created_at'], inplace: true});
+
+      // df = df.addColumn("created_at", cr);
+
+      df.setIndex({ column: "created_at", inplace: true });
+
+      df.index.sort();
+
+      df.setIndex({
+        index: df.index.map((i) =>
+          dayjs(i * 1000).format("DD-MM-YYYY HH:mm:ss"),
+        ),
+        inplace: true,
+      });
+      df.tail(1).print();
+      state.parsedDataFrame = df;
+    },
+
+    clearDataFrame: (state) => {
+      state.parsedDataFrame = null;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { updateData, parseData, clearData, filterData } =
-  counterSlice.actions;
+export const {
+  updateData,
+  parseData,
+  clearData,
+  filterData,
+  createDataFrame,
+  clearDataFrame,
+} = counterSlice.actions;
 
 export default counterSlice.reducer;
