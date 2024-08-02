@@ -9,8 +9,7 @@ import {
   Typography,
 } from "antd";
 import dayjs from "dayjs";
-import timezone from "dayjs/plugin/timezone";
-import utc from "dayjs/plugin/utc";
+import customParseFormat from "dayjs/plugin/customParseFormat";
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../context/themeContext";
 import changeChartColor from "../charts/changeChartColor";
@@ -20,8 +19,7 @@ import * as ort from "onnxruntime-web/webgpu";
 ort.env.debug = true;
 ort.env.wasm.numThreads = 1;
 
-dayjs.extend(timezone);
-dayjs.extend(utc);
+dayjs.extend(customParseFormat);
 
 // dayjs.tz.setDefault("Asia/Kolkata");
 
@@ -52,15 +50,10 @@ export default function Predictions() {
     if (df == null) return;
     // Implement window size
     let tdl = dayjs()
-      .add(-dayjs().hour() - 8 - 5, "hours")
+      .add(-dayjs().hour() - 13, "hours")
       .add(-dayjs().minute() - 30, "minutes")
       .toString();
     tdl = dayjs(tdl).unix();
-    // console.log(tdl);
-    // console.log(dayjs(tdl*1000).format())
-    // select rows greater than tdl created_at
-    // console.log(df.shape);
-    // df.tail().print();
     const subdf = df.loc({ rows: df["created_at"].gt(tdl) });
     console.log(subdf.shape);
     subdf.print();
@@ -183,20 +176,28 @@ export default function Predictions() {
     const model = models[modelIndex];
     let subdf = subDf.copy();
 
-    let tempDf = removeColumns(subDf, model.columns);
-    tempDf = scaleDf(tempDf, model);
+    let tempDf = removeColumns(subdf, model.columns);
+    tempDf.print();
     scaleDf(tempDf, model);
+    tempDf.print();
     // Reshape data with (samples, window_size, features)
 
     const [samples, data] = windowAndGetData(tempDf, model);
     const shape = [samples, model.window_size, model.columns.length];
 
-    const out = runSingleInference(data, shape);
+    console.log(shape);
+    console.log(data);
+
+    const out = await runSingleInference(data, shape);
     let preds = out.dense_1.cpuData.map((i) => {
       return i * model.train_std.state_demand + model.train_mean.state_demand;
     });
 
-    preds = Array.from({ length: model.window_size }, () => NaN).concat(preds);
+    preds = Array.from({ length: model.window_size }, () => NaN).concat(
+      Array.from(preds),
+    );
+    console.log(preds);
+    console.log(subdf.shape);
     const value = preds.pop();
 
     // created_at, frequency, state_demand, state_gen, hour, dayOfWeek, month, --
@@ -204,26 +205,33 @@ export default function Predictions() {
 
     const lastDay = subdf.column("created_at").iat(subdf.shape[0] - 1);
 
-    subdf = subdf.append([
+    subdf = subdf.append(
+      [
+        [
+          dayjs(lastDay * 1000)
+            .add(1, "hour")
+            .unix(),
+          null,
+          value,
+          null,
+          dayjs(lastDay * 1000)
+            .add(1, "hour")
+            .hour(),
+          dayjs(lastDay * 1000)
+            .add(1, "hour")
+            .day(),
+          dayjs(lastDay * 1000)
+            .add(1, "hour")
+            .month(),
+          value,
+        ],
+      ],
       [
         dayjs(lastDay * 1000)
           .add(1, "hour")
-          .unix(),
-        null,
-        value,
-        null,
-        dayjs(lastDay * 1000)
-          .add(1, "hour")
-          .hour(),
-        dayjs(lastDay * 1000)
-          .add(1, "hour")
-          .day(),
-        dayjs(lastDay * 1000)
-          .add(1, "hour")
-          .month(),
-        value,
+          .format("DD-MM-YYYY HH:mm:ss"),
       ],
-    ]);
+    );
 
     return subdf;
   };
@@ -234,21 +242,31 @@ export default function Predictions() {
    * returns: subdf with set number of predictions
    *
    */
-  const runIterativeInference = async (subdf) => {
+  const runIterativeInference = async (subdf, isFirstInference = true) => {
     const model = models[modelIndex];
 
-    let valuesToPredict = 48 + model.window_size - subdf.shape[0];
+    let valuesToPredict =
+      isFirstInference == false ? 48 : 48 + model.window_size - subdf.shape[0];
 
     // Initially make a scaled tempDf
     //
-    let tempDf = subdf.iloc({
-      rows: [`${subdf.shape[0] - model.window_size}:`],
-    });
+    let tempDf = null;
+    if (isFirstInference) {
+      tempDf = subdf.iloc({
+        rows: [`${subdf.shape[0] - model.window_size}:`],
+      });
+    } else {
+      tempDf = subdf.iloc({
+        rows: [`:${model.window_size}`],
+      });
+    }
 
     tempDf = removeColumns(tempDf, model.columns);
     scaleDf(tempDf, model);
 
+    let preds = [];
     while (valuesToPredict) {
+      // tempDf.print();
       const [samples, data] = windowAndGetData(tempDf, model);
       const shape = [samples, model.window_size, model.columns.length];
 
@@ -258,49 +276,35 @@ export default function Predictions() {
       const scaledValue =
         value * model.train_std.state_demand + model.train_mean.state_demand;
 
-      const lastDay = subdf.column("created_at").iat(subdf.shape[0] - 1);
+      let lastDay = subdf.column("created_at").iat(subdf.shape[0] - 1);
 
-      tempDf = tempDf.append([
-        [
-          value,
-          (dayjs(lastDay * 1000)
-            .add(1, "hour")
-            .hour() -
-            model.train_mean.hour) /
-            model.train_std.hour,
-          (dayjs(lastDay * 1000)
-            .add(1, "hour")
-            .day() -
-            model.train_mean.dayOfWeek) /
-            model.train_std.dayOfWeek,
-          (dayjs(lastDay * 1000)
-            .add(1, "hour")
-            .month() -
-            model.train_mean.month) /
-            model.train_std.month,
-        ],
-      ]);
-      tempDf = tempDf.iloc({ rows: ["1:"] });
+      if (!isFirstInference)
+        lastDay = dayjs(
+          tempDf.index[tempDf.shape[0] - 1],
+          "DD-MM-YYYY HH:mm:ss",
+        )
+          .add(-5.5, "hour")
+          .unix();
 
-      subdf = subdf.append(
+      tempDf = tempDf.append(
         [
           [
-            dayjs(lastDay * 1000)
+            value,
+            (dayjs(lastDay * 1000)
               .add(1, "hour")
-              .unix(),
-            NaN,
-            scaledValue,
-            NaN,
-            dayjs(lastDay * 1000)
+              .hour() -
+              model.train_mean.hour) /
+              model.train_std.hour,
+            (dayjs(lastDay * 1000)
               .add(1, "hour")
-              .hour(),
-            dayjs(lastDay * 1000)
+              .day() -
+              model.train_mean.dayOfWeek) /
+              model.train_std.dayOfWeek,
+            (dayjs(lastDay * 1000)
               .add(1, "hour")
-              .day(),
-            dayjs(lastDay * 1000)
-              .add(1, "hour")
-              .month(),
-            scaledValue,
+              .month() -
+              model.train_mean.month) /
+              model.train_std.month,
           ],
         ],
         [
@@ -309,25 +313,82 @@ export default function Predictions() {
             .format("DD-MM-YYYY HH:mm:ss"),
         ],
       );
+      tempDf = tempDf.iloc({ rows: ["1:"] });
 
+      if (isFirstInference) {
+        subdf = subdf.append(
+          [
+            [
+              dayjs(lastDay * 1000)
+                .add(1, "hour")
+                .unix(),
+              NaN,
+              scaledValue,
+              NaN,
+              dayjs(lastDay * 1000)
+                .add(1, "hour")
+                .hour(),
+              dayjs(lastDay * 1000)
+                .add(1, "hour")
+                .day(),
+              dayjs(lastDay * 1000)
+                .add(1, "hour")
+                .month(),
+              scaledValue,
+            ],
+          ],
+          [
+            dayjs(lastDay * 1000)
+              .add(1, "hour")
+              .format("DD-MM-YYYY HH:mm:ss"),
+          ],
+        );
+      } else {
+        preds.push(scaledValue);
+      }
       valuesToPredict -= 1;
     }
-
+    if (!isFirstInference) {
+      preds = Array.from({ length: model.window_size }, () => NaN).concat(
+        preds,
+      );
+      subdf = subdf.addColumn(model.tag_name, preds);
+    }
     return subdf;
   };
 
   const runInference = async () => {
+    console.log(subDf.columns);
+    console.log(models[modelIndex]);
+    console.log("Running inference -> ");
     if (
       subDf.columns.filter((i) => i == models[modelIndex].tag_name).length != 0
     )
       return;
     if (!modelSession) return;
 
-    let subdf = firstInference();
-    subdf = runIterativeInference(subdf);
+    let isFirstInference = true;
 
+    for (let model of models) {
+      if (subDf.columns.filter((i) => i == model.tag_name).length) {
+        isFirstInference = false;
+        break;
+      }
+    }
+
+    let subdf = subDf.copy();
+
+    if (isFirstInference) {
+      subdf = await firstInference();
+      subdf = await runIterativeInference(subdf);
+    } else {
+      subdf = await runIterativeInference(subdf, false);
+    }
     subdf.head(10).print();
     subdf.tail(10).print();
+
+    console.log(subdf.shape);
+    setSubDf(subdf);
   };
 
   useEffect(() => {
