@@ -173,17 +173,18 @@ export const counterSlice = createSlice({
         }
       });
 
-      const len = action.payload.length;
-      const latest = action.payload[len - 1];
-      state.tables.centralSectorTable.data = latest.tables.filter(
-        (tbl) => tbl.name == "CENTRAL SECTOR",
-      )[0].rows;
+      // TODO:
+      // const len = action.payload.length;
+      // const latest = action.payload[len - 1];
+      // state.tables.centralSectorTable.data = latest.tables.filter(
+      //   (tbl) => tbl.name == "CENTRAL SECTOR",
+      // )[0].rows;
 
-      state.tables.centralSectorTable.data =
-        state.tables.centralSectorTable.data.map((t) => ({
-          ...t,
-          key: t["state"],
-        }));
+      // state.tables.centralSectorTable.data =
+      //   state.tables.centralSectorTable.data.map((t) => ({
+      //     ...t,
+      //     key: t["state"],
+      //   }));
     },
     filterData: (state) => {
       filterDifference(state.charts.stateGenChart);
