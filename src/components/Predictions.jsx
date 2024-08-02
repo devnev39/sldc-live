@@ -8,182 +8,336 @@ import {
   Switch,
   Typography,
 } from "antd";
-import { Line } from "react-chartjs-2";
 import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../context/themeContext";
 import changeChartColor from "../charts/changeChartColor";
 import { useSelector } from "react-redux";
+import * as ort from "onnxruntime-web/webgpu";
+
+ort.env.debug = true;
+ort.env.wasm.numThreads = 1;
+
+dayjs.extend(timezone);
+dayjs.extend(utc);
+
+// dayjs.tz.setDefault("Asia/Kolkata");
 
 export default function Predictions() {
   const { isDarkTheme } = useContext(ThemeContext);
+
+  const models = useSelector((state) => state.data.models);
+  const df = useSelector((state) => state.data.parsedDataFrame);
+
+  const [modelIndex, setModelIndex] = useState(0);
+  const [modelSession, setModelSession] = useState(null);
+
+  const [today, setToday] = useState(true);
+  console.log(today);
 
   useEffect(() => {
     changeChartColor(isDarkTheme);
   }, []);
 
-  const [today, setToday] = useState(true);
   const [subDf, setSubDf] = useState(null);
 
-  const [chartData, setChartData] = useState({
-    labels: subDf ? subDf.index.map((i) => i.toString()) : [],
-    datasets: [
-      {
-        data: subDf ? subDf["state_demand"].values : [],
-        label: "State Demand",
-      },
-    ],
-  });
-
-  const df = useSelector((state) => state.data.parsedDataFrame);
+  // set subDf to today's data initially
+  // predict on the first model loaded for today 00:00 to tomorrow 23:00
+  //
+  // on model change predict and save the predictions in parsedDataFrame in redux
 
   useEffect(() => {
-    // let yl = dayjs().add(-1, "day").add(-dayjs().hour(), "hours").add(-dayjs().minute(), "minutes").toString();
-    // yl = dayjs(yl).unix();
     if (df == null) return;
+    // Implement window size
     let tdl = dayjs()
-      .add(-dayjs().hour(), "hours")
-      .add(-dayjs().minute(), "minutes")
+      .add(-dayjs().hour() - 8 - 5, "hours")
+      .add(-dayjs().minute() - 30, "minutes")
       .toString();
     tdl = dayjs(tdl).unix();
+    // console.log(tdl);
+    // console.log(dayjs(tdl*1000).format())
+    // select rows greater than tdl created_at
+    // console.log(df.shape);
+    // df.tail().print();
+    const subdf = df.loc({ rows: df["created_at"].gt(tdl) });
+    console.log(subdf.shape);
+    subdf.print();
+    setSubDf(subdf);
+  }, []);
 
-    let tdh = dayjs()
-      .add(24 - dayjs().hour(), "hours")
-      .add(60 - dayjs().minute(), "minutes")
-      .toString();
-    tdh = dayjs(tdh).unix();
-
-    let tomH = dayjs()
-      .add(1, "day")
-      .add(24 - dayjs().hour(), "hours")
-      .add(60 - dayjs().minute(), "minutes")
-      .toString();
-    tomH = dayjs(tomH).unix();
-
-    let sdf = null;
-    if (today) {
-      sdf = df.loc({
-        rows: df["created_at"].gt(tdl).and(df["created_at"].lt(tdh)),
-      });
-      setSubDf(sdf);
+  const loadModel = async () => {
+    const link = models[modelIndex].link;
+    console.log(link);
+    const cache = await caches.open("onnx");
+    let resp = await cache.match(link);
+    if (resp == undefined) {
+      await cache.add(link);
+      resp = await cache.match(link);
+      console.log("Model cached!");
     } else {
-      sdf = df.loc({
-        rows: df["created_at"].gt(tdh).and(df["created_at"].lt(tomH)),
-      });
-      setSubDf(sdf);
+      console.log("Model loaded from cache!");
     }
-    sdf.print();
-  }, [today, df]);
+    const buffer = await resp.arrayBuffer();
+    const opt = {
+      executionProviders: ["webgpu"],
+    };
 
-  useEffect(() => {
-    // subDf.print();
-    setChartData({
-      labels: subDf ? subDf.index.map((i) => i.toString()) : [],
-      datasets: [
-        {
-          data: subDf ? subDf["state_demand"].values : [],
-          label: "State Demand",
+    const session = await ort.InferenceSession.create(buffer, opt);
+    setModelSession(session);
+  };
+
+  /**
+   * Runs a single inference on provided data
+   * data: An array of numbers
+   * shape: The shape of provided data
+   * The length of the data should be product of shape array
+   */
+  const runSingleInference = async (data, shape) => {
+    const tensor = new ort.Tensor("float64", data, shape);
+    const feed = { x: tensor };
+    const out = await modelSession.run(feed);
+    return out;
+  };
+
+  /**
+   * Remove columns from dataframe which are not in columnsToKeep
+   * dataF: DataFrame
+   * columnsToKeep: List of columns to keep
+   * returns -> New dataframe with changes
+   */
+  const removeColumns = (dataF, columnsToKeep) => {
+    const cols = [];
+    for (let col of dataF.columns) {
+      if (columnsToKeep.indexOf(col) == -1) cols.push(col);
+    }
+    return dataF.drop({ columns: cols });
+  };
+
+  /**
+   * Scales the dataframe inplace
+   * returns -> void
+   */
+  const scaleDf = (dataF, model) => {
+    for (let column of Object.keys(model.train_mean)) {
+      const series = dataF.column(column);
+      series.apply(
+        (e) => {
+          return (e - model.train_mean[column]) / model.train_std[column];
         },
-      ],
+        { inplace: true },
+      );
+      dataF.drop({ columns: [column] });
+      dataF.addColumn(column, series);
+    }
+  };
+
+  /**
+   * dataF: Dataframe to be converted into windowed data
+   * model: Model based on the which the windowing going to happen
+   * returns: array of [samples, data]
+   * samples: Number represening total number of samples (window) in data
+   * data: The actual float64 data array in flatten state
+   */
+  const windowAndGetData = (dataF, model) => {
+    let size = dataF.shape[0];
+    let tempArr = [];
+    let samples = 0;
+
+    for (let i = 0; i < size; i++) {
+      const end = i + model.window_size;
+      if (end > size) continue;
+      samples += 1;
+      const part = dataF.iloc({ rows: [`${i}:${end}`] });
+      tempArr = tempArr.concat(part.values.flat());
+    }
+    const data = new Float64Array(tempArr);
+    return [samples, data];
+  };
+
+  /**
+   * Runs first inference for first inference on first model
+   * After that this method doesn't need to be invoked.
+   *
+   * NOTE: This method is meant to run one time only after one render
+   * Afterwards this method should not run
+   *
+   * returns: subdf with prediction column
+   */
+  const firstInference = async () => {
+    // Make inference on today's data
+    // Make a copy of subDf
+    // Run inference on the data and return a subdf with added prediction
+
+    // tempDf will have the scaled values and removed columns
+    //
+    // 1. Remove columns and save to tempDf
+    // 2. Scale with selected model props
+    // 3. Prepare the data with model dims
+    // 4. Forward pass the whole data once and get the predictions
+    // 5. Attatch the resulting series to the subDf copy
+    // 6. Add last row to the subdf
+    // Return the subdf
+    //
+    const model = models[modelIndex];
+    let subdf = subDf.copy();
+
+    let tempDf = removeColumns(subDf, model.columns);
+    tempDf = scaleDf(tempDf, model);
+    scaleDf(tempDf, model);
+    // Reshape data with (samples, window_size, features)
+
+    const [samples, data] = windowAndGetData(tempDf, model);
+    const shape = [samples, model.window_size, model.columns.length];
+
+    const out = runSingleInference(data, shape);
+    let preds = out.dense_1.cpuData.map((i) => {
+      return i * model.train_std.state_demand + model.train_mean.state_demand;
     });
-  }, [subDf]);
+
+    preds = Array.from({ length: model.window_size }, () => NaN).concat(preds);
+    const value = preds.pop();
+
+    // created_at, frequency, state_demand, state_gen, hour, dayOfWeek, month, --
+    subdf = subdf.addColumn(model.tag_name, preds);
+
+    const lastDay = subdf.column("created_at").iat(subdf.shape[0] - 1);
+
+    subdf = subdf.append([
+      [
+        dayjs(lastDay * 1000)
+          .add(1, "hour")
+          .unix(),
+        null,
+        value,
+        null,
+        dayjs(lastDay * 1000)
+          .add(1, "hour")
+          .hour(),
+        dayjs(lastDay * 1000)
+          .add(1, "hour")
+          .day(),
+        dayjs(lastDay * 1000)
+          .add(1, "hour")
+          .month(),
+        value,
+      ],
+    ]);
+
+    return subdf;
+  };
+
+  /**
+   * Runs iterative inference on the subdf
+   * subdf: Dataframe to be provided
+   * returns: subdf with set number of predictions
+   *
+   */
+  const runIterativeInference = async (subdf) => {
+    const model = models[modelIndex];
+
+    let valuesToPredict = 48 + model.window_size - subdf.shape[0];
+
+    // Initially make a scaled tempDf
+    //
+    let tempDf = subdf.iloc({
+      rows: [`${subdf.shape[0] - model.window_size}:`],
+    });
+
+    tempDf = removeColumns(tempDf, model.columns);
+    scaleDf(tempDf, model);
+
+    while (valuesToPredict) {
+      const [samples, data] = windowAndGetData(tempDf, model);
+      const shape = [samples, model.window_size, model.columns.length];
+
+      const out = await runSingleInference(data, shape);
+
+      const value = out.dense_1.cpuData[0];
+      const scaledValue =
+        value * model.train_std.state_demand + model.train_mean.state_demand;
+
+      const lastDay = subdf.column("created_at").iat(subdf.shape[0] - 1);
+
+      tempDf = tempDf.append([
+        [
+          value,
+          (dayjs(lastDay * 1000)
+            .add(1, "hour")
+            .hour() -
+            model.train_mean.hour) /
+            model.train_std.hour,
+          (dayjs(lastDay * 1000)
+            .add(1, "hour")
+            .day() -
+            model.train_mean.dayOfWeek) /
+            model.train_std.dayOfWeek,
+          (dayjs(lastDay * 1000)
+            .add(1, "hour")
+            .month() -
+            model.train_mean.month) /
+            model.train_std.month,
+        ],
+      ]);
+      tempDf = tempDf.iloc({ rows: ["1:"] });
+
+      subdf = subdf.append(
+        [
+          [
+            dayjs(lastDay * 1000)
+              .add(1, "hour")
+              .unix(),
+            NaN,
+            scaledValue,
+            NaN,
+            dayjs(lastDay * 1000)
+              .add(1, "hour")
+              .hour(),
+            dayjs(lastDay * 1000)
+              .add(1, "hour")
+              .day(),
+            dayjs(lastDay * 1000)
+              .add(1, "hour")
+              .month(),
+            scaledValue,
+          ],
+        ],
+        [
+          dayjs(lastDay * 1000)
+            .add(1, "hour")
+            .format("DD-MM-YYYY HH:mm:ss"),
+        ],
+      );
+
+      valuesToPredict -= 1;
+    }
+
+    return subdf;
+  };
+
+  const runInference = async () => {
+    if (
+      subDf.columns.filter((i) => i == models[modelIndex].tag_name).length != 0
+    )
+      return;
+    if (!modelSession) return;
+
+    let subdf = firstInference();
+    subdf = runIterativeInference(subdf);
+
+    subdf.head(10).print();
+    subdf.tail(10).print();
+  };
 
   useEffect(() => {
-    console.log(chartData);
-  }, [chartData]);
+    if (!subDf) return;
+    runInference();
+  }, [subDf, modelSession]);
 
-  const options = {
-    maintainAspectRatio: false,
-    plugins: {
-      title: {
-        display: true,
-        text: "State demand graph",
-        font: {
-          size: "20px",
-        },
-      },
-    },
-    interaction: {
-      intersect: false,
-      mode: "index",
-    },
-    scales: {
-      x: {
-        display: true,
-        title: {
-          display: true,
-          text: "Time",
-          font: {
-            size: "16px",
-            weight: "500",
-          },
-        },
-      },
-      y: {
-        display: true,
-        title: {
-          display: true,
-          text: "MW",
-          font: {
-            size: "16px",
-            weight: "500",
-          },
-        },
-      },
-    },
-  };
-
-  const selectedModelHistoryChartData = {
-    charData: {
-      lables: [],
-      datasets: [
-        {
-          label: "",
-          data: [],
-        },
-      ],
-    },
-    options: {
-      maintainAspectRatio: false,
-      plugins: {
-        title: {
-          display: true,
-          text: "Model loss history",
-          font: {
-            size: "20px",
-          },
-        },
-      },
-      interaction: {
-        intersect: false,
-        mode: "index",
-      },
-      scales: {
-        x: {
-          display: true,
-          title: {
-            display: true,
-            text: "Model Tag Name",
-            font: {
-              size: "16px",
-              weight: "500",
-            },
-          },
-        },
-        y: {
-          display: true,
-          title: {
-            display: true,
-            text: "Loss",
-            font: {
-              size: "16px",
-              weight: "500",
-            },
-          },
-        },
-      },
-    },
-  };
+  useEffect(() => {
+    loadModel();
+  }, [models, modelIndex]);
   return (
     <>
       <Flex justify="center" align="center">
@@ -202,7 +356,7 @@ export default function Predictions() {
           </Flex>
           <Card style={{ marginTop: "5vh" }}>
             <div className="chartjs-width" style={{ width: "100%" }}>
-              <Line data={chartData} options={options} />
+              {/* <Line data={chartData} options={options} /> */}
             </div>
           </Card>
         </Col>
@@ -228,11 +382,16 @@ export default function Predictions() {
             </Col>
             <Col span={13}>
               <Select
-                defaultValue={"Linear Regression"}
-                options={[
-                  { value: "normal.v1", label: "normal.v1" },
-                  { value: "normal", label: "normal" },
-                ]}
+                defaultValue={models.length ? models[0].tag_name : ""}
+                options={models.map((m, i) => {
+                  return {
+                    value: i,
+                    label: m.tag_name,
+                  };
+                })}
+                onChange={(e) => {
+                  setModelIndex(e);
+                }}
               ></Select>
             </Col>
           </Row>
@@ -245,10 +404,10 @@ export default function Predictions() {
                 - 2 graphs */}
             <Card>
               <Flex justify="center">
-                <Line
-                  data={selectedModelHistoryChartData.charData}
-                  options={selectedModelHistoryChartData.options}
-                />
+                {/* <Line */}
+                {/*   data={selectedModelHistoryChartData.charData} */}
+                {/*   options={selectedModelHistoryChartData.options} */}
+                {/* /> */}
               </Flex>
             </Card>
           </div>

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { clearDataFrame, createDataFrame } from "../features/data";
-import { Timestamp } from "firebase/firestore";
+// import { Timestamp } from "firebase/firestore";
 import api from "../query/query";
 
 export default function useParsedData() {
@@ -9,16 +9,18 @@ export default function useParsedData() {
 
   useEffect(() => {
     if (import.meta.env.VITE_APPMODE !== "DEBUG") {
+      const data = localStorage.getItem("parsedData");
+      if (data) {
+        dispatch(createDataFrame(JSON.parse(data)));
+        console.log("Loaded parsed data from cache !");
+        return;
+      }
       api.getAllParsedData().then((docs) => {
         dispatch(clearDataFrame());
         const data = [];
         for (let d of docs) {
           for (let key of Object.keys(d)) {
-            let ts = new Timestamp(
-              d[key].created_at.seconds,
-              d[key].created_at.nanoseconds,
-            );
-            d[key]["created_at"] = ts.seconds;
+            d[key]["created_at"] = d[key].created_at.seconds;
             const ordered = Object.keys(d[key])
               .sort()
               .reduce((obj, k) => {
@@ -28,6 +30,7 @@ export default function useParsedData() {
             data.push(ordered);
           }
         }
+        localStorage.setItem("parsedData", JSON.stringify(data));
         dispatch(createDataFrame(data));
       });
     }

@@ -13,8 +13,17 @@ export default function useRawData() {
     // Parse the data
     // Filter the data
     if (import.meta.env.VITE_APPMODE !== "DEBUG") {
+      const rawData = localStorage.getItem(date.format("YYYY-MM-DD"));
+      if (rawData) {
+        dispatch(clearData());
+        dispatch(parseData(JSON.parse(rawData)));
+        dispatch(filterData());
+        console.log("Loaded raw data from cache!");
+        return;
+      }
       api.getDateData(date.format("YYYY-MM-DD")).then((docs) => {
         dispatch(clearData());
+        localStorage.setItem(date.format("YYYY-MM-DD"), JSON.stringify(docs));
         dispatch(parseData(docs));
         dispatch(filterData());
       });
