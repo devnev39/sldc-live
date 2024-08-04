@@ -1,19 +1,14 @@
 const modelHistoryChart = {
-  charData: {
+  data: {
     lables: [],
-    datasets: [
-      {
-        label: "",
-        data: [],
-      },
-    ],
+    datasets: [],
   },
   options: {
     maintainAspectRatio: false,
     plugins: {
       title: {
         display: true,
-        text: "Model loss history",
+        text: "Model parameter history",
         font: {
           size: "20px",
         },
@@ -39,7 +34,7 @@ const modelHistoryChart = {
         display: true,
         title: {
           display: true,
-          text: "Loss",
+          text: "Model parameters (lower is better)",
           font: {
             size: "16px",
             weight: "500",

@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="OsiVXq3Ke1_REz8UTl2e" name="Page-1">
-        <mxGraphModel dx="667" dy="476" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="832" dy="381" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -386,31 +386,31 @@
                 <mxCell id="137" value="Application" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="765" y="1660" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="139" value="Forward Inference" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="139" value="Forward Inference" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="258.25" y="1910" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="140" value="p - previous data with size of window_size" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="140" value="p - previous data with size of window_size" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="114" y="2090" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="142" value="n - today's available values" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="142" value="n - today's available values" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="114" y="2200" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="143" value="with p previous values and n today's values we can predict p+n-w+1 values" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="143" value="with p previous values and n today's values we can predict p+n-w+1 values" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="300" y="2090" width="230" height="100" as="geometry"/>
                 </mxCell>
-                <mxCell id="144" value="w - window_size" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="144" value="w - window_size" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="114" y="1990" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="146" value="Iterative inference" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="146" value="Iterative inference" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="765" y="1900" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="147" value="Copy the df and remove unnecessary columns" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="147" value="Copy the df and remove unnecessary columns" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="600" y="2110" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="148" value="Scale the df" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="148" value="Scale the df" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="760" y="2110" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="150" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="149" target="148">
+                <mxCell id="150" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="149" target="148" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="980" y="2250"/>
@@ -419,35 +419,50 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="149" value="predict next row with last w observations" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="149" value="predict next row with last w observations" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="920" y="2110" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="153" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="151" target="152">
+                <mxCell id="153" value="" style="edgeStyle=none;html=1;" parent="1" source="151" target="152" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="151" value="Model" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="151" value="Model" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="110" y="2400" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="156" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="152" target="154">
+                <mxCell id="156" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="152" target="154" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="157" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="152" target="155">
+                <mxCell id="157" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="152" target="155" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="152" value="Fixed parameters" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+                <mxCell id="152" value="Fixed parameters" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
                     <mxGeometry x="280" y="2400" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="154" value="Provided in database" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+                <mxCell id="154" value="Provided in database" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
                     <mxGeometry x="450" y="2330" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="155" value="Derived from on/more column" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+                <mxCell id="155" value="Derived from on/more column" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
                     <mxGeometry x="450" y="2450" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="158" value="Column" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+                <mxCell id="158" value="Column" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
                     <mxGeometry x="110" y="2630" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="159" value="&lt;br&gt;{&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;value_column: created_at&lt;br&gt;&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;br&gt;}" style="whiteSpace=wrap;html=1;rounded=1;verticalAlign=top;align=left;" vertex="1" parent="1">
+                <mxCell id="159" value="&lt;br&gt;{&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;value_column: created_at&lt;br&gt;&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#9;&lt;/span&gt;&lt;br&gt;}" style="whiteSpace=wrap;html=1;rounded=1;verticalAlign=top;align=left;" parent="1" vertex="1">
                     <mxGeometry x="310" y="2580" width="280" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="163" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="160" target="161">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="164" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="160" target="162">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="160" value="Box plot" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1210" y="1550" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="161" value="Weekday box plot" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1440" y="1470" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="162" value="Hour box plot" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1440" y="1590" width="120" height="60" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
