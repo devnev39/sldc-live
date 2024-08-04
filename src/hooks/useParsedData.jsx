@@ -1,0 +1,47 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { clearDataFrame, createDataFrame } from "../features/data";
+// import { Timestamp } from "firebase/firestore";
+import api from "../query/query";
+import dayjs from "dayjs";
+
+export default function useParsedData() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (import.meta.env.VITE_APPMODE !== "DEBUG") {
+      let data = localStorage.getItem("parsedData");
+      if (data) {
+        data = JSON.parse(data);
+        if (data.createdAtHour >= dayjs().hour()) {
+          dispatch(createDataFrame(data.docs));
+          console.log("Loaded parsed data from cache !");
+          return;
+        }
+      }
+      api.getAllParsedData().then((docs) => {
+        dispatch(clearDataFrame());
+        const data = [];
+        for (let d of docs) {
+          for (let key of Object.keys(d)) {
+            d[key]["created_at"] = d[key].created_at.seconds;
+            const ordered = Object.keys(d[key])
+              .sort()
+              .reduce((obj, k) => {
+                obj[k] = d[key][k];
+                return obj;
+              }, {});
+            data.push(ordered);
+          }
+        }
+        const d = { docs: data, createdAtHour: dayjs().hour() };
+        localStorage.setItem("parsedData", JSON.stringify(d));
+        dispatch(createDataFrame(data));
+      });
+    }
+
+    return () => {
+      dispatch(clearDataFrame());
+    };
+  }, [dispatch]);
+}

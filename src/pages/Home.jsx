@@ -5,7 +5,9 @@ import { Line } from "react-chartjs-2";
 import { useSelector } from "react-redux";
 import "./styles.css";
 import { green, red } from "@ant-design/colors";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { ThemeContext } from "../context/themeContext";
+import changeChartColor from "../charts/changeChartColor";
 
 const getAverage = (lst) => {
   let size = lst.length;
@@ -20,6 +22,8 @@ const getAverage = (lst) => {
 const Home = () => {
   const charts = useSelector((state) => state.data.charts);
   const tables = useSelector((state) => state.data.tables);
+
+  const { isDarkTheme } = useContext(ThemeContext);
 
   const [freqAvg, setFreqAvg] = useState(0);
   const [stateGen, setStateGenAvg] = useState(0);
@@ -63,6 +67,10 @@ const Home = () => {
     else if (val1 > val2) return 1;
     else return -1;
   };
+
+  useEffect(() => {
+    changeChartColor(isDarkTheme);
+  }, []);
 
   return (
     <>

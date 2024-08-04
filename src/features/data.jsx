@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import frequencyChart from "../charts/frequencyChart";
 import stateGenChart from "../charts/stateGenChart";
 import generationDistributionChart from "../charts/generationDistributionChart";
-import { Timestamp } from "firebase/firestore";
+// import { Timestamp } from "firebase/firestore";
 import serverUsageChart from "../charts/serverUsageChart";
 import coalGenerationChart from "../charts/coalGenerationChart";
 import mumbaiExchangeChart from "../charts/mumbaiExchange";
@@ -12,6 +12,9 @@ import {
   centralSectorData,
 } from "../tables/centralSectorTabel";
 import { clipDifference, filterDifference } from "../preprocessor/preprocess";
+import * as dfd from "danfojs/dist/danfojs-browser/src";
+import dayjs from "dayjs";
+// import timezone from "dayjs/plugin/timezone";
 
 // fields, stats, serverStats contains the latest object only
 // The series data is converted into
@@ -35,6 +38,8 @@ const initialState = {
     mumbaiExchangeChart: mumbaiExchangeChart,
     privateGenerationChart: privateGenerationChart,
   },
+  parsedDataFrame: null,
+  models: [],
 };
 
 export const counterSlice = createSlice({
@@ -51,14 +56,8 @@ export const counterSlice = createSlice({
     },
     parseData: (state, action) => {
       action.payload.forEach((dataPoint) => {
-        let ts = new Timestamp(
-          dataPoint.created_at.seconds,
-          dataPoint.created_at.nanoseconds,
-        );
-        ts = ts
-          .toDate()
-          .toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-
+        let ts = dataPoint.created_at.seconds;
+        ts = dayjs(ts * 1000).format("HH:mm");
         state.charts.frequencyChart.data.labels =
           state.charts.frequencyChart.data.labels.concat(ts);
 
@@ -174,6 +173,7 @@ export const counterSlice = createSlice({
         }
       });
 
+      // TODO:
       const len = action.payload.length;
       const latest = action.payload[len - 1];
       state.tables.centralSectorTable.data = latest.tables.filter(
@@ -213,11 +213,96 @@ export const counterSlice = createSlice({
       state.serverStats = [];
       state.stats = [];
     },
+
+    createDataFrame: (state, action) => {
+      // state.action.payload to be array of objects
+      // console.log(action.payload);
+      // const size = action.payload.length;
+      // console.log(action.payload[size - 1]);
+
+      action.payload.sort((a, b) => {
+        if (a.created_at > b.create_at) return 1;
+        else if (a.created_at < b.created_at) return -1;
+        else return 0;
+      });
+      // console.log(action.payload[size - 1]);
+      let df = new dfd.DataFrame(action.payload);
+
+      // Remove datapoints with values greater than 30000 and less than 5000
+
+      df = df.loc({
+        rows: df["state_demand"].gt(5000).and(df["state_demand"].lt(30000)),
+      });
+
+      df.setIndex({ column: "created_at", inplace: true });
+
+      // df.index.sort();
+
+      df.setIndex({
+        index: df.index.map((i) =>
+          dayjs(i * 1000).format("DD-MM-YYYY HH:mm:ss"),
+        ),
+        inplace: true,
+      });
+
+      df.addColumn(
+        "hour",
+        df.column("created_at").map((t) => {
+          return dayjs(t * 1000).hour();
+        }),
+        { inplace: true },
+      );
+
+      df.addColumn(
+        "dayOfWeek",
+        df.column("created_at").map((t) => {
+          return dayjs(t * 1000).day();
+        }),
+        { inplace: true },
+      );
+
+      df.addColumn(
+        "month",
+        df.column("created_at").map((t) => {
+          return dayjs(t * 1000).month();
+        }),
+        { inplace: true },
+      );
+
+      // df.tail(5).print();
+
+      state.parsedDataFrame = df;
+    },
+
+    clearDataFrame: (state) => {
+      state.parsedDataFrame = null;
+    },
+
+    setModels: (state, action) => {
+      state.models = action.payload;
+    },
+
+    clearModels: (state) => {
+      state.models = [];
+    },
+
+    updateModel: (state, action) => {
+      state.models = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { updateData, parseData, clearData, filterData } =
-  counterSlice.actions;
+export const {
+  updateData,
+  parseData,
+  clearData,
+  filterData,
+  createDataFrame,
+  clearDataFrame,
+  setModels,
+  updateModel,
+  clearModels,
+} = counterSlice.actions;
 
 export default counterSlice.reducer;

@@ -1,0 +1,3446 @@
+[
+  {
+    "created_at": 1719462722.076308,
+    "state_gen": 15902.0,
+    "state_demand": 23534.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719487925.025511,
+    "state_gen": 15999.0,
+    "state_demand": 23051.0,
+    "frequency": 49.93
+  },
+  {
+    "created_at": 1719448333.993523,
+    "state_gen": 16591.0,
+    "state_demand": 23347.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719455524.335323,
+    "state_gen": 16225.0,
+    "state_demand": 23026.0,
+    "frequency": 50.07
+  },
+  {
+    "created_at": 1719433925.047758,
+    "state_gen": 1640.0,
+    "state_demand": 22185.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719502325.792735,
+    "state_gen": 17120.0,
+    "state_demand": 22983.0,
+    "frequency": 49.97
+  },
+  {
+    "created_at": 1719437526.291771,
+    "state_gen": 16002.0,
+    "state_demand": 21880.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1719469922.459685,
+    "state_gen": 15692.0,
+    "state_demand": 23110.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719509522.136411,
+    "state_gen": 16326.0,
+    "state_demand": 22634.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719484325.34879,
+    "state_gen": 16110.0,
+    "state_demand": 22992.0,
+    "frequency": 49.98
+  },
+  {
+    "created_at": 1719451927.307155,
+    "state_gen": 16846.0,
+    "state_demand": 23463.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719459127.021655,
+    "state_gen": 16266.0,
+    "state_demand": 23405.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1719505921.746178,
+    "state_gen": 16751.0,
+    "state_demand": 22651.0,
+    "frequency": 49.98
+  },
+  {
+    "created_at": 1719426723.012421,
+    "state_gen": 17469.0,
+    "state_demand": 23330.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1719441126.531807,
+    "state_gen": 16201.0,
+    "state_demand": 21578.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1719473530.562832,
+    "state_gen": 14892.0,
+    "state_demand": 22954.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719498728.324646,
+    "state_gen": 16880.0,
+    "state_demand": 23282.0,
+    "frequency": 49.87
+  },
+  {
+    "created_at": 1719495125.220643,
+    "state_gen": 16567.0,
+    "state_demand": 23388.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719430333.646301,
+    "state_gen": 17434.0,
+    "state_demand": 22918.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719491527.346004,
+    "state_gen": 15965.0,
+    "state_demand": 22968.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719477128.606493,
+    "state_gen": 14984.0,
+    "state_demand": 22786.0,
+    "frequency": 49.98
+  },
+  {
+    "created_at": 1719480728.66308,
+    "state_gen": 16419.0,
+    "state_demand": 23459.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1719466324.419288,
+    "state_gen": 15894.0,
+    "state_demand": 23372.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1719444721.69379,
+    "state_gen": 16066.0,
+    "state_demand": 22090.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719513134.553756,
+    "state_gen": 16452.0,
+    "state_demand": 21953.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1719567131.99312,
+    "state_gen": 14431.0,
+    "state_demand": 21613.0,
+    "frequency": 49.91
+  },
+  {
+    "created_at": 1719549123.734502,
+    "state_gen": 16094.0,
+    "state_demand": 23159.0,
+    "frequency": 49.91
+  },
+  {
+    "created_at": 1719538325.122857,
+    "state_gen": 15942.0,
+    "state_demand": 22511.0,
+    "frequency": 49.97
+  },
+  {
+    "created_at": 1719585132.922496,
+    "state_gen": 16927.0,
+    "state_demand": 23671.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1719559938.670673,
+    "state_gen": 14359.0,
+    "state_demand": 22141.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1719595938.063153,
+    "state_gen": 16425.0,
+    "state_demand": 22265.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1719534722.562018,
+    "state_gen": 15864.0,
+    "state_demand": 22294.0,
+    "frequency": 49.87
+  },
+  {
+    "created_at": 1719541929.156812,
+    "state_gen": 15821.0,
+    "state_demand": 22478.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719563536.437483,
+    "state_gen": 13827.0,
+    "state_demand": 21506.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719552736.665343,
+    "state_gen": 15733.0,
+    "state_demand": 23234.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719556325.907189,
+    "state_gen": 15324.0,
+    "state_demand": 22736.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719570724.393529,
+    "state_gen": 15646.0,
+    "state_demand": 21790.0,
+    "frequency": 49.95
+  },
+  {
+    "created_at": 1719527526.583212,
+    "state_gen": 15062.0,
+    "state_demand": 20467.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719520322.940164,
+    "state_gen": 14989.0,
+    "state_demand": 21035.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719531132.631469,
+    "state_gen": 14942.0,
+    "state_demand": 20975.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719523925.188973,
+    "state_gen": 15136.0,
+    "state_demand": 20592.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1719545531.320218,
+    "state_gen": 16097.0,
+    "state_demand": 22837.0,
+    "frequency": 49.98
+  },
+  {
+    "created_at": 1719516722.1769,
+    "state_gen": 15850.0,
+    "state_demand": 21760.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719577927.272492,
+    "state_gen": 14955.0,
+    "state_demand": 21884.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719581535.67303,
+    "state_gen": 15158.0,
+    "state_demand": 22701.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719574335.27823,
+    "state_gen": 15683.0,
+    "state_demand": 21564.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719592325.527281,
+    "state_gen": 16631.0,
+    "state_demand": 22707.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1719588734.586481,
+    "state_gen": 16769.0,
+    "state_demand": 22939.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719603134.108228,
+    "state_gen": 14790.0,
+    "state_demand": 21383.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1719649918.567874,
+    "state_gen": 15091.0,
+    "state_demand": 22171.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719667927.132878,
+    "state_gen": 15903.0,
+    "state_demand": 23032.0,
+    "frequency": 49.92
+  },
+  {
+    "created_at": 1719624722.425635,
+    "state_gen": 15939.0,
+    "state_demand": 22324.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719642724.709618,
+    "state_gen": 15681.0,
+    "state_demand": 22836.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719653526.82654,
+    "state_gen": 15944.0,
+    "state_demand": 22482.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1719606733.219506,
+    "state_gen": 15132.0,
+    "state_demand": 20853.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719664329.236464,
+    "state_gen": 14677.0,
+    "state_demand": 22380.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719610324.917302,
+    "state_gen": 14183.0,
+    "state_demand": 20616.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719599530.097873,
+    "state_gen": 15258.0,
+    "state_demand": 21625.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719635520.883652,
+    "state_gen": 15884.0,
+    "state_demand": 22567.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719682323.461785,
+    "state_gen": 16713.0,
+    "state_demand": 23214.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719613924.500254,
+    "state_gen": 14743.0,
+    "state_demand": 20563.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1719657135.164878,
+    "state_gen": 15108.0,
+    "state_demand": 22222.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719631922.80255,
+    "state_gen": 15596.0,
+    "state_demand": 22452.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719646324.31592,
+    "state_gen": 14793.0,
+    "state_demand": 22566.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719671528.516702,
+    "state_gen": 17482.0,
+    "state_demand": 24303.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1719628322.777779,
+    "state_gen": 15111.0,
+    "state_demand": 22047.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719660729.56829,
+    "state_gen": 14998.0,
+    "state_demand": 22061.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1719617523.567899,
+    "state_gen": 15036.0,
+    "state_demand": 20895.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719678725.535008,
+    "state_gen": 16699.0,
+    "state_demand": 23324.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1719675130.297054,
+    "state_gen": 17334.0,
+    "state_demand": 23880.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1719639132.625398,
+    "state_gen": 14975.0,
+    "state_demand": 23082.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1719621127.963311,
+    "state_gen": 15525.0,
+    "state_demand": 22071.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719703929.307591,
+    "state_gen": 15079.0,
+    "state_demand": 21283.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1719725520.86926,
+    "state_gen": 13888.0,
+    "state_demand": 21521.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1719696718.545514,
+    "state_gen": 14600.0,
+    "state_demand": 20985.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1719739925.641999,
+    "state_gen": 13416.0,
+    "state_demand": 20173.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1719761523.699621,
+    "state_gen": 15522.0,
+    "state_demand": 21403.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1719750725.962433,
+    "state_gen": 13654.0,
+    "state_demand": 19887.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719747127.12357,
+    "state_gen": 13513.0,
+    "state_demand": 19865.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719711126.862418,
+    "state_gen": 15247.0,
+    "state_demand": 22014.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719729122.046167,
+    "state_gen": 14268.0,
+    "state_demand": 21543.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719757922.021161,
+    "state_gen": 16155.0,
+    "state_demand": 22268.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1719718329.162669,
+    "state_gen": 14724.0,
+    "state_demand": 21460.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1719732717.517454,
+    "state_gen": 13956.0,
+    "state_demand": 20842.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719736321.042029,
+    "state_gen": 14149.0,
+    "state_demand": 20225.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719707529.492177,
+    "state_gen": 15786.0,
+    "state_demand": 22028.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719693119.923306,
+    "state_gen": 15525.0,
+    "state_demand": 21743.0,
+    "frequency": 49.95
+  },
+  {
+    "created_at": 1719700317.93325,
+    "state_gen": 14288.0,
+    "state_demand": 20915.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1719743532.197073,
+    "state_gen": 13143.0,
+    "state_demand": 20090.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719714722.200233,
+    "state_gen": 14602.0,
+    "state_demand": 21416.0,
+    "frequency": 49.9
+  },
+  {
+    "created_at": 1719685919.065641,
+    "state_gen": 16380.0,
+    "state_demand": 22910.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719721928.733727,
+    "state_gen": 14474.0,
+    "state_demand": 21927.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719754322.604688,
+    "state_gen": 14631.0,
+    "state_demand": 2114.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719768720.660112,
+    "state_gen": 14492.0,
+    "state_demand": 20818.0,
+    "frequency": 49.95
+  },
+  {
+    "created_at": 1719689519.279383,
+    "state_gen": 16059.0,
+    "state_demand": 22151.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719765131.060661,
+    "state_gen": 14782.0,
+    "state_demand": 20971.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1719790321.734894,
+    "state_gen": 13426.0,
+    "state_demand": 19228.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1719847927.100299,
+    "state_gen": 16878.0,
+    "state_demand": 22279.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719833526.340231,
+    "state_gen": 15722.0,
+    "state_demand": 21661.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719819119.513497,
+    "state_gen": 14214.0,
+    "state_demand": 20690.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1719801124.808885,
+    "state_gen": 14181.0,
+    "state_demand": 21241.0,
+    "frequency": 50.08
+  },
+  {
+    "created_at": 1719851522.987486,
+    "state_gen": 15823.0,
+    "state_demand": 21327.0,
+    "frequency": 50.09
+  },
+  {
+    "created_at": 1719775920.262499,
+    "state_gen": 13743.0,
+    "state_demand": 19966.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1719822721.205109,
+    "state_gen": 14240.0,
+    "state_demand": 20229.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1719797526.553434,
+    "state_gen": 14604.0,
+    "state_demand": 21219.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719811922.953458,
+    "state_gen": 14314.0,
+    "state_demand": 21762.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1719829920.841488,
+    "state_gen": 14695.0,
+    "state_demand": 21295.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1719786724.212093,
+    "state_gen": 12937.0,
+    "state_demand": 18747.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719783119.67578,
+    "state_gen": 13020.0,
+    "state_demand": 18936.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1719772324.843977,
+    "state_gen": 14031.0,
+    "state_demand": 20464.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1719808325.214666,
+    "state_gen": 14586.0,
+    "state_demand": 21790.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719779519.49718,
+    "state_gen": 13797.0,
+    "state_demand": 19662.0,
+    "frequency": 49.92
+  },
+  {
+    "created_at": 1719793921.297733,
+    "state_gen": 13808.0,
+    "state_demand": 20827.0,
+    "frequency": 49.95
+  },
+  {
+    "created_at": 1719855124.411952,
+    "state_gen": 15154.0,
+    "state_demand": 21125.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719826320.056873,
+    "state_gen": 14329.0,
+    "state_demand": 20689.0,
+    "frequency": 49.93
+  },
+  {
+    "created_at": 1719840725.484708,
+    "state_gen": 14874.0,
+    "state_demand": 22201.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1719837122.859983,
+    "state_gen": 14513.0,
+    "state_demand": 21556.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719815518.601683,
+    "state_gen": 14001.0,
+    "state_demand": 21203.0,
+    "frequency": 49.93
+  },
+  {
+    "created_at": 1719844323.713356,
+    "state_gen": 15960.0,
+    "state_demand": 23179.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719804720.298479,
+    "state_gen": 14488.0,
+    "state_demand": 21525.0,
+    "frequency": 50.08
+  },
+  {
+    "created_at": 1719934344.571813,
+    "state_gen": 16702.0,
+    "state_demand": 22502.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1719919925.160031,
+    "state_gen": 13675.0,
+    "state_demand": 21228.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719869518.797451,
+    "state_gen": 13661.0,
+    "state_demand": 19292.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1719876734.429859,
+    "state_gen": 13405.0,
+    "state_demand": 19543.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719894736.259808,
+    "state_gen": 13897.0,
+    "state_demand": 21605.0,
+    "frequency": 49.92
+  },
+  {
+    "created_at": 1719912729.094821,
+    "state_gen": 14282.0,
+    "state_demand": 20609.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719858722.68831,
+    "state_gen": 14921.0,
+    "state_demand": 20402.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719887530.021347,
+    "state_gen": 14612.0,
+    "state_demand": 21409.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719883925.74901,
+    "state_gen": 14813.0,
+    "state_demand": 21691.0,
+    "frequency": 49.93
+  },
+  {
+    "created_at": 1719898331.162172,
+    "state_gen": 14082.0,
+    "state_demand": 21729.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1719916329.511231,
+    "state_gen": 13906.0,
+    "state_demand": 21241.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719927126.023835,
+    "state_gen": 15340.0,
+    "state_demand": 22534.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1719880323.698345,
+    "state_gen": 14391.0,
+    "state_demand": 21298.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719891121.94571,
+    "state_gen": 14203.0,
+    "state_demand": 21323.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1719923528.286484,
+    "state_gen": 14744.0,
+    "state_demand": 21449.0,
+    "frequency": 49.95
+  },
+  {
+    "created_at": 1719873128.683509,
+    "state_gen": 13677.0,
+    "state_demand": 19175.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719937936.250259,
+    "state_gen": 16488.0,
+    "state_demand": 21977.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719905533.234585,
+    "state_gen": 13816.0,
+    "state_demand": 20988.0,
+    "frequency": 50.07
+  },
+  {
+    "created_at": 1719930738.159357,
+    "state_gen": 16608.0,
+    "state_demand": 23304.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719941534.920873,
+    "state_gen": 16186.0,
+    "state_demand": 21717.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719909128.174317,
+    "state_gen": 15636.0,
+    "state_demand": 22354.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1719901928.993629,
+    "state_gen": 14158.0,
+    "state_demand": 21922.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719862319.904632,
+    "state_gen": 13825.0,
+    "state_demand": 19928.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719865930.871329,
+    "state_gen": 13203.0,
+    "state_demand": 19304.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720024332.582044,
+    "state_gen": 16590.0,
+    "state_demand": 23236.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719995533.384552,
+    "state_gen": 14425.0,
+    "state_demand": 21247.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719977534.590128,
+    "state_gen": 14632.0,
+    "state_demand": 22023.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1720017135.598007,
+    "state_gen": 17826.0,
+    "state_demand": 24893.0,
+    "frequency": 49.9
+  },
+  {
+    "created_at": 1719973934.816103,
+    "state_gen": 15240.0,
+    "state_demand": 22076.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719981136.017657,
+    "state_gen": 14487.0,
+    "state_demand": 21842.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719984741.212081,
+    "state_gen": 14343.0,
+    "state_demand": 22241.0,
+    "frequency": 49.92
+  },
+  {
+    "created_at": 1720020744.119734,
+    "state_gen": 17416.0,
+    "state_demand": 23842.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719999135.445949,
+    "state_gen": 14193.0,
+    "state_demand": 21900.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719959532.526713,
+    "state_gen": 14155.0,
+    "state_demand": 19768.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1719945129.684634,
+    "state_gen": 15503.0,
+    "state_demand": 21393.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720002735.264742,
+    "state_gen": 14410.0,
+    "state_demand": 22364.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719970335.555319,
+    "state_gen": 15746.0,
+    "state_demand": 22299.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719963133.956481,
+    "state_gen": 14032.0,
+    "state_demand": 20218.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1720013535.006202,
+    "state_gen": 16564.0,
+    "state_demand": 23263.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719948730.73116,
+    "state_gen": 14073.0,
+    "state_demand": 20718.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719966735.28908,
+    "state_gen": 15212.0,
+    "state_demand": 21921.0,
+    "frequency": 49.91
+  },
+  {
+    "created_at": 1719955928.190015,
+    "state_gen": 13679.0,
+    "state_demand": 19841.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720009936.242409,
+    "state_gen": 15135.0,
+    "state_demand": 22649.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719988338.996793,
+    "state_gen": 14380.0,
+    "state_demand": 21880.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720006335.021504,
+    "state_gen": 15452.0,
+    "state_demand": 22154.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720027935.932558,
+    "state_gen": 16477.0,
+    "state_demand": 22892.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1719952330.772337,
+    "state_gen": 13649.0,
+    "state_demand": 19957.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1719991941.903527,
+    "state_gen": 14416.0,
+    "state_demand": 21357.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720042333.371416,
+    "state_gen": 14977.0,
+    "state_demand": 21239.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720053134.22414,
+    "state_gen": 15169.0,
+    "state_demand": 22467.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720074736.055256,
+    "state_gen": 15293.0,
+    "state_demand": 23051.0,
+    "frequency": 50.08
+  },
+  {
+    "created_at": 1720067540.040593,
+    "state_gen": 15100.0,
+    "state_demand": 22694.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1720060330.3196,
+    "state_gen": 16095.0,
+    "state_demand": 22801.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720110729.868401,
+    "state_gen": 16582.0,
+    "state_demand": 23177.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720078338.337338,
+    "state_gen": 14357.0,
+    "state_demand": 22592.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1720089135.234264,
+    "state_gen": 15736.0,
+    "state_demand": 23190.0,
+    "frequency": 49.91
+  },
+  {
+    "created_at": 1720056735.47965,
+    "state_gen": 15905.0,
+    "state_demand": 23054.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720071136.943019,
+    "state_gen": 14698.0,
+    "state_demand": 23474.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720114457.719365,
+    "state_gen": 16628.0,
+    "state_demand": 23042.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1720107131.435562,
+    "state_gen": 17239.0,
+    "state_demand": 23490.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720114333.871041,
+    "state_gen": 16628.0,
+    "state_demand": 23042.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1720085538.581774,
+    "state_gen": 14719.0,
+    "state_demand": 22877.0,
+    "frequency": 49.92
+  },
+  {
+    "created_at": 1720099933.846649,
+    "state_gen": 16087.0,
+    "state_demand": 23302.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1720081938.088623,
+    "state_gen": 14349.0,
+    "state_demand": 22319.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1720031530.672245,
+    "state_gen": 15967.0,
+    "state_demand": 22547.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720049532.813447,
+    "state_gen": 14870.0,
+    "state_demand": 21265.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1720103535.96152,
+    "state_gen": 17618.0,
+    "state_demand": 24487.0,
+    "frequency": 49.91
+  },
+  {
+    "created_at": 1720063936.221549,
+    "state_gen": 15260.0,
+    "state_demand": 22971.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720038734.802244,
+    "state_gen": 14640.0,
+    "state_demand": 21454.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720092735.699396,
+    "state_gen": 15572.0,
+    "state_demand": 22761.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720096336.587534,
+    "state_gen": 15624.0,
+    "state_demand": 22911.0,
+    "frequency": 49.91
+  },
+  {
+    "created_at": 1720045930.273708,
+    "state_gen": 14865.0,
+    "state_demand": 20900.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1720035128.975106,
+    "state_gen": 15650.0,
+    "state_demand": 21937.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1720193534.836743,
+    "state_gen": 17095.0,
+    "state_demand": 23325.0,
+    "frequency": 49.92
+  },
+  {
+    "created_at": 1720175537.618533,
+    "state_gen": 14254.0,
+    "state_demand": 22030.0,
+    "frequency": 49.91
+  },
+  {
+    "created_at": 1720153930.644824,
+    "state_gen": 15011.0,
+    "state_demand": 23276.0,
+    "frequency": 49.95
+  },
+  {
+    "created_at": 1720182732.766401,
+    "state_gen": 15327.0,
+    "state_demand": 22497.0,
+    "frequency": 50.07
+  },
+  {
+    "created_at": 1720189940.744752,
+    "state_gen": 16938.0,
+    "state_demand": 24280.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720197137.080711,
+    "state_gen": 15846.0,
+    "state_demand": 22697.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1720171939.488506,
+    "state_gen": 13781.0,
+    "state_demand": 21642.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720150326.510749,
+    "state_gen": 15779.0,
+    "state_demand": 22799.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720157546.938032,
+    "state_gen": 14921.0,
+    "state_demand": 23091.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720143136.133608,
+    "state_gen": 16459.0,
+    "state_demand": 2060.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720132335.922826,
+    "state_gen": 14136.0,
+    "state_demand": 20324.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1720168337.704793,
+    "state_gen": 14038.0,
+    "state_demand": 21361.0,
+    "frequency": 49.95
+  },
+  {
+    "created_at": 1720117932.823693,
+    "state_gen": 16112.0,
+    "state_demand": 22275.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720146735.291676,
+    "state_gen": 15304.0,
+    "state_demand": 22826.0,
+    "frequency": 50.07
+  },
+  {
+    "created_at": 1720161141.105805,
+    "state_gen": 14701.0,
+    "state_demand": 23184.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1720135940.36861,
+    "state_gen": 14848.0,
+    "state_demand": 21012.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720121530.967909,
+    "state_gen": 15784.0,
+    "state_demand": 21620.0,
+    "frequency": 49.95
+  },
+  {
+    "created_at": 1720139535.008102,
+    "state_gen": 16016.0,
+    "state_demand": 22471.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720186335.661453,
+    "state_gen": 16029.0,
+    "state_demand": 23429.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720200734.202726,
+    "state_gen": 16393.0,
+    "state_demand": 22672.0,
+    "frequency": 50.09
+  },
+  {
+    "created_at": 1720179135.469664,
+    "state_gen": 15509.0,
+    "state_demand": 22252.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1720128733.270282,
+    "state_gen": 14584.0,
+    "state_demand": 20567.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1720125131.131221,
+    "state_gen": 15217.0,
+    "state_demand": 21022.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720164742.402942,
+    "state_gen": 14146.0,
+    "state_demand": 21914.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1720222332.718027,
+    "state_gen": 14941.0,
+    "state_demand": 20149.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1720207934.256484,
+    "state_gen": 15231.0,
+    "state_demand": 21541.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720218743.873557,
+    "state_gen": 14177.0,
+    "state_demand": 20302.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1720276339.189156,
+    "state_gen": 17060.0,
+    "state_demand": 24188.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720243938.401427,
+    "state_gen": 15191.0,
+    "state_demand": 22715.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720211533.204983,
+    "state_gen": 14863.0,
+    "state_demand": 20885.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1720215132.04362,
+    "state_gen": 14604.0,
+    "state_demand": 20618.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720229535.480092,
+    "state_gen": 15909.0,
+    "state_demand": 22391.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720261940.230544,
+    "state_gen": 15165.0,
+    "state_demand": 22559.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1720265542.947301,
+    "state_gen": 14527.0,
+    "state_demand": 22145.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1720254738.502389,
+    "state_gen": 14718.0,
+    "state_demand": 21602.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1720204332.08603,
+    "state_gen": 15328.0,
+    "state_demand": 21929.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1720233137.443074,
+    "state_gen": 15493.0,
+    "state_demand": 22014.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720272741.647852,
+    "state_gen": 16308.0,
+    "state_demand": 23434.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1720251139.134461,
+    "state_gen": 14728.0,
+    "state_demand": 22353.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720287135.547672,
+    "state_gen": 16041.0,
+    "state_demand": 22469.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720247538.916687,
+    "state_gen": 15040.0,
+    "state_demand": 22451.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720258336.193376,
+    "state_gen": 14351.0,
+    "state_demand": 22154.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1720236736.778452,
+    "state_gen": 14798.0,
+    "state_demand": 22334.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720283540.348702,
+    "state_gen": 15284.0,
+    "state_demand": 22251.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720279940.572434,
+    "state_gen": 16042.0,
+    "state_demand": 23138.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1720225932.049214,
+    "state_gen": 15872.0,
+    "state_demand": 22416.0,
+    "frequency": 49.95
+  },
+  {
+    "created_at": 1720269142.089668,
+    "state_gen": 16111.0,
+    "state_demand": 22122.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720240339.123143,
+    "state_gen": 15587.0,
+    "state_demand": 22815.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720362733.30893,
+    "state_gen": 16368.0,
+    "state_demand": 23093.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720355539.973828,
+    "state_gen": 14653.0,
+    "state_demand": 21271.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720305142.826937,
+    "state_gen": 14448.0,
+    "state_demand": 20421.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720294338.974445,
+    "state_gen": 15639.0,
+    "state_demand": 21594.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1720326744.718941,
+    "state_gen": 15738.0,
+    "state_demand": 21998.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720373544.427721,
+    "state_gen": 15602.0,
+    "state_demand": 21617.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720312345.960998,
+    "state_gen": 15695.0,
+    "state_demand": 21683.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720297935.216209,
+    "state_gen": 14929.0,
+    "state_demand": 21044.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1720308742.711503,
+    "state_gen": 15480.0,
+    "state_demand": 21101.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1720369931.069114,
+    "state_gen": 16081.0,
+    "state_demand": 21539.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720366330.371643,
+    "state_gen": 15476.0,
+    "state_demand": 22241.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720319542.62127,
+    "state_gen": 14628.0,
+    "state_demand": 21751.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1720315944.736627,
+    "state_gen": 15661.0,
+    "state_demand": 21900.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720348331.063437,
+    "state_gen": 15103.0,
+    "state_demand": 21739.0,
+    "frequency": 49.97
+  },
+  {
+    "created_at": 1720344738.441456,
+    "state_gen": 14541.0,
+    "state_demand": 21717.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720359133.325687,
+    "state_gen": 15391.0,
+    "state_demand": 21917.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720330343.083131,
+    "state_gen": 14662.0,
+    "state_demand": 21485.0,
+    "frequency": 49.92
+  },
+  {
+    "created_at": 1720333939.376847,
+    "state_gen": 14219.0,
+    "state_demand": 21689.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1720323144.033146,
+    "state_gen": 15567.0,
+    "state_demand": 21974.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1720290741.916513,
+    "state_gen": 15285.0,
+    "state_demand": 21684.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720351943.668516,
+    "state_gen": 14468.0,
+    "state_demand": 20993.0,
+    "frequency": 49.91
+  },
+  {
+    "created_at": 1720301534.796651,
+    "state_gen": 14558.0,
+    "state_demand": 20722.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720341135.050789,
+    "state_gen": 14459.0,
+    "state_demand": 21437.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720337541.97049,
+    "state_gen": 14312.0,
+    "state_demand": 21388.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720395129.635723,
+    "state_gen": 13916.0,
+    "state_demand": 19993.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720420336.898007,
+    "state_gen": 14941.0,
+    "state_demand": 23221.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1720402340.310824,
+    "state_gen": 15262.0,
+    "state_demand": 22172.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1720456337.319273,
+    "state_gen": 16277.0,
+    "state_demand": 22032.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1720416749.806778,
+    "state_gen": 14993.0,
+    "state_demand": 23292.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720398741.414714,
+    "state_gen": 14994.0,
+    "state_demand": 21213.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1720387929.267379,
+    "state_gen": 14042.0,
+    "state_demand": 19676.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1720377130.775356,
+    "state_gen": 14923.0,
+    "state_demand": 21028.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720380736.691469,
+    "state_gen": 14421.0,
+    "state_demand": 20513.0,
+    "frequency": 49.97
+  },
+  {
+    "created_at": 1720452737.680297,
+    "state_gen": 16735.0,
+    "state_demand": 22600.0,
+    "frequency": 49.93
+  },
+  {
+    "created_at": 1720434731.40791,
+    "state_gen": 15045.0,
+    "state_demand": 22484.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720413137.215076,
+    "state_gen": 15743.0,
+    "state_demand": 23506.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1720427536.4926,
+    "state_gen": 14375.0,
+    "state_demand": 22223.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720441933.157735,
+    "state_gen": 15674.0,
+    "state_demand": 22836.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1720445533.851382,
+    "state_gen": 16416.0,
+    "state_demand": 23281.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1720409540.29921,
+    "state_gen": 15113.0,
+    "state_demand": 23024.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1720391537.334297,
+    "state_gen": 13575.0,
+    "state_demand": 19266.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720384329.215616,
+    "state_gen": 14433.0,
+    "state_demand": 20100.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1720438332.380753,
+    "state_gen": 15380.0,
+    "state_demand": 22361.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1720449135.140038,
+    "state_gen": 17621.0,
+    "state_demand": 24043.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720405938.599236,
+    "state_gen": 15430.0,
+    "state_demand": 22352.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720431134.686202,
+    "state_gen": 14379.0,
+    "state_demand": 22318.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720459934.99247,
+    "state_gen": 15775.0,
+    "state_demand": 21141.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720423934.016475,
+    "state_gen": 15061.0,
+    "state_demand": 22806.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720521133.333638,
+    "state_gen": 13922.0,
+    "state_demand": 21487.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720485130.019156,
+    "state_gen": 14998.0,
+    "state_demand": 20823.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720492331.427317,
+    "state_gen": 15039.0,
+    "state_demand": 21920.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720524726.288597,
+    "state_gen": 14581.0,
+    "state_demand": 21517.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720517535.581614,
+    "state_gen": 13986.0,
+    "state_demand": 21219.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720506733.457601,
+    "state_gen": 13950.0,
+    "state_demand": 22352.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1720528329.895369,
+    "state_gen": 15086.0,
+    "state_demand": 21934.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720474332.872031,
+    "state_gen": 13567.0,
+    "state_demand": 19101.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720531937.937404,
+    "state_gen": 16195.0,
+    "state_demand": 22898.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720546338.207881,
+    "state_gen": 16282.0,
+    "state_demand": 21282.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720539136.481582,
+    "state_gen": 16904.0,
+    "state_demand": 22752.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720488731.830303,
+    "state_gen": 14864.0,
+    "state_demand": 21679.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720463532.333005,
+    "state_gen": 15333.0,
+    "state_demand": 20659.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1720495940.477325,
+    "state_gen": 14310.0,
+    "state_demand": 22383.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1720542736.765301,
+    "state_gen": 16459.0,
+    "state_demand": 22367.0,
+    "frequency": 49.95
+  },
+  {
+    "created_at": 1720499535.16016,
+    "state_gen": 14765.0,
+    "state_demand": 22652.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720503145.876268,
+    "state_gen": 14656.0,
+    "state_demand": 22684.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720535535.521222,
+    "state_gen": 17396.0,
+    "state_demand": 23511.0,
+    "frequency": 49.9
+  },
+  {
+    "created_at": 1720481536.881688,
+    "state_gen": 14232.0,
+    "state_demand": 19555.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1720470734.888145,
+    "state_gen": 13572.0,
+    "state_demand": 19354.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720477931.466099,
+    "state_gen": 13510.0,
+    "state_demand": 18881.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1720513942.098618,
+    "state_gen": 13653.0,
+    "state_demand": 21385.0,
+    "frequency": 49.9
+  },
+  {
+    "created_at": 1720510334.527746,
+    "state_gen": 14017.0,
+    "state_demand": 21851.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720629132.871761,
+    "state_gen": 16832.0,
+    "state_demand": 22601.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720571538.203671,
+    "state_gen": 15521.0,
+    "state_demand": 21697.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720621937.455129,
+    "state_gen": 17711.0,
+    "state_demand": 24426.0,
+    "frequency": 49.92
+  },
+  {
+    "created_at": 1720585938.717876,
+    "state_gen": 15067.0,
+    "state_demand": 22469.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1720549934.722387,
+    "state_gen": 14603.0,
+    "state_demand": 20624.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720603938.990108,
+    "state_gen": 14062.0,
+    "state_demand": 21801.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1720575147.139427,
+    "state_gen": 16402.0,
+    "state_demand": 22430.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720578738.411684,
+    "state_gen": 15874.0,
+    "state_demand": 22475.0,
+    "frequency": 50.09
+  },
+  {
+    "created_at": 1720564334.569694,
+    "state_gen": 14407.0,
+    "state_demand": 19735.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1720553540.93181,
+    "state_gen": 15349.0,
+    "state_demand": 20356.0,
+    "frequency": 49.93
+  },
+  {
+    "created_at": 1720614733.227326,
+    "state_gen": 15326.0,
+    "state_demand": 22481.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720618333.146513,
+    "state_gen": 16179.0,
+    "state_demand": 23122.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720618359.481326,
+    "state_gen": 16179.0,
+    "state_demand": 23122.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720557138.56753,
+    "state_gen": 14345.0,
+    "state_demand": 20066.0,
+    "frequency": 49.9
+  },
+  {
+    "created_at": 1720625532.929289,
+    "state_gen": 17490.0,
+    "state_demand": 23429.0,
+    "frequency": 49.9
+  },
+  {
+    "created_at": 1720596733.466721,
+    "state_gen": 13803.0,
+    "state_demand": 21525.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1720589533.878745,
+    "state_gen": 14173.0,
+    "state_demand": 22360.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720607541.171444,
+    "state_gen": 15013.0,
+    "state_demand": 22233.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1720593134.977803,
+    "state_gen": 14205.0,
+    "state_demand": 22032.0,
+    "frequency": 49.81
+  },
+  {
+    "created_at": 1720567936.511261,
+    "state_gen": 14938.0,
+    "state_demand": 20149.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720582339.032854,
+    "state_gen": 14616.0,
+    "state_demand": 22266.0,
+    "frequency": 50.1
+  },
+  {
+    "created_at": 1720611135.638891,
+    "state_gen": 15147.0,
+    "state_demand": 22081.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720600331.593433,
+    "state_gen": 13225.0,
+    "state_demand": 21135.0,
+    "frequency": 50.08
+  },
+  {
+    "created_at": 1720632736.645382,
+    "state_gen": 16307.0,
+    "state_demand": 22012.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1720560737.313643,
+    "state_gen": 14258.0,
+    "state_demand": 19845.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1720657936.732761,
+    "state_gen": 16041.0,
+    "state_demand": 21984.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720697528.104213,
+    "state_gen": 14036.0,
+    "state_demand": 21189.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720704727.723361,
+    "state_gen": 15691.0,
+    "state_demand": 22371.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720690335.163027,
+    "state_gen": 13775.0,
+    "state_demand": 20186.0,
+    "frequency": 49.93
+  },
+  {
+    "created_at": 1720683160.767107,
+    "state_gen": 13960.0,
+    "state_demand": 20855.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1720636339.613137,
+    "state_gen": 15519.0,
+    "state_demand": 21079.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1720672331.551785,
+    "state_gen": 14482.0,
+    "state_demand": 22403.0,
+    "frequency": 49.92
+  },
+  {
+    "created_at": 1720715535.897,
+    "state_gen": 16365.0,
+    "state_demand": 22094.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1720679542.747849,
+    "state_gen": 14506.0,
+    "state_demand": 21646.0,
+    "frequency": 49.95
+  },
+  {
+    "created_at": 1720639935.296028,
+    "state_gen": 15481.0,
+    "state_demand": 20811.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720693935.921008,
+    "state_gen": 13962.0,
+    "state_demand": 21129.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720665141.515873,
+    "state_gen": 16573.0,
+    "state_demand": 22413.0,
+    "frequency": 50.09
+  },
+  {
+    "created_at": 1720701144.271784,
+    "state_gen": 14717.0,
+    "state_demand": 21766.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1720707273.278,
+    "state_gen": 17374.0,
+    "state_demand": 23124.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1720707341.121,
+    "state_gen": 17672.0,
+    "state_demand": 23694.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720719138.462,
+    "state_gen": 16108.0,
+    "state_demand": 21630.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720686738.795572,
+    "state_gen": 14080.0,
+    "state_demand": 20550.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720654335.216121,
+    "state_gen": 15322.0,
+    "state_demand": 20406.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720661564.816724,
+    "state_gen": 17103.0,
+    "state_demand": 22645.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1720668747.902163,
+    "state_gen": 14930.0,
+    "state_demand": 22407.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1720675941.792566,
+    "state_gen": 14498.0,
+    "state_demand": 22470.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1720711952.066,
+    "state_gen": 16939.0,
+    "state_demand": 22778.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720643536.914325,
+    "state_gen": 14665.0,
+    "state_demand": 20216.0,
+    "frequency": 49.93
+  },
+  {
+    "created_at": 1720650730.909294,
+    "state_gen": 14554.0,
+    "state_demand": 19931.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720647134.261298,
+    "state_gen": 14427.0,
+    "state_demand": 19825.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720773163.97,
+    "state_gen": 14302.0,
+    "state_demand": 20769.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720780354.425,
+    "state_gen": 13649.0,
+    "state_demand": 20932.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720791128.368,
+    "state_gen": 15619.0,
+    "state_demand": 22655.0,
+    "frequency": 50.1
+  },
+  {
+    "created_at": 1720733536.575,
+    "state_gen": 14273.0,
+    "state_demand": 19725.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1720722739.773,
+    "state_gen": 15488.0,
+    "state_demand": 21123.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720794731.175,
+    "state_gen": 15702.0,
+    "state_demand": 23533.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720776770.213,
+    "state_gen": 14040.0,
+    "state_demand": 21044.0,
+    "frequency": 49.92
+  },
+  {
+    "created_at": 1720751574.565,
+    "state_gen": 15956.0,
+    "state_demand": 222693.0,
+    "frequency": 50.08
+  },
+  {
+    "created_at": 1720801929.863,
+    "state_gen": 15423.0,
+    "state_demand": 21154.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720726335.072,
+    "state_gen": 14970.0,
+    "state_demand": 20405.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1720762369.217,
+    "state_gen": 14586.0,
+    "state_demand": 22376.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1720765966.411,
+    "state_gen": 13787.0,
+    "state_demand": 21867.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1720758763.946,
+    "state_gen": 15261.0,
+    "state_demand": 22762.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720747964.272,
+    "state_gen": 16228.0,
+    "state_demand": 22719.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720737141.735,
+    "state_gen": 14371.0,
+    "state_demand": 19471.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1720755165.565,
+    "state_gen": 14977.0,
+    "state_demand": 22742.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1720729941.03,
+    "state_gen": 15170.0,
+    "state_demand": 20069.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1720785546.902,
+    "state_gen": 13801.0,
+    "state_demand": 21045.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720769567.566,
+    "state_gen": 13899.0,
+    "state_demand": 21541.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720744360.87,
+    "state_gen": 15237.0,
+    "state_demand": 21707.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1720787524.888,
+    "state_gen": 14184.0,
+    "state_demand": 21253.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720805530.964,
+    "state_gen": 14714.0,
+    "state_demand": 20848.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720740746.182,
+    "state_gen": 14351.0,
+    "state_demand": 20287.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720798327.934,
+    "state_gen": 15498.0,
+    "state_demand": 22168.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1720859551.66,
+    "state_gen": 14234.0,
+    "state_demand": 20435.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720834338.477,
+    "state_gen": 15344.0,
+    "state_demand": 21833.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1720873929.819,
+    "state_gen": 14475.0,
+    "state_demand": 21048.0,
+    "frequency": 49.92
+  },
+  {
+    "created_at": 1720837927.783,
+    "state_gen": 14760.0,
+    "state_demand": 21455.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1720866742.684,
+    "state_gen": 14254.0,
+    "state_demand": 20690.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1720841542.764,
+    "state_gen": 14817.0,
+    "state_demand": 21652.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720827125.422,
+    "state_gen": 13543.0,
+    "state_demand": 19751.0,
+    "frequency": 49.93
+  },
+  {
+    "created_at": 1720812753.882,
+    "state_gen": 13607.0,
+    "state_demand": 19536.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1720884738.222,
+    "state_gen": 16133.0,
+    "state_demand": 22421.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720852336.76,
+    "state_gen": 14407.0,
+    "state_demand": 21579.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1720845154.978,
+    "state_gen": 14571.0,
+    "state_demand": 21908.0,
+    "frequency": 50.24
+  },
+  {
+    "created_at": 1720863138.233,
+    "state_gen": 13932.0,
+    "state_demand": 20639.0,
+    "frequency": 49.83
+  },
+  {
+    "created_at": 1720809128.074,
+    "state_gen": 14076.0,
+    "state_demand": 19758.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1720855952.624,
+    "state_gen": 14492.0,
+    "state_demand": 21142.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1720816325.272,
+    "state_gen": 13154.0,
+    "state_demand": 19183.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720881144.735,
+    "state_gen": 17033.0,
+    "state_demand": 22789.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1720870350.496,
+    "state_gen": 13825.0,
+    "state_demand": 20695.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720888331.272,
+    "state_gen": 16619.0,
+    "state_demand": 21642.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1720823527.851,
+    "state_gen": 13293.0,
+    "state_demand": 18899.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1720830752.852,
+    "state_gen": 14991.0,
+    "state_demand": 21110.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720819935.726,
+    "state_gen": 13177.0,
+    "state_demand": 18925.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720891934.501,
+    "state_gen": 15465.0,
+    "state_demand": 20216.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1720848737.629,
+    "state_gen": 14774.0,
+    "state_demand": 21934.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720877544.473,
+    "state_gen": 16147.0,
+    "state_demand": 22269.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1720938755.606,
+    "state_gen": 13856.0,
+    "state_demand": 21563.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1720963931.692,
+    "state_gen": 15123.0,
+    "state_demand": 21776.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1720953128.65,
+    "state_gen": 13510.0,
+    "state_demand": 20162.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720909936.633,
+    "state_gen": 13680.0,
+    "state_demand": 18972.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1720899122.161,
+    "state_gen": 13595.0,
+    "state_demand": 19617.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720920758.453,
+    "state_gen": 14741.0,
+    "state_demand": 21145.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1720895530.474,
+    "state_gen": 15172.0,
+    "state_demand": 19849.0,
+    "frequency": 50.08
+  },
+  {
+    "created_at": 1720960330.641,
+    "state_gen": 13850.0,
+    "state_demand": 20594.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720967526.236,
+    "state_gen": 16143.0,
+    "state_demand": 22490.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720913529.169,
+    "state_gen": 13754.0,
+    "state_demand": 19122.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720974726.679,
+    "state_gen": 15284.0,
+    "state_demand": 20917.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1720971127.224,
+    "state_gen": 15536.0,
+    "state_demand": 21559.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720942348.695,
+    "state_gen": 13448.0,
+    "state_demand": 20906.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720902720.7,
+    "state_gen": 14040.0,
+    "state_demand": 19503.0,
+    "frequency": 49.95
+  },
+  {
+    "created_at": 1720978328.917,
+    "state_gen": 14781.0,
+    "state_demand": 20469.0,
+    "frequency": 49.88
+  },
+  {
+    "created_at": 1720949548.783,
+    "state_gen": 13106.0,
+    "state_demand": 20240.0,
+    "frequency": 49.9
+  },
+  {
+    "created_at": 1720945932.477,
+    "state_gen": 13399.0,
+    "state_demand": 20282.0,
+    "frequency": 49.81
+  },
+  {
+    "created_at": 1720931539.734,
+    "state_gen": 15063.0,
+    "state_demand": 22008.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720956747.581,
+    "state_gen": 13370.0,
+    "state_demand": 20080.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720906325.855,
+    "state_gen": 14011.0,
+    "state_demand": 18897.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1720917136.635,
+    "state_gen": 14707.0,
+    "state_demand": 20647.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720927947.67,
+    "state_gen": 15013.0,
+    "state_demand": 21482.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1720935145.735,
+    "state_gen": 14003.0,
+    "state_demand": 21782.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1720924330.203,
+    "state_gen": 14311.0,
+    "state_demand": 21199.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1721007126.134,
+    "state_gen": 14860.0,
+    "state_demand": 21668.0,
+    "frequency": 49.91
+  },
+  {
+    "created_at": 1721043134.588,
+    "state_gen": 14878.0,
+    "state_demand": 21706.0,
+    "frequency": 49.93
+  },
+  {
+    "created_at": 1721046729.703,
+    "state_gen": 15227.0,
+    "state_demand": 22499.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1721050327.703,
+    "state_gen": 16271.0,
+    "state_demand": 23150.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1720999933.227,
+    "state_gen": 13956.0,
+    "state_demand": 19286.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1721014331.33,
+    "state_gen": 14812.0,
+    "state_demand": 22730.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1721028727.673,
+    "state_gen": 13360.0,
+    "state_demand": 21535.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720985524.88,
+    "state_gen": 13750.0,
+    "state_demand": 19263.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1721035930.506,
+    "state_gen": 13818.0,
+    "state_demand": 21647.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1721025127.577,
+    "state_gen": 14217.0,
+    "state_demand": 22212.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1721039535.575,
+    "state_gen": 13729.0,
+    "state_demand": 21501.0,
+    "frequency": 50.08
+  },
+  {
+    "created_at": 1721003528.574,
+    "state_gen": 14291.0,
+    "state_demand": 20698.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721032327.851,
+    "state_gen": 13470.0,
+    "state_demand": 21186.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721061131.832,
+    "state_gen": 15905.0,
+    "state_demand": 22009.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1720989126.565,
+    "state_gen": 13540.0,
+    "state_demand": 19126.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721053927.526,
+    "state_gen": 16967.0,
+    "state_demand": 23652.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1721021534.709,
+    "state_gen": 14465.0,
+    "state_demand": 22522.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1721057530.339,
+    "state_gen": 16240.0,
+    "state_demand": 22667.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721017936.492,
+    "state_gen": 14820.0,
+    "state_demand": 22924.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720996323.046,
+    "state_gen": 12964.0,
+    "state_demand": 18613.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1720992725.797,
+    "state_gen": 12997.0,
+    "state_demand": 18383.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1721064741.261,
+    "state_gen": 15275.0,
+    "state_demand": 21517.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1720981940.723,
+    "state_gen": 14541.0,
+    "state_demand": 19898.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1721010725.03,
+    "state_gen": 14549.0,
+    "state_demand": 22179.0,
+    "frequency": 50.07
+  },
+  {
+    "created_at": 1721079125.125,
+    "state_gen": 13714.0,
+    "state_demand": 19295.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721129531.684,
+    "state_gen": 14218.0,
+    "state_demand": 21234.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721125934.955,
+    "state_gen": 13738.0,
+    "state_demand": 21133.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1721093541.437,
+    "state_gen": 14878.0,
+    "state_demand": 22168.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1721133129.067,
+    "state_gen": 14625.0,
+    "state_demand": 22028.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1721082739.075,
+    "state_gen": 13493.0,
+    "state_demand": 1914.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1721136735.128,
+    "state_gen": 15787.0,
+    "state_demand": 22499.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721111539.244,
+    "state_gen": 13607.0,
+    "state_demand": 21625.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1721104341.239,
+    "state_gen": 14708.0,
+    "state_demand": 22946.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1721140336.688,
+    "state_gen": 16548.0,
+    "state_demand": 22969.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721086347.916,
+    "state_gen": 13806.0,
+    "state_demand": 19831.0,
+    "frequency": 49.95
+  },
+  {
+    "created_at": 1721147525.73,
+    "state_gen": 15612.0,
+    "state_demand": 21511.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1721118729.118,
+    "state_gen": 13178.0,
+    "state_demand": 20778.0,
+    "frequency": 49.95
+  },
+  {
+    "created_at": 1721143938.831,
+    "state_gen": 16065.0,
+    "state_demand": 22125.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1721075533.408,
+    "state_gen": 14488.0,
+    "state_demand": 19376.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1721151128.436,
+    "state_gen": 14903.0,
+    "state_demand": 20884.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1721107938.249,
+    "state_gen": 14353.0,
+    "state_demand": 22559.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1721071937.772,
+    "state_gen": 14478.0,
+    "state_demand": 20142.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1721122341.175,
+    "state_gen": 12924.0,
+    "state_demand": 20916.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721097146.497,
+    "state_gen": 14977.0,
+    "state_demand": 22166.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1721115142.855,
+    "state_gen": 13203.0,
+    "state_demand": 21325.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721100743.202,
+    "state_gen": 14981.0,
+    "state_demand": 22769.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1721089953.18,
+    "state_gen": 14294.0,
+    "state_demand": 21325.0,
+    "frequency": 49.95
+  },
+  {
+    "created_at": 1721068336.67,
+    "state_gen": 14969.0,
+    "state_demand": 20617.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1721223131.23,
+    "state_gen": 14831.0,
+    "state_demand": 21923.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1721179934.191,
+    "state_gen": 15068.0,
+    "state_demand": 21429.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1721190742.421,
+    "state_gen": 14457.0,
+    "state_demand": 22750.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1721165524.558,
+    "state_gen": 13296.0,
+    "state_demand": 18810.0,
+    "frequency": 49.92
+  },
+  {
+    "created_at": 1721183542.751,
+    "state_gen": 14200.0,
+    "state_demand": 21682.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721197933.885,
+    "state_gen": 14677.0,
+    "state_demand": 22730.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1721187134.314,
+    "state_gen": 14816.0,
+    "state_demand": 22480.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721194348.927,
+    "state_gen": 15108.0,
+    "state_demand": 22639.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1721201574.416,
+    "state_gen": 13307.0,
+    "state_demand": 21097.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721219532.211,
+    "state_gen": 14159.0,
+    "state_demand": 21366.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721226743.603,
+    "state_gen": 16497.0,
+    "state_demand": 22641.0,
+    "frequency": 49.9
+  },
+  {
+    "created_at": 1721169126.635,
+    "state_gen": 12491.0,
+    "state_demand": 18717.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1721233950.761,
+    "state_gen": 15429.0,
+    "state_demand": 21390.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1721172739.842,
+    "state_gen": 13903.0,
+    "state_demand": 19674.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1721230355.792,
+    "state_gen": 16170.0,
+    "state_demand": 21855.0,
+    "frequency": 49.81
+  },
+  {
+    "created_at": 1721154744.528,
+    "state_gen": 14415.0,
+    "state_demand": 20050.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721176339.128,
+    "state_gen": 14488.0,
+    "state_demand": 20912.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1721158333.3,
+    "state_gen": 14256.0,
+    "state_demand": 19682.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721161934.784,
+    "state_gen": 13923.0,
+    "state_demand": 19098.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721205136.285,
+    "state_gen": 13552.0,
+    "state_demand": 20730.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1721208733.77,
+    "state_gen": 13301.0,
+    "state_demand": 20918.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1721215932.427,
+    "state_gen": 13322.0,
+    "state_demand": 20678.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721237537.852,
+    "state_gen": 14952.0,
+    "state_demand": 20677.0,
+    "frequency": 49.91
+  },
+  {
+    "created_at": 1721212330.656,
+    "state_gen": 13332.0,
+    "state_demand": 20931.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721284351.071,
+    "state_gen": 13388.0,
+    "state_demand": 21043.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1721309548.591,
+    "state_gen": 15668.0,
+    "state_demand": 22240.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1721266338.626,
+    "state_gen": 15316.0,
+    "state_demand": 21789.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721302334.534,
+    "state_gen": 14037.0,
+    "state_demand": 20499.0,
+    "frequency": 49.93
+  },
+  {
+    "created_at": 1721273542.407,
+    "state_gen": 14664.0,
+    "state_demand": 21826.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1721305937.621,
+    "state_gen": 14506.0,
+    "state_demand": 20990.0,
+    "frequency": 50.07
+  },
+  {
+    "created_at": 1721262741.75,
+    "state_gen": 14542.0,
+    "state_demand": 20922.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721291536.964,
+    "state_gen": 13418.0,
+    "state_demand": 19949.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1721259134.504,
+    "state_gen": 13623.0,
+    "state_demand": 19255.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721295136.177,
+    "state_gen": 13599.0,
+    "state_demand": 20159.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1721320347.859,
+    "state_gen": 15514.0,
+    "state_demand": 21425.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1721298735.884,
+    "state_gen": 13203.0,
+    "state_demand": 2048.0,
+    "frequency": 49.92
+  },
+  {
+    "created_at": 1721255527.331,
+    "state_gen": 13239.0,
+    "state_demand": 18544.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721277149.097,
+    "state_gen": 13521.0,
+    "state_demand": 21689.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1721244731.6,
+    "state_gen": 13703.0,
+    "state_demand": 19363.0,
+    "frequency": 49.91
+  },
+  {
+    "created_at": 1721313143.642,
+    "state_gen": 16595.0,
+    "state_demand": 23113.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721280761.358,
+    "state_gen": 13467.0,
+    "state_demand": 21517.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1721248340.795,
+    "state_gen": 13679.0,
+    "state_demand": 19040.0,
+    "frequency": 49.95
+  },
+  {
+    "created_at": 1721269942.913,
+    "state_gen": 14631.0,
+    "state_demand": 21775.0,
+    "frequency": 50.07
+  },
+  {
+    "created_at": 1721287964.822,
+    "state_gen": 13170.0,
+    "state_demand": 20467.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721251939.52,
+    "state_gen": 13270.0,
+    "state_demand": 18603.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721323943.645,
+    "state_gen": 15254.0,
+    "state_demand": 20690.0,
+    "frequency": 50.07
+  },
+  {
+    "created_at": 1721241137.697,
+    "state_gen": 14545.0,
+    "state_demand": 19982.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1721316750.76,
+    "state_gen": 16029.0,
+    "state_demand": 22144.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721334733.086,
+    "state_gen": 13844.0,
+    "state_demand": 18951.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1721377928.663,
+    "state_gen": 14010.0,
+    "state_demand": 20600.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721388736.449,
+    "state_gen": 13701.0,
+    "state_demand": 20840.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1721349143.969,
+    "state_gen": 14872.0,
+    "state_demand": 21086.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721385138.877,
+    "state_gen": 13604.0,
+    "state_demand": 20138.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1721359932.608,
+    "state_gen": 15047.0,
+    "state_demand": 22069.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1721374356.805,
+    "state_gen": 14047.0,
+    "state_demand": 21283.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721403135.121,
+    "state_gen": 16018.0,
+    "state_demand": 21816.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1721327550.012,
+    "state_gen": 14932.0,
+    "state_demand": 19844.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1721410317.239,
+    "state_gen": 15269.0,
+    "state_demand": 20710.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721363540.253,
+    "state_gen": 14930.0,
+    "state_demand": 22264.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721367147.764,
+    "state_gen": 14227.0,
+    "state_demand": 22095.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721406728.072,
+    "state_gen": 15532.0,
+    "state_demand": 21238.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1721399527.042,
+    "state_gen": 16591.0,
+    "state_demand": 22930.0,
+    "frequency": 49.96
+  },
+  {
+    "created_at": 1721345529.207,
+    "state_gen": 13949.0,
+    "state_demand": 19443.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721331131.839,
+    "state_gen": 14041.0,
+    "state_demand": 19451.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721395933.678,
+    "state_gen": 15402.0,
+    "state_demand": 21954.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1721356333.823,
+    "state_gen": 15728.0,
+    "state_demand": 22295.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1721352737.006,
+    "state_gen": 15833.0,
+    "state_demand": 22150.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1721370740.677,
+    "state_gen": 14314.0,
+    "state_demand": 21588.0,
+    "frequency": 49.92
+  },
+  {
+    "created_at": 1721338329.675,
+    "state_gen": 13265.0,
+    "state_demand": 18672.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1721381537.055,
+    "state_gen": 13880.0,
+    "state_demand": 20778.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1721341948.156,
+    "state_gen": 13350.0,
+    "state_demand": 18393.0,
+    "frequency": 50.02
+  },
+  {
+    "created_at": 1721392333.829,
+    "state_gen": 14829.0,
+    "state_demand": 21075.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1721431936.84,
+    "state_gen": 13262.0,
+    "state_demand": 19290.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1721478730.694,
+    "state_gen": 14272.0,
+    "state_demand": 21384.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721471540.158,
+    "state_gen": 13555.0,
+    "state_demand": 20633.0,
+    "frequency": 49.95
+  },
+  {
+    "created_at": 1721442718.363,
+    "state_gen": 14743.0,
+    "state_demand": 21431.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1721446338.527,
+    "state_gen": 14165.0,
+    "state_demand": 21724.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721439135.762,
+    "state_gen": 15392.0,
+    "state_demand": 21565.0,
+    "frequency": 50.05
+  },
+  {
+    "created_at": 1721482335.197,
+    "state_gen": 15424.0,
+    "state_demand": 22092.0,
+    "frequency": 49.99
+  },
+  {
+    "created_at": 1721449938.18,
+    "state_gen": 14716.0,
+    "state_demand": 22498.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1721460742.238,
+    "state_gen": 13048.0,
+    "state_demand": 20951.0,
+    "frequency": 49.95
+  },
+  {
+    "created_at": 1721453529.447,
+    "state_gen": 14209.0,
+    "state_demand": 22234.0,
+    "frequency": 50.01
+  },
+  {
+    "created_at": 1721417543.367,
+    "state_gen": 14215.0,
+    "state_demand": 19266.0,
+    "frequency": 49.92
+  },
+  {
+    "created_at": 1721475135.904,
+    "state_gen": 13702.0,
+    "state_demand": 20686.0,
+    "frequency": 49.93
+  },
+  {
+    "created_at": 1721464341.872,
+    "state_gen": 13075.0,
+    "state_demand": 20622.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1721435533.875,
+    "state_gen": 14517.0,
+    "state_demand": 20694.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1721457144.788,
+    "state_gen": 13863.0,
+    "state_demand": 21937.0,
+    "frequency": 49.0
+  },
+  {
+    "created_at": 1721413931.215,
+    "state_gen": 14248.0,
+    "state_demand": 19978.0,
+    "frequency": 49.92
+  },
+  {
+    "created_at": 1721421141.011,
+    "state_gen": 13436.0,
+    "state_demand": 19256.0,
+    "frequency": 50.0
+  },
+  {
+    "created_at": 1721424727.564,
+    "state_gen": 13957.0,
+    "state_demand": 18919.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1721428336.743,
+    "state_gen": 13043.0,
+    "state_demand": 18636.0,
+    "frequency": 50.04
+  },
+  {
+    "created_at": 1721467941.178,
+    "state_gen": 13605.0,
+    "state_demand": 20902.0,
+    "frequency": 49.0
+  }
+]
