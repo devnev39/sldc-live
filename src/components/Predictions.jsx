@@ -67,7 +67,26 @@ const getModelViewDescriptor = (model) => {
       span: 3,
     },
     {
+      key: "8",
+      label: "Training datapoints",
+      children: (
+        <>
+          {model.train_data_size} ~ {Math.round(model.train_data_size / 24)}{" "}
+          days
+        </>
+      ),
+      span: 3,
+    },
+    {
       key: "6",
+      label: "Trained at",
+      children: dayjs(model.created_at.seconds * 1000).format(
+        "DD-MM-YYYY HH:mm:ss",
+      ),
+      span: 3,
+    },
+    {
+      key: "7",
       label: "Other parameters",
       children: (
         <>
