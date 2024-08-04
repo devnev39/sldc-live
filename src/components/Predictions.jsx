@@ -10,12 +10,14 @@ import {
 } from "antd";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import initialPredictionChartData from "../charts/predictionChart";
 import { ThemeContext } from "../context/themeContext";
 import changeChartColor from "../charts/changeChartColor";
 import { useSelector } from "react-redux";
 import { firstInference, runIterativeInference } from "../inference/inference";
 import * as ort from "onnxruntime-web/webgpu";
 import { useContext, useEffect, useState } from "react";
+import { Line } from "react-chartjs-2";
 
 ort.env.debug = true;
 ort.env.wasm.numThreads = 1;
@@ -31,6 +33,8 @@ export default function Predictions() {
   const [modelIndex, setModelIndex] = useState(0);
   const [modelSession, setModelSession] = useState(null);
 
+  const [chartData, setChartData] = useState(initialPredictionChartData);
+
   const [today, setToday] = useState(true);
   console.log(today);
 
@@ -38,30 +42,14 @@ export default function Predictions() {
     changeChartColor(isDarkTheme);
   }, []);
 
-  const [subDf, setSubDf] = useState(null);
-
+  const { subDf, setSubDf } = useSubDf(df);
   // set subDf to today's data initially
   // predict on the first model loaded for today 00:00 to tomorrow 23:00
   //
   // on model change predict and save the predictions in parsedDataFrame in redux
 
-  useEffect(() => {
-    if (df == null) return;
-    // Implement window size
-    let tdl = dayjs()
-      .add(-dayjs().hour() - 13, "hours")
-      .add(-dayjs().minute() - 30, "minutes")
-      .toString();
-    tdl = dayjs(tdl).unix();
-    const subdf = df.loc({ rows: df["created_at"].gt(tdl) });
-    console.log(subdf.shape);
-    subdf.print();
-    setSubDf(subdf);
-  }, []);
-
   const loadModel = async () => {
     const link = models[modelIndex].link;
-    console.log(link);
     const cache = await caches.open("onnx");
     let resp = await cache.match(link);
     if (resp == undefined) {
@@ -130,6 +118,75 @@ export default function Predictions() {
   useEffect(() => {
     loadModel();
   }, [models, modelIndex]);
+
+  useEffect(() => {
+    if (!subDf) return;
+
+    setChartData(() => {
+      const copy = JSON.parse(JSON.stringify(initialPredictionChartData));
+
+      // Get subdf copy according to today parameter
+      let subdf = null;
+
+      const tdl = dayjs()
+        .add(-dayjs().hour(), "hour")
+        .add(-dayjs().minute(), "minute")
+        .unix();
+      const tdh = dayjs()
+        .add(1, "day")
+        .add(-dayjs().hour(), "hour")
+        .add(-dayjs().minute(), "minute")
+        .unix();
+
+      console.log(tdl);
+      console.log(tdh);
+      // console.log(subDf.shape);
+      if (today) {
+        subdf = subDf.loc({
+          rows: subDf["created_at"].gt(tdl).and(subDf["created_at"].lt(tdh)),
+        });
+      } else {
+        subdf = subDf.loc({ rows: subDf["created_at"].gt(tdh) });
+      }
+
+      // console.log(subdf.shape);
+
+      // set the chart values
+      //
+      copy.data.labels = subdf
+        .column("created_at")
+        .values.map((i) => dayjs(i * 1000).format("HH:mm"));
+      copy.data.datasets[0] = {
+        data: today ? subdf.column("state_demand").values : [],
+        label: "Original State Demand",
+        type: "line",
+      };
+
+      for (let model of models) {
+        if (subdf.columns.filter((c) => c == model.tag_name).length) {
+          copy.data.datasets.push({
+            data: subdf.column(model.tag_name).values,
+            label: model.tag_name,
+            type: "line",
+            elements: {
+              point: {
+                pointStyle: "triangle",
+                radius: 5,
+              },
+              line: {
+                borderWidth: 2,
+              },
+            },
+          });
+        }
+      }
+      return copy;
+    });
+  }, [subDf, today]);
+
+  useEffect(() => {
+    console.log(chartData);
+  }, [chartData]);
   return (
     <>
       <Flex justify="center" align="center">
@@ -142,13 +199,12 @@ export default function Predictions() {
             <Switch
               checkedChildren={<>Tomorrow</>}
               unCheckedChildren={<>Today</>}
-              defaultChecked
-              onChange={(checked) => setToday(checked)}
+              onChange={(checked) => setToday(!checked)}
             />
           </Flex>
           <Card style={{ marginTop: "5vh" }}>
             <div className="chartjs-width" style={{ width: "100%" }}>
-              {/* <Line data={chartData} options={options} /> */}
+              <Line data={chartData.data} options={chartData.options} />
             </div>
           </Card>
         </Col>
@@ -197,8 +253,8 @@ export default function Predictions() {
             <Card>
               <Flex justify="center">
                 {/* <Line */}
-                {/*   data={selectedModelHistoryChartData.charData} */}
-                {/*   options={selectedModelHistoryChartData.options} */}
+                {/*   data={chartData.charData} */}
+                {/*   options={chartData.options} */}
                 {/* /> */}
               </Flex>
             </Card>
@@ -208,3 +264,24 @@ export default function Predictions() {
     </>
   );
 }
+
+const useSubDf = (df) => {
+  const [subDf, setSubDf] = useState(null);
+  useEffect(() => {
+    if (df == null) return;
+    // Implement window size
+    let tdl = dayjs()
+      .add(-dayjs().hour() - 12, "hours")
+      .add(-dayjs().minute() - 30, "minutes")
+      .toString();
+    tdl = dayjs(tdl).unix();
+    const subdf = df.loc({ rows: df["created_at"].gt(tdl) });
+    // console.log(subdf.shape);
+    subdf.print();
+    setSubDf(subdf);
+  }, []);
+  return {
+    subDf,
+    setSubDf,
+  };
+};

@@ -2,6 +2,9 @@ const predictionChart = {
   options: {
     maintainAspectRatio: false,
     plugins: {
+      colors: {
+        forceOverride: true,
+      },
       title: {
         display: true,
         text: "State demand graph",
@@ -41,18 +44,7 @@ const predictionChart = {
   },
   data: {
     labels: [],
-    datasets: [
-      {
-        label: "True Data",
-        data: [],
-        type: "line",
-      },
-      {
-        label: "Prediction",
-        data: [],
-        type: "line",
-      },
-    ],
+    datasets: [],
   },
 };
 

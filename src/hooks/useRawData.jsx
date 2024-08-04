@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { NavbarContext } from "../context/navbarContext";
 import api from "../query/query";
 import { clearData, filterData, parseData } from "../features/data";
+import dayjs from "dayjs";
 
 export default function useRawData() {
   const { date } = useContext(NavbarContext);
@@ -15,15 +16,19 @@ export default function useRawData() {
     if (import.meta.env.VITE_APPMODE !== "DEBUG") {
       const rawData = localStorage.getItem(date.format("YYYY-MM-DD"));
       if (rawData) {
-        dispatch(clearData());
-        dispatch(parseData(JSON.parse(rawData)));
-        dispatch(filterData());
-        console.log("Loaded raw data from cache!");
-        return;
+        let data = JSON.parse(rawData);
+        if (data.createdAtHour >= dayjs().hour()) {
+          dispatch(clearData());
+          dispatch(parseData(data.docs));
+          dispatch(filterData());
+          console.log("Loaded raw data from cache!");
+          return;
+        }
       }
       api.getDateData(date.format("YYYY-MM-DD")).then((docs) => {
         dispatch(clearData());
-        localStorage.setItem(date.format("YYYY-MM-DD"), JSON.stringify(docs));
+        const data = { docs: docs, createdAtHour: dayjs().hour() };
+        localStorage.setItem(date.format("YYYY-MM-DD"), JSON.stringify(data));
         dispatch(parseData(docs));
         dispatch(filterData());
       });

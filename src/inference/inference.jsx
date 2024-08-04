@@ -99,16 +99,16 @@ export const firstInference = async (model, subDf, modelSession) => {
   let subdf = subDf.copy();
 
   let tempDf = removeColumns(subdf, model.columns);
-  tempDf.print();
+  // tempDf.print();
   scaleDf(tempDf, model);
-  tempDf.print();
+  // tempDf.print();
   // Reshape data with (samples, window_size, features)
 
   const [samples, data] = windowAndGetData(tempDf, model);
   const shape = [samples, model.window_size, model.columns.length];
 
-  console.log(shape);
-  console.log(data);
+  // console.log(shape);
+  // console.log(data);
 
   const out = await runSingleInference(data, shape, modelSession);
   let preds = out.dense_1.cpuData.map((i) => {
@@ -118,7 +118,7 @@ export const firstInference = async (model, subDf, modelSession) => {
   preds = Array.from({ length: model.window_size }, () => NaN).concat(
     Array.from(preds),
   );
-  console.log(preds);
+  // console.log(preds);
   console.log(subdf.shape);
   const value = preds.pop();
 

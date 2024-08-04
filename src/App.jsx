@@ -16,7 +16,6 @@ import { ThemeContext } from "./context/themeContext";
 import useRawData from "./hooks/useRawData";
 import useParsedData from "./hooks/useParsedData";
 import useModelsData from "./hooks/useModelsData";
-// import * as tf from '@tensorflow/tfjs';
 
 inject();
 
