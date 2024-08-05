@@ -216,16 +216,13 @@ export const counterSlice = createSlice({
 
     createDataFrame: (state, action) => {
       // state.action.payload to be array of objects
-      // console.log(action.payload);
       // const size = action.payload.length;
-      // console.log(action.payload[size - 1]);
 
       action.payload.sort((a, b) => {
         if (a.created_at > b.create_at) return 1;
         else if (a.created_at < b.created_at) return -1;
         else return 0;
       });
-      // console.log(action.payload[size - 1]);
       let df = new dfd.DataFrame(action.payload);
 
       // Remove datapoints with values greater than 30000 and less than 5000
@@ -268,8 +265,6 @@ export const counterSlice = createSlice({
         }),
         { inplace: true },
       );
-
-      // df.tail(5).print();
 
       state.parsedDataFrame = df;
     },

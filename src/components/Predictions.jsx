@@ -40,31 +40,31 @@ const getModelViewDescriptor = (model) => {
       key: "1",
       label: "Model name",
       children: model.name,
-      span: 3,
+      span: 2,
     },
     {
       key: "2",
       label: "Model tag name",
       children: model.tag_name,
-      span: 3,
+      span: 2,
     },
     {
       key: "3",
       label: "Average loss",
       children: model.avg_loss,
-      span: 3,
+      span: 2,
     },
     {
       key: "4",
       label: "Mean squared error",
       children: model.mse,
-      span: 3,
+      span: 2,
     },
     {
       key: "5",
       label: "Validation loss",
       children: model.val_mse,
-      span: 3,
+      span: 2,
     },
     {
       key: "8",
@@ -75,7 +75,7 @@ const getModelViewDescriptor = (model) => {
           days
         </>
       ),
-      span: 3,
+      span: 2,
     },
     {
       key: "6",
@@ -83,11 +83,12 @@ const getModelViewDescriptor = (model) => {
       children: dayjs(model.created_at.seconds * 1000).format(
         "DD-MM-YYYY HH:mm:ss",
       ),
-      span: 3,
+      span: 2,
     },
     {
       key: "7",
       label: "Other parameters",
+      span: 2,
       children: (
         <>
           <List
@@ -114,7 +115,6 @@ export default function Predictions() {
   const [modelChartData, setModelChartData] = useState(modelHistoryChart);
 
   const [today, setToday] = useState(true);
-  console.log(today);
 
   useEffect(() => {
     changeChartColor(isDarkTheme);
@@ -138,7 +138,7 @@ export default function Predictions() {
     }
     const buffer = await resp.arrayBuffer();
     const opt = {
-      executionProviders: ["webgpu"],
+      executionProviders: ["webgpu", "wasm"],
     };
 
     const session = await ort.InferenceSession.create(buffer, opt);
@@ -146,8 +146,6 @@ export default function Predictions() {
   };
 
   const runInference = async () => {
-    console.log(subDf.columns);
-    console.log(models[modelIndex]);
     console.log("Running inference -> ");
     if (
       subDf.columns.filter((i) => i == models[modelIndex].tag_name).length != 0
@@ -181,9 +179,6 @@ export default function Predictions() {
         false,
       );
     }
-    subdf.head(10).print();
-    subdf.tail(10).print();
-
     setSubDf(subdf);
   };
 
@@ -215,9 +210,6 @@ export default function Predictions() {
         .add(-dayjs().minute(), "minute")
         .unix();
 
-      console.log(tdl);
-      console.log(tdh);
-      // console.log(subDf.shape);
       if (today) {
         subdf = subDf.loc({
           rows: subDf["created_at"].gt(tdl).and(subDf["created_at"].lt(tdh)),
@@ -225,8 +217,6 @@ export default function Predictions() {
       } else {
         subdf = subDf.loc({ rows: subDf["created_at"].gt(tdh) });
       }
-
-      // console.log(subdf.shape);
 
       // set the chart values
       //
@@ -279,9 +269,6 @@ export default function Predictions() {
     });
   }, [models]);
 
-  useEffect(() => {
-    console.log(chartData);
-  }, [chartData]);
   return (
     <>
       <Flex justify="center" align="center">
@@ -352,8 +339,8 @@ export default function Predictions() {
               </Col>
             </Row>
             <div style={{ marginTop: "1rem" }}>
-              {/* <Card title={models[modelIndex].tag_name}> */}
               <Descriptions
+                columns={2}
                 bordered
                 items={getModelViewDescriptor(models[modelIndex])}
               />

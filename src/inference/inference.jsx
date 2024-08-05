@@ -107,9 +107,6 @@ export const firstInference = async (model, subDf, modelSession) => {
   const [samples, data] = windowAndGetData(tempDf, model);
   const shape = [samples, model.window_size, model.columns.length];
 
-  // console.log(shape);
-  // console.log(data);
-
   const out = await runSingleInference(data, shape, modelSession);
   let preds = out.dense_1.cpuData.map((i) => {
     return i * model.train_std.state_demand + model.train_mean.state_demand;
@@ -118,8 +115,6 @@ export const firstInference = async (model, subDf, modelSession) => {
   preds = Array.from({ length: model.window_size }, () => NaN).concat(
     Array.from(preds),
   );
-  // console.log(preds);
-  console.log(subdf.shape);
   const value = preds.pop();
 
   // created_at, frequency, state_demand, state_gen, hour, dayOfWeek, month, --

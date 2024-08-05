@@ -17,7 +17,8 @@ export default function useRawData() {
       const rawData = localStorage.getItem(date.format("YYYY-MM-DD"));
       if (rawData) {
         let data = JSON.parse(rawData);
-        if (data.createdAtHour >= dayjs().hour()) {
+        const diff = dayjs().diff(dayjs(data.createdAtTs * 1000), "hour");
+        if (diff < 1) {
           dispatch(clearData());
           dispatch(parseData(data.docs));
           dispatch(filterData());
@@ -27,7 +28,7 @@ export default function useRawData() {
       }
       api.getDateData(date.format("YYYY-MM-DD")).then((docs) => {
         dispatch(clearData());
-        const data = { docs: docs, createdAtHour: dayjs().hour() };
+        const data = { docs: docs, createdAtTs: dayjs().unix() };
         localStorage.setItem(date.format("YYYY-MM-DD"), JSON.stringify(data));
         dispatch(parseData(docs));
         dispatch(filterData());

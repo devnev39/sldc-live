@@ -13,7 +13,8 @@ export default function useParsedData() {
       let data = localStorage.getItem("parsedData");
       if (data) {
         data = JSON.parse(data);
-        if (data.createdAtHour >= dayjs().hour()) {
+        const diff = dayjs().diff(dayjs(data.createdAtTs * 1000), "hour");
+        if (diff < 1) {
           dispatch(createDataFrame(data.docs));
           console.log("Loaded parsed data from cache !");
           return;
@@ -34,7 +35,7 @@ export default function useParsedData() {
             data.push(ordered);
           }
         }
-        const d = { docs: data, createdAtHour: dayjs().hour() };
+        const d = { docs: data, createdAtTs: dayjs().unix() };
         localStorage.setItem("parsedData", JSON.stringify(d));
         dispatch(createDataFrame(data));
       });
