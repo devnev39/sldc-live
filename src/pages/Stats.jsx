@@ -2,7 +2,6 @@ import { Card, Col, Divider, Flex, Row, Statistic, Typography } from "antd";
 import { ArrowDownOutlined, ArrowUpOutlined } from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import { Line } from "react-chartjs-2";
-import "./styles.css";
 import { green, red } from "@ant-design/colors";
 import { useContext, useEffect } from "react";
 import { ThemeContext } from "../context/themeContext";

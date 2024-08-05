@@ -11,7 +11,6 @@ import react from "../assets/react.svg?react";
 import redux from "../assets/redux.svg?react";
 import ant from "../assets/ant.svg?react";
 import Icon from "@ant-design/icons/lib/components/Icon";
-import "./styles.css";
 import { useContext } from "react";
 import { ThemeContext } from "../context/themeContext";
 

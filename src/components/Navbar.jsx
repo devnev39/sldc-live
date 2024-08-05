@@ -1,5 +1,4 @@
-import { Badge, Button, DatePicker, Flex, Menu } from "antd";
-import Title from "antd/es/typography/Title";
+import { Badge, Button, DatePicker, Flex, Menu, Typography } from "antd";
 import transmission from "../assets/transmission.svg?react";
 import Icon from "@ant-design/icons/lib/components/Icon";
 import dayjs from "dayjs";
@@ -60,16 +59,19 @@ export const Navbar = () => {
 
   return (
     <Header className="header-height-min">
-      <Flex justify="space-evenly">
-        <Flex justify="center" align="center">
+      <div className="navbar">
+        <div className="navbar-icon-heading-position">
           <Icon
             component={transmission}
             style={{ fontSize: "2.5rem", color: "white" }}
           />
-          <Title style={{ color: "#FFFFFFD9" }} level={4}>
+          <Typography.Text
+            style={{ color: "#FFFFFFD9" }}
+            className="navbar-title-size"
+          >
             SLDC Live (Kalwa)
-          </Title>
-        </Flex>
+          </Typography.Text>
+        </div>
         <Flex
           style={{
             width: "50vw",
@@ -121,7 +123,7 @@ export const Navbar = () => {
             ></Button>
           </Badge>
         </Flex>
-      </Flex>
+      </div>
     </Header>
   );
 };

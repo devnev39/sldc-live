@@ -3,7 +3,6 @@ import Statistic from "antd/es/statistic/Statistic";
 import { ArrowDownOutlined, ArrowUpOutlined } from "@ant-design/icons";
 import { Line } from "react-chartjs-2";
 import { useSelector } from "react-redux";
-import "./styles.css";
 import { green, red } from "@ant-design/colors";
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../context/themeContext";
