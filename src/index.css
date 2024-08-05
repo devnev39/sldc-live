@@ -24,7 +24,7 @@ body {
     }
 
     .header-height-min {
-        height: 10vh;
+        height: 25vh;
         margin: 0;
         padding: 0;
         width: 100%;
@@ -32,6 +32,7 @@ body {
 
     .navbar-title {
         font-size: 1rem;  
+        color: #FFFFFFD9;
     }
 
     .navbar-icon-heading-position {
@@ -41,10 +42,18 @@ body {
         height: 100%;
     }
 
+  .navbar-set-3 {
+    display: flex;
+    justify-content: center;
+  }
+
+  .navbar-set-2 {
+    display: flex;
+    justify-content: center;
+  }
+
     .navbar {
-        display: flex;
-        height: 100%;
-        justify-content: space-around;
+        display: block;
     }
 }
 
@@ -74,13 +83,25 @@ body {
         justify-content: center;
         align-items: center;
         height: 100%;
+        font-size: 2rem;
     }
+
+    .navbar-title {
+      font-size: 1rem;
+      color: #FFFFFFD9;
+  }
 
     .navbar {
         display: flex;
         height: 100%;
         justify-content: space-evenly;
     }
+
+    .navbar-set-2 {
+    margin-left: 20vw;
+    display: flex;
+    justify-content:center; 
+  }
 }
 
 .font-600 {
