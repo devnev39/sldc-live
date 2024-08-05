@@ -235,7 +235,7 @@ export default function Predictions() {
               xMax: dayjs(ts * 1000).format("HH:mm"),
               label: {
                 display: true,
-                content: "Pure predictions beyound this",
+                content: "Pure predictions beyond this",
                 position: "start",
               },
             },
@@ -247,6 +247,9 @@ export default function Predictions() {
         data: today ? subdf.column("state_demand").values : [],
         label: "Original State Demand",
         type: "line",
+        fill: false,
+        borderColor: "rgb(54, 162, 235, 0.5)",
+        tension: 0.5,
       };
 
       for (let model of models) {
@@ -267,7 +270,6 @@ export default function Predictions() {
           });
         }
       }
-      console.log(copy);
       return copy;
     });
   }, [subDf, today]);

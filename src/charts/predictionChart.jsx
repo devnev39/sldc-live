@@ -3,6 +3,7 @@ const predictionChart = {
     maintainAspectRatio: false,
     plugins: {
       colors: {
+        enabled: true,
         forceOverride: true,
       },
       title: {
