@@ -1,4 +1,4 @@
-import { Badge, Button, DatePicker, Flex, Menu, Typography } from "antd";
+import { Badge, Button, DatePicker, Menu } from "antd";
 import transmission from "../assets/transmission.svg?react";
 import Icon from "@ant-design/icons/lib/components/Icon";
 import dayjs from "dayjs";
@@ -65,37 +65,18 @@ export const Navbar = () => {
             component={transmission}
             style={{ fontSize: "2.5rem", color: "white" }}
           />
-          <Typography.Text
-            style={{ color: "#FFFFFFD9" }}
-            className="navbar-title-size"
-          >
-            SLDC Live (Kalwa)
-          </Typography.Text>
+          <div className="navbar-title">SLDC Live (Kalwa)</div>
         </div>
-        <Flex
-          style={{
-            width: "50vw",
-            justifyContent: "center",
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <div
-            style={{
-              width: "30vw",
-              marginRight: "0",
-              paddingRight: "0",
-            }}
-          >
-            <Menu
-              onClick={onClick}
-              selectedKeys={[current]}
-              mode="horizontal"
-              items={items}
-              theme="dark"
-            />
-          </div>
-
+        <div className="navbar-set-2">
+          <Menu
+            onClick={onClick}
+            selectedKeys={[current]}
+            mode="horizontal"
+            items={items}
+            theme="dark"
+          />
+        </div>
+        <div className="navbar-set-3">
           <div>
             <DatePicker
               defaultValue={date}
@@ -105,24 +86,24 @@ export const Navbar = () => {
               minDate={dayjs(dayjs().subtract(15, "days"), dateFormat)}
               maxDate={dayjs(dayjs(), dateFormat)}
             />
-          </div>
-          <Button
-            onClick={() => changeColorTheme({ matches: !isDarkTheme })}
-            style={{ marginLeft: "1rem" }}
-            icon={isDarkTheme ? <SunOutlined /> : <MoonOutlined />}
-          ></Button>
-          <Badge
-            dot
-            color="success"
-            count={<StarFilled spin={spin} style={{ color: "#f50" }} />}
-          >
             <Button
+              onClick={() => changeColorTheme({ matches: !isDarkTheme })}
               style={{ marginLeft: "1rem" }}
-              icon={<CloudDownloadOutlined />}
-              onClick={showModal}
+              icon={isDarkTheme ? <SunOutlined /> : <MoonOutlined />}
             ></Button>
-          </Badge>
-        </Flex>
+            <Badge
+              dot
+              color="success"
+              count={<StarFilled spin={spin} style={{ color: "#f50" }} />}
+            >
+              <Button
+                style={{ marginLeft: "1rem" }}
+                icon={<CloudDownloadOutlined />}
+                onClick={showModal}
+              ></Button>
+            </Badge>
+          </div>
+        </div>
       </div>
     </Header>
   );
