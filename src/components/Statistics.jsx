@@ -108,9 +108,9 @@ export default function Statistics() {
         <Col span={15} md={{ span: 15 }} xs={{ span: 24 }}>
           <Flex justify="center">
             <Card style={{ width: "90%", height: "60vh" }}>
-              <Flex justify="center">
+              <div className="stat-chart-div">
                 <canvas ref={canvasRef} style={{ width: "100%" }} />
-              </Flex>
+              </div>
             </Card>
           </Flex>
         </Col>

@@ -102,7 +102,15 @@ body {
     display: flex;
     justify-content:center; 
   }
+
+  
 }
+.stat-chart-div {
+    display: flex;
+    position: relative;
+    height: 50vh;
+    justify-content: center;
+  }
 
 .font-600 {
     font-weight: 600;
