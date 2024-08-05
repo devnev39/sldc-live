@@ -17,8 +17,8 @@ export default function useRawData() {
       const rawData = localStorage.getItem(date.format("YYYY-MM-DD"));
       if (rawData) {
         let data = JSON.parse(rawData);
-        const diff = dayjs().diff(dayjs(data.createdAtTs * 1000), "hour");
-        if (diff < 1) {
+        const diff = dayjs().diff(dayjs(data.createdAtTs * 1000), "minute");
+        if (diff < 45) {
           dispatch(clearData());
           dispatch(parseData(data.docs));
           dispatch(filterData());

@@ -13,8 +13,8 @@ export default function useParsedData() {
       let data = localStorage.getItem("parsedData");
       if (data) {
         data = JSON.parse(data);
-        const diff = dayjs().diff(dayjs(data.createdAtTs * 1000), "hour");
-        if (diff < 1) {
+        const diff = dayjs().diff(dayjs(data.createdAtTs * 1000), "minute");
+        if (diff < 45) {
           dispatch(createDataFrame(data.docs));
           console.log("Loaded parsed data from cache !");
           return;
