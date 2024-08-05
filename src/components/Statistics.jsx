@@ -105,7 +105,7 @@ export default function Statistics() {
       </Flex>
       <Divider />
       <Row>
-        <Col span={15} md={{ span: 15 }} xs={{ span: 24 }}>
+        <Col span={15} lg={{ span: 15 }} xs={{ span: 24 }} sm={{ span: 24 }}>
           <Flex justify="center">
             <Card style={{ width: "90%", height: "60vh" }}>
               <div className="stat-chart-div">
@@ -114,12 +114,12 @@ export default function Statistics() {
             </Card>
           </Flex>
         </Col>
-        <Col span={1} md={{ span: 1 }} xs={{ span: 0 }}>
+        <Col span={1} lg={{ span: 1 }} xs={{ span: 0 }} sm={{ span: 0 }}>
           <Flex justify="center">
             <Divider type="vertical" style={{ height: "50vh", margin: "0" }} />
           </Flex>
         </Col>
-        <Col span={8} md={{ span: 8 }} xs={{ span: 24 }}>
+        <Col span={8} lg={{ span: 8 }} xs={{ span: 24 }} sm={{ span: 24 }}>
           <Card
             title={
               <>
@@ -143,7 +143,6 @@ export default function Statistics() {
                 </Col>
                 <Col span={8}>
                   <Flex align="center" style={{ height: "100%" }}>
-                    {/* <DatePicker.RangePicker /> */}
                     <Select
                       defaultValue={"WeekDay"}
                       options={["WeekDay", "Hour"].map((i) => {

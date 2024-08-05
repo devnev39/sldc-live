@@ -289,7 +289,7 @@ export default function Predictions() {
       </Flex>
       <Divider style={{ marginBottom: "0", marginTop: "0" }} />
       <Row>
-        <Col span={13} md={{ span: 13 }} xs={{ span: 24 }}>
+        <Col span={13} lg={{ span: 13 }} sm={{ span: 24 }} xs={{ span: 24 }}>
           <Flex justify="center" align="center" style={{ marginTop: "5vh" }}>
             <Switch
               checkedChildren={<>Tomorrow</>}
@@ -311,12 +311,12 @@ export default function Predictions() {
             </div>
           </Card>
         </Col>
-        <Col span={1} xs={{ span: 0 }} md={{ span: 1 }}>
+        <Col span={1} xs={{ span: 0 }} sm={{ span: 0 }} lg={{ span: 1 }}>
           <Flex justify="center">
             <Divider type="vertical" style={{ height: "100vh" }} />
           </Flex>
         </Col>
-        <Col span={9} xs={{ span: 24 }} md={{ span: 9 }}>
+        <Col span={9} xs={{ span: 24 }} sm={{ span: 24 }} lg={{ span: 9 }}>
           <Card
             style={{ marginTop: "2rem" }}
             title={
