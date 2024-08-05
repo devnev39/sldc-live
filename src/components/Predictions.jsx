@@ -40,31 +40,31 @@ const getModelViewDescriptor = (model) => {
       key: "1",
       label: "Model name",
       children: model.name,
-      span: 2,
+      span: 3,
     },
     {
       key: "2",
       label: "Model tag name",
       children: model.tag_name,
-      span: 2,
+      span: 3,
     },
     {
       key: "3",
       label: "Average loss",
       children: model.avg_loss,
-      span: 2,
+      span: 3,
     },
     {
       key: "4",
       label: "Mean squared error",
       children: model.mse,
-      span: 2,
+      span: 3,
     },
     {
       key: "5",
       label: "Validation loss",
       children: model.val_mse,
-      span: 2,
+      span: 3,
     },
     {
       key: "8",
@@ -75,7 +75,7 @@ const getModelViewDescriptor = (model) => {
           days
         </>
       ),
-      span: 2,
+      span: 3,
     },
     {
       key: "6",
@@ -83,12 +83,12 @@ const getModelViewDescriptor = (model) => {
       children: dayjs(model.created_at.seconds * 1000).format(
         "DD-MM-YYYY HH:mm:ss",
       ),
-      span: 2,
+      span: 3,
     },
     {
       key: "7",
       label: "Other parameters",
-      span: 2,
+      span: 3,
       children: (
         <>
           <List
@@ -223,6 +223,26 @@ export default function Predictions() {
       copy.data.labels = subdf
         .column("created_at")
         .values.map((i) => dayjs(i * 1000).format("HH:mm"));
+
+      if (today) {
+        const ts = df.iat(df.shape[0] - 1, 0);
+        console.log(dayjs(ts * 1000).format("HH:mm"));
+        copy.options.plugins.annotation = {
+          annotations: {
+            line1: {
+              type: "line",
+              xMin: dayjs(ts * 1000).format("HH:mm"),
+              xMax: dayjs(ts * 1000).format("HH:mm"),
+              label: {
+                display: true,
+                content: "Pure predictions beyound this",
+                position: "start",
+              },
+            },
+          },
+        };
+      }
+
       copy.data.datasets[0] = {
         data: today ? subdf.column("state_demand").values : [],
         label: "Original State Demand",
@@ -247,6 +267,7 @@ export default function Predictions() {
           });
         }
       }
+      console.log(copy);
       return copy;
     });
   }, [subDf, today]);
@@ -279,8 +300,8 @@ export default function Predictions() {
         <Col span={13} lg={{ span: 13 }} sm={{ span: 24 }} xs={{ span: 24 }}>
           <Flex justify="center" align="center" style={{ marginTop: "5vh" }}>
             <Switch
-              checkedChildren={<>Tomorrow</>}
-              unCheckedChildren={<>Today</>}
+              checkedChildren={<>{"Tomorrow's predictions"}</>}
+              unCheckedChildren={<>{"Today's original and predictions"}</>}
               onChange={(checked) => setToday(!checked)}
             />
           </Flex>

@@ -21,6 +21,7 @@
     "antd": "^5.15.2",
     "chart.js": "^4.4.3",
     "chartjs-chart-box-and-violin-plot": "^4.0.0",
+    "chartjs-plugin-annotation": "^3.0.1",
     "danfojs": "^1.1.2",
     "dayjs": "^1.11.10",
     "firebase": "^10.8.1",

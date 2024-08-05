@@ -16,6 +16,7 @@ import {
   BoxPlotController,
   BoxAndWiskers,
 } from "@sgratzl/chartjs-chart-boxplot";
+import Annotation from "chartjs-plugin-annotation";
 
 ChartJS.register(
   CategoryScale,
@@ -25,6 +26,7 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
+  Annotation,
 );
 
 export default function Statistics() {
