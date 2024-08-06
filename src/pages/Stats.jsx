@@ -3,20 +3,53 @@ import { ArrowDownOutlined, ArrowUpOutlined } from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import { Line } from "react-chartjs-2";
 import { green, red } from "@ant-design/colors";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../context/themeContext";
 import changeChartColor from "../charts/changeChartColor";
+import { Steps } from "intro.js-react";
+import "intro.js/introjs.css";
+import { NavbarContext } from "../context/navbarContext";
+
+const steps = [
+  {
+    element: ".home-heading",
+    intro:
+      "This page gives information about the running time of the GCP cloud run instance for running the OCR!",
+  },
+];
 
 const Stats = () => {
   const charts = useSelector((state) => state.data.charts);
   const { isDarkTheme } = useContext(ThemeContext);
 
+  const [renderCount, setRenderCount] = useState(0);
+  const { showIntro } = useContext(NavbarContext);
+  const [enabled, setEnabled] = useState(false);
+
+  useEffect(() => {
+    if (renderCount == 0) {
+      setRenderCount(1);
+      return;
+    }
+    setEnabled(true);
+  }, [showIntro]);
+
   useEffect(() => {
     changeChartColor(isDarkTheme);
   }, []);
 
+  const onExit = () => {
+    setEnabled(false);
+  };
+
   return (
     <>
+      <Steps
+        enabled={enabled}
+        steps={steps}
+        onExit={() => onExit()}
+        initialStep={0}
+      />
       <Row style={{ marginTop: "1rem" }} className="stats-page-size">
         <Col span={10} xs={{ span: 24 }} md={{ span: 10 }}>
           <Flex justify="space-evenly">

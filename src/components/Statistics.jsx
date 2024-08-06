@@ -123,6 +123,7 @@ export default function Statistics() {
         </Col>
         <Col span={8} lg={{ span: 8 }} xs={{ span: 24 }} sm={{ span: 24 }}>
           <Card
+            style={{ marginTop: "1rem" }}
             title={
               <>
                 <Flex justify="center">
@@ -132,35 +133,62 @@ export default function Statistics() {
             }
           >
             <Flex justify="center">
-              <Row>
-                <Col span={15}>
-                  <Flex align="center" style={{ height: "100%" }}>
-                    <Typography.Text strong>Data period</Typography.Text>
-                  </Flex>
-                </Col>
-                <Col span={1}>
-                  <Flex align="center" style={{ height: "100%" }}>
-                    :
-                  </Flex>
-                </Col>
-                <Col span={8}>
-                  <Flex align="center" style={{ height: "100%" }}>
-                    <Select
-                      className="period-select"
-                      defaultValue={"WeekDay"}
-                      options={["WeekDay", "Hour"].map((i) => {
-                        return {
-                          value: i,
-                          label: i,
-                        };
-                      })}
-                      onChange={(e) => {
-                        setPeriodParam(e);
-                      }}
-                    ></Select>
-                  </Flex>
-                </Col>
-              </Row>
+              <div>
+                <Row>
+                  <Col span={12}>
+                    <Flex align="center" style={{ height: "100%" }}>
+                      <Typography.Text strong>Data period</Typography.Text>
+                    </Flex>
+                  </Col>
+                  <Col span={1}>
+                    <Flex align="center" style={{ height: "100%" }}>
+                      :
+                    </Flex>
+                  </Col>
+                  <Col span={11}>
+                    <Flex
+                      align="center"
+                      justify="end"
+                      style={{ height: "100%" }}
+                    >
+                      <Select
+                        className="period-select"
+                        defaultValue={"WeekDay"}
+                        options={["WeekDay", "Hour"].map((i) => {
+                          return {
+                            value: i,
+                            label: i,
+                          };
+                        })}
+                        onChange={(e) => {
+                          setPeriodParam(e);
+                        }}
+                      ></Select>
+                    </Flex>
+                  </Col>
+                </Row>
+                <Row style={{ marginTop: "1rem" }}>
+                  <Col span={12}>
+                    <Flex align="center" style={{ height: "100%" }}>
+                      <Typography.Text strong>
+                        Total data recorded
+                      </Typography.Text>
+                    </Flex>
+                  </Col>
+                  <Col span={1}>
+                    <Flex align="center" style={{ height: "100%" }}>
+                      :
+                    </Flex>
+                  </Col>
+                  <Col span={11}>
+                    <Flex align="center" style={{ height: "100%" }}>
+                      <Typography.Text>
+                        {df.shape[0]} ~ {Math.round(df.shape[0] / 24)} days
+                      </Typography.Text>
+                    </Flex>
+                  </Col>
+                </Row>
+              </div>
             </Flex>
           </Card>
         </Col>

@@ -7,6 +7,9 @@ import { green, red } from "@ant-design/colors";
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../context/themeContext";
 import changeChartColor from "../charts/changeChartColor";
+import { Steps } from "intro.js-react";
+import "intro.js/introjs.css";
+import { NavbarContext } from "../context/navbarContext";
 
 const getAverage = (lst) => {
   let size = lst.length;
@@ -18,11 +21,24 @@ const getAverage = (lst) => {
   return Math.round(sum / size);
 };
 
+const steps = [
+  {
+    element: ".home-heading",
+    intro:
+      "This page gives information about generation and demand. It gives a detailed breakdown on the generation for Maharashtra State.",
+  },
+];
+
 const Home = () => {
   const charts = useSelector((state) => state.data.charts);
   const tables = useSelector((state) => state.data.tables);
 
   const { isDarkTheme } = useContext(ThemeContext);
+
+  const [renderCount, setRenderCount] = useState(0);
+  const { showIntro } = useContext(NavbarContext);
+
+  const [enabled, setEnabled] = useState(false);
 
   const [freqAvg, setFreqAvg] = useState(0);
   const [stateGen, setStateGenAvg] = useState(0);
@@ -39,6 +55,18 @@ const Home = () => {
     setHydroAvg(getAverage(charts.generationDistChart.data.datasets[1].data));
     setOthersAvg(getAverage(charts.generationDistChart.data.datasets[2].data));
   }, [charts]);
+
+  useEffect(() => {
+    if (renderCount == 0) {
+      setRenderCount(1);
+      return;
+    }
+    setEnabled(true);
+  }, [showIntro]);
+
+  const onIntroExit = () => {
+    setEnabled(false);
+  };
 
   const getValue = (data) => {
     let len = data.length;
@@ -73,6 +101,12 @@ const Home = () => {
 
   return (
     <>
+      <Steps
+        enabled={enabled}
+        steps={steps}
+        initialStep={0}
+        onExit={() => onIntroExit()}
+      />
       <Row style={{ marginBottom: "1rem" }}>
         <Col>
           <Alert
