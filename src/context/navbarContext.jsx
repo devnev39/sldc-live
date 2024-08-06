@@ -10,6 +10,8 @@ export const NavbarContextProvider = ({ children }) => {
 
   const [open, setOpen] = useState(false);
 
+  const [showIntro, setShowIntro] = useState(false);
+
   const showModal = () => {
     setOpen(true);
   };
@@ -34,6 +36,8 @@ export const NavbarContextProvider = ({ children }) => {
         open,
         showModal,
         handleCancel,
+        showIntro,
+        setShowIntro,
       }}
     >
       {children}

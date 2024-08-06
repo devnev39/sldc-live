@@ -45,7 +45,7 @@ const getModelViewDescriptor = (model) => {
     {
       key: "2",
       label: "Model tag name",
-      children: model.tag_name,
+      children: <p className="model-tag">{model.tag_name}</p>,
       span: 3,
     },
     {
@@ -70,10 +70,10 @@ const getModelViewDescriptor = (model) => {
       key: "8",
       label: "Training datapoints",
       children: (
-        <>
+        <p className="model-training-data">
           {model.train_data_size} ~ {Math.round(model.train_data_size / 24)}{" "}
           days
-        </>
+        </p>
       ),
       span: 3,
     },
@@ -291,17 +291,19 @@ export default function Predictions() {
       return data;
     });
   }, [models]);
-
   return (
     <>
       <Flex justify="center" align="center">
-        <Typography.Title>Predictions</Typography.Title>
+        <Typography.Title className="prediction-heading">
+          Predictions
+        </Typography.Title>
       </Flex>
       <Divider style={{ marginBottom: "0", marginTop: "0" }} />
       <Row>
         <Col span={13} lg={{ span: 13 }} sm={{ span: 24 }} xs={{ span: 24 }}>
           <Flex justify="center" align="center" style={{ marginTop: "5vh" }}>
             <Switch
+              className="switch-button"
               checkedChildren={<>{"Tomorrow's predictions"}</>}
               unCheckedChildren={<>{"Today's original and predictions"}</>}
               onChange={(checked) => setToday(!checked)}
@@ -348,6 +350,7 @@ export default function Predictions() {
               </Col>
               <Col span={10}>
                 <Select
+                  className="model-select"
                   defaultValue={models.length ? models[0].tag_name : ""}
                   options={models.map((m, i) => {
                     return {

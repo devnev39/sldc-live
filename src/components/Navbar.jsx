@@ -6,6 +6,7 @@ import customParseFormat from "dayjs/plugin/customParseFormat";
 import {
   CloudDownloadOutlined,
   MoonOutlined,
+  QuestionCircleOutlined,
   StarFilled,
   SunOutlined,
 } from "@ant-design/icons";
@@ -39,7 +40,7 @@ const items = [
 
 export const Navbar = () => {
   const { isDarkTheme, changeColorTheme } = useContext(ThemeContext);
-  const { current, onClick, date, setDate, showModal } =
+  const { current, onClick, date, setDate, showModal, setShowIntro } =
     useContext(NavbarContext);
 
   const [spin, setSpin] = useState(true);
@@ -102,6 +103,12 @@ export const Navbar = () => {
                 onClick={showModal}
               ></Button>
             </Badge>
+            <Button
+              className=".start-intro"
+              onClick={() => setShowIntro((c) => !c)}
+              icon={<QuestionCircleOutlined />}
+              style={{ marginLeft: "1rem" }}
+            ></Button>
           </div>
         </div>
       </div>

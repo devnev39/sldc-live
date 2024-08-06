@@ -103,7 +103,7 @@ export default function Statistics() {
     <>
       <Divider />
       <Flex justify="center">
-        <Typography.Title>Statistics</Typography.Title>
+        <Typography.Title className="stat-heading">Statistics</Typography.Title>
       </Flex>
       <Divider />
       <Row>
@@ -146,6 +146,7 @@ export default function Statistics() {
                 <Col span={8}>
                   <Flex align="center" style={{ height: "100%" }}>
                     <Select
+                      className="period-select"
                       defaultValue={"WeekDay"}
                       options={["WeekDay", "Hour"].map((i) => {
                         return {
