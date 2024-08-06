@@ -69,7 +69,7 @@ const steps = [
   {
     element: ".prediction-heading",
     intro:
-      "This section presents the prediction of load demand for state of Maharashtra. The predictions are for Today and Tomorrow.",
+      "This section presents the prediction of load demand for the state of Maharashtra. The predictions are for today and tomorrow.",
   },
   {
     element: ".switch-button",
@@ -84,20 +84,21 @@ const steps = [
   {
     element: ".model-tag",
     intro:
-      "This parameter represents the model tag name and version. The number at last represent how many time this model has been trained.",
+      "This parameter represents the model tag name and version. The last number represents how many times this model has been trained.",
   },
   {
     element: ".model-training-data",
-    intro: "This parameter shows on how much data the model has been trained.",
+    intro:
+      "This parameter shows on how much data points (or days' data) the model has been trained on.",
   },
   {
     element: ".stat-heading",
     intro:
-      "This section presents statistical analysis on the data that has been recorded so far. Currently box plots are available for analysis for different periods.",
+      "This section presents a statistical analysis of the data recorded so far. Currently, box plots are available for analysis for different periods.",
   },
   {
     element: ".period-select",
     intro:
-      "You can change the period of box plot with this control. You can analyse the trend with the different period with this options.",
+      "You can change the period of the box plot with this control. You can analyse the trend for different periods with these options.",
   },
 ];
