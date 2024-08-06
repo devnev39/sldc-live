@@ -6,13 +6,17 @@ export const useSubDf = (df) => {
   useEffect(() => {
     if (df == null) return;
     // Implement window size
-    let tdl = dayjs()
-      .add(-dayjs().hour() - 12, "hours")
-      .add(-dayjs().minute() - 30, "minutes")
-      .toString();
-    tdl = dayjs(tdl).unix();
-    const subdf = df.loc({ rows: df["created_at"].gt(tdl) });
-    // console.log(subdf.shape);
+    const tdl = dayjs()
+      .add(-dayjs().hour() - 7, "hour")
+      .add(-dayjs().minute(), "minute")
+      .unix();
+    console.log(dayjs(tdl * 1000).format());
+    const tdh = dayjs().add(-dayjs().hour(), "hour").unix();
+    console.log(dayjs(tdh * 1000).format());
+    const subdf = df.loc({
+      rows: df["created_at"].gt(tdl).and(df["created_at"].lt(tdh)),
+    });
+    console.log(subdf.shape);
     // subdf.print();
     setSubDf(subdf);
   }, []);

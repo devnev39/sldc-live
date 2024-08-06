@@ -242,9 +242,16 @@ export default function Predictions() {
           },
         };
       }
-
+      const today_start = dayjs()
+        .add(-dayjs().hour(), "hour")
+        .add(-dayjs().minute(), "minute")
+        .unix();
       copy.data.datasets[0] = {
-        data: today ? subdf.column("state_demand").values : [],
+        data: today
+          ? df
+              .loc({ rows: df["created_at"].gt(today_start) })
+              .column("state_demand").values
+          : [],
         label: "Original State Demand",
         type: "line",
         fill: false,

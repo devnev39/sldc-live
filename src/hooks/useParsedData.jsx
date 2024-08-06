@@ -5,6 +5,8 @@ import { clearDataFrame, createDataFrame } from "../features/data";
 import api from "../query/query";
 import dayjs from "dayjs";
 
+const CACHE_MIN = import.meta.env.VITE_CAHCE_MIN;
+
 export default function useParsedData() {
   const dispatch = useDispatch();
 
@@ -14,7 +16,7 @@ export default function useParsedData() {
       if (data) {
         data = JSON.parse(data);
         const diff = dayjs().diff(dayjs(data.createdAtTs * 1000), "minute");
-        if (diff < 45) {
+        if (diff < CACHE_MIN) {
           dispatch(createDataFrame(data.docs));
           console.log("Loaded parsed data from cache !");
           return;

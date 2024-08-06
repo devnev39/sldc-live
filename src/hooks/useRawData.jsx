@@ -5,6 +5,8 @@ import api from "../query/query";
 import { clearData, filterData, parseData } from "../features/data";
 import dayjs from "dayjs";
 
+const CACHE_MIN = import.meta.env.VITE_CAHCE_MIN;
+
 export default function useRawData() {
   const { date } = useContext(NavbarContext);
   const dispatch = useDispatch();
@@ -18,7 +20,10 @@ export default function useRawData() {
       if (rawData) {
         let data = JSON.parse(rawData);
         const diff = dayjs().diff(dayjs(data.createdAtTs * 1000), "minute");
-        if (diff < 45) {
+        console.log(dayjs(data.createdAtTs * 1000).format());
+        console.log(dayjs().format());
+        console.log(diff);
+        if (diff < CACHE_MIN) {
           dispatch(clearData());
           dispatch(parseData(data.docs));
           dispatch(filterData());
