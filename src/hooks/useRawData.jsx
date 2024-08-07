@@ -20,9 +20,6 @@ export default function useRawData() {
       if (rawData) {
         let data = JSON.parse(rawData);
         const diff = dayjs().diff(dayjs(data.createdAtTs * 1000), "minute");
-        console.log(dayjs(data.createdAtTs * 1000).format());
-        console.log(dayjs().format());
-        console.log(diff);
         if (diff < CACHE_MIN) {
           dispatch(clearData());
           dispatch(parseData(data.docs));

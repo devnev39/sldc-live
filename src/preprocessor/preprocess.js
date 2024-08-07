@@ -122,8 +122,6 @@ export const filteredDataToWorksheet = (filteredData, fields) => {
   let combinedWorkSheet = {};
   // let offset = 1;
   for (let i = 0; i < fields.length; i++) {
-    console.log(fields[i]);
-    console.log(filteredData[fields[i]]);
     combinedWorkSheet = {
       ...combinedWorkSheet,
       ...addToWorksheetWithOffset(filteredData[fields[i]], i == 0 ? 0 : i * 3),
@@ -141,9 +139,7 @@ export const filteredDataToWorksheet = (filteredData, fields) => {
 export const filteredDataToWorkbook = (filteredData, fields) => {
   const workbook = XLSX.utils.book_new();
   for (let d of filteredData) {
-    console.log(d);
     const worksheet = filteredDataToWorksheet(d, fields);
-    console.log(worksheet);
     XLSX.utils.book_append_sheet(workbook, worksheet, d.timestamp);
   }
   return XLSX.write(workbook, { bookType: "xlsx", type: "binary" });
@@ -218,7 +214,6 @@ export const preprocessDocs = (docs, fields) => {
   }
 
   latestFilteredData.timestamp = date;
-  console.log(latestFilteredData);
   return latestFilteredData;
 };
 

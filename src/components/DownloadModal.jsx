@@ -75,9 +75,6 @@ export const DownloadModal = () => {
         const docs = preprocessDocs(data[i], checkedList);
         data[i] = docs;
       }
-
-      console.log(data);
-
       // Arrage in sheets
       const workbookBinaryString = filteredDataToWorkbook(data, checkedList);
 

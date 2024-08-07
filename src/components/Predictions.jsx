@@ -224,9 +224,8 @@ export default function Predictions() {
         .column("created_at")
         .values.map((i) => dayjs(i * 1000).format("HH:mm"));
 
-      if (today) {
-        const ts = df.iat(df.shape[0] - 1, 0);
-        console.log(dayjs(ts * 1000).format("HH:mm"));
+      if (today && dayjs().hour() < subdf.shape[0]) {
+        const ts = subdf.iat(dayjs().hour(), 0);
         copy.options.plugins.annotation = {
           annotations: {
             line1: {
