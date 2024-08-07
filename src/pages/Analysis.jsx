@@ -74,7 +74,7 @@ const steps = [
   {
     element: ".switch-button",
     intro:
-      "The graph below shows prediction and true values upto this hour. After the current hour, only pure predictions are visible",
+      "The graph below shows prediction and true values upto this hour. After the current hour, only pure predictions are visible. You can toggle the predictions for today or tomorrow with this toggle button.",
   },
   {
     element: ".model-select",
