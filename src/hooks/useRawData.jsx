@@ -28,13 +28,18 @@ export default function useRawData() {
           return;
         }
       }
-      api.getDateData(date.format("YYYY-MM-DD")).then((docs) => {
-        dispatch(clearData());
-        const data = { docs: docs, createdAtTs: dayjs().unix() };
-        localStorage.setItem(date.format("YYYY-MM-DD"), JSON.stringify(data));
-        dispatch(parseData(docs));
-        dispatch(filterData());
-      });
+      api
+        .getDateData(date.format("YYYY-MM-DD"))
+        .then((docs) => {
+          dispatch(clearData());
+          const data = { docs: docs, createdAtTs: dayjs().unix() };
+          localStorage.setItem(date.format("YYYY-MM-DD"), JSON.stringify(data));
+          dispatch(parseData(docs));
+          dispatch(filterData());
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
     return () => {
       dispatch(clearData());
