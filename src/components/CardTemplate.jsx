@@ -8,7 +8,7 @@ import { green, red } from "@ant-design/colors";
  * increased: Increased flag to show the up down arrow and red green font
  * suffix: Unit
  */
-function CardTemplate({ title, value, increased, suffix }) {
+function CardTemplate({ title, value, increased, suffix, precision }) {
   return (
     <Statistic
       title={
@@ -21,7 +21,7 @@ function CardTemplate({ title, value, increased, suffix }) {
         color: `${!increased ? red.primary : green.primary}`,
       }}
       prefix={!increased ? <ArrowDownOutlined /> : <ArrowUpOutlined />}
-      precision={2}
+      precision={precision | 0}
       suffix={suffix}
     />
   );

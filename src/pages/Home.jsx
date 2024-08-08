@@ -8,7 +8,8 @@ import "intro.js/introjs.css";
 import { NavbarContext } from "../context/navbarContext";
 import CardTemplate from "../components/CardTemplate";
 import ChartRow from "../components/ChartRow";
-import { getAverage, getValue, isIncreased } from "../utils/homeUtils";
+import useCardPropSets from "../hooks/useCardPropSets";
+import useGetChartRows from "../hooks/useGetChartRows";
 
 const steps = [
   {
@@ -19,7 +20,6 @@ const steps = [
 ];
 
 const Home = () => {
-  const charts = useSelector((state) => state.data.charts);
   const tables = useSelector((state) => state.data.tables);
 
   const { isDarkTheme } = useContext(ThemeContext);
@@ -29,104 +29,9 @@ const Home = () => {
 
   const [enabled, setEnabled] = useState(false);
 
-  const [cardPropsSet1, setCardPropsSet1] = useState([]);
-  const [cardPropsSet2, setCardPropsSet2] = useState([]);
+  const [cardPropsSet1, cardPropsSet2] = useCardPropSets();
 
-  const [graphRow1, setGraphRow1] = useState(null);
-  const [graphRow2, setGraphRow2] = useState(null);
-  const [graphRow3, setGraphRow3] = useState(null);
-
-  useEffect(() => {
-    setCardPropsSet1([
-      {
-        title: "Frequency",
-        value: getValue(charts.frequencyChart.data.datasets[0].data.slice(-1)),
-        increased: isIncreased(charts.frequencyChart.data.datasets[0].data),
-        suffix: "Hz",
-        avg: getAverage(charts.frequencyChart.data.datasets[0].data),
-      },
-      {
-        title: "State Demand",
-        value: getValue(charts.stateGenChart.data.datasets[1].data),
-        increased: isIncreased(charts.stateGenChart.data.datasets[1].data),
-        suffix: "MW",
-        avg: getAverage(charts.stateGenChart.data.datasets[1].data),
-      },
-      {
-        title: "State Generated",
-        value: getValue(charts.stateGenChart.data.datasets[0].data),
-        increased: isIncreased(charts.stateGenChart.data.datasets[0].data),
-        suffix: "MW",
-        avg: getAverage(charts.stateGenChart.data.datasets[0].data),
-      },
-    ]);
-
-    setCardPropsSet2([
-      {
-        title: "COAL+GAS",
-        value: getValue(charts.generationDistChart.data.datasets[0].data),
-        increased: isIncreased(
-          charts.generationDistChart.data.datasets[0].data,
-        ),
-        suffix: "MW",
-        avg: getAverage(charts.generationDistChart.data.datasets[0].data),
-      },
-      {
-        title: "Hydro",
-        value: getValue(charts.generationDistChart.data.datasets[1].data),
-        increased: isIncreased(
-          charts.generationDistChart.data.datasets[1].data,
-        ),
-        suffix: "MW",
-        avg: getAverage(charts.generationDistChart.data.datasets[1].data),
-      },
-      {
-        title: "Others Providers Total",
-        value: getValue(charts.generationDistChart.data.datasets[2].data),
-        increased: isIncreased(
-          charts.generationDistChart.data.datasets[2].data,
-        ),
-        suffix: "MW",
-        avg: getAverage(charts.generationDistChart.data.datasets[2].data),
-      },
-    ]);
-
-    setGraphRow1({
-      chart1: {
-        data: charts.frequencyChart.data,
-        options: charts.frequencyChart.options,
-        warning: true,
-        warningMessage:
-          "Frequency data is rounded to 49 sometimes due to no detection of decimal !",
-      },
-      chart2: {
-        data: charts.stateGenChart.data,
-        options: charts.stateGenChart.options,
-      },
-    });
-
-    setGraphRow2({
-      chart1: {
-        data: charts.generationDistChart.data,
-        options: charts.generationDistChart.options,
-      },
-      chart2: {
-        data: charts.coalGenerationChart.data,
-        options: charts.coalGenerationChart.options,
-      },
-    });
-
-    setGraphRow3({
-      chart1: {
-        data: charts.mumbaiExchangeChart.data,
-        options: charts.mumbaiExchangeChart.options,
-      },
-      chart2: {
-        data: charts.privateGenerationChart.data,
-        options: charts.privateGenerationChart.options,
-      },
-    });
-  }, [charts]);
+  const [graphRow1, graphRow2, graphRow3] = useGetChartRows();
 
   useEffect(() => {
     if (renderCount == 0) {
@@ -142,7 +47,7 @@ const Home = () => {
 
   useEffect(() => {
     changeChartColor(isDarkTheme);
-  }, []);
+  }, [graphRow1]);
 
   return (
     <>
@@ -188,6 +93,7 @@ const Home = () => {
                   value={e.value}
                   increased={e.increased}
                   suffix={e.suffix}
+                  precision={e.precision}
                 />
                 <Typography.Text>
                   Avg :<Typography.Text mark>{e.avg}</Typography.Text>
