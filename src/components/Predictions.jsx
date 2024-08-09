@@ -242,6 +242,18 @@ export default function Predictions() {
           },
         };
       }
+
+      copy.options.plugins.tooltip = {
+        callbacks: {
+          footer: (items) => {
+            let footer = "";
+            for (let i = 1; i < items.length; i++) {
+              footer += `${items[i].dataset.label} Error: ${Math.round(Math.abs(items[0].raw - items[i].raw))}\n`;
+            }
+            return footer;
+          },
+        },
+      };
       const today_start = dayjs()
         .add(-dayjs().hour(), "hour")
         .add(-dayjs().minute(), "minute")
