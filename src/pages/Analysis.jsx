@@ -4,6 +4,30 @@ import "intro.js/introjs.css";
 import { Steps } from "intro.js-react";
 import { useContext, useEffect, useState } from "react";
 import { NavbarContext } from "../context/navbarContext";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import {
+  BoxPlotController,
+  BoxAndWiskers,
+} from "@sgratzl/chartjs-chart-boxplot";
+import Annotation from "chartjs-plugin-annotation";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BoxPlotController,
+  BoxAndWiskers,
+  Title,
+  Tooltip,
+  Legend,
+  Annotation,
+);
 
 export default function Analysis() {
   // Show intro if it's first visit and current page is Analysis

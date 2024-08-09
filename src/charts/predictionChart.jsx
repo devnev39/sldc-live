@@ -2,6 +2,9 @@ const predictionChart = {
   options: {
     maintainAspectRatio: false,
     plugins: {
+      filler: {
+        propagate: true,
+      },
       colors: {
         enabled: true,
         forceOverride: true,

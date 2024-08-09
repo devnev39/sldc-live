@@ -1,4 +1,5 @@
 import {
+  Alert,
   Card,
   Col,
   Descriptions,
@@ -264,6 +265,7 @@ export default function Predictions() {
             data: subdf.column(model.tag_name).values,
             label: model.tag_name + " (predictions)",
             type: "line",
+            fill: "-1",
             elements: {
               point: {
                 pointStyle: "triangle",
@@ -319,6 +321,12 @@ export default function Predictions() {
             <div className="chartjs-width" style={{ width: "100%" }}>
               <Line data={chartData.data} options={chartData.options} />
             </div>
+            <Alert
+              description="The trained models' forecast is displayed in the above graphs. A model with fewer colour area is more accurate and has less inaccuracy."
+              message="About above graph"
+              type="info"
+              showIcon
+            />
           </Card>
           <Card style={{ marginTop: "2vh" }}>
             <div className="chartjs-width" style={{ width: "100%" }}>

@@ -4,30 +4,7 @@ import boxPlotChart from "../charts/boxPlotChart";
 import { useContext, useEffect, useRef, useState } from "react";
 import { ThemeContext } from "../context/themeContext";
 import changeChartColor from "../charts/changeChartColor";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-import {
-  BoxPlotController,
-  BoxAndWiskers,
-} from "@sgratzl/chartjs-chart-boxplot";
-import Annotation from "chartjs-plugin-annotation";
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BoxPlotController,
-  BoxAndWiskers,
-  Title,
-  Tooltip,
-  Legend,
-  Annotation,
-);
+import { Chart as ChartJS } from "chart.js";
 
 export default function Statistics() {
   const df = useSelector((state) => state.data.parsedDataFrame);
