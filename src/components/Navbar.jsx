@@ -97,7 +97,7 @@ export const Navbar = () => {
 
   return (
     <Header className="header-height-min">
-      <div className="navbar home-heading">
+      <div className="navbar">
         <div className="navbar-icon-heading-position">
           <Icon
             component={transmission}
@@ -144,7 +144,9 @@ export const Navbar = () => {
               className="start-intro"
               onClick={() => setShowIntro((c) => !c)}
               icon={<QuestionCircleOutlined />}
+              type="primary"
               style={{ marginLeft: "1rem" }}
+              danger
             ></Button>
           </div>
         </div>

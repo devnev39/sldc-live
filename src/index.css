@@ -40,12 +40,12 @@ body {
         color: #FFFFFFD9;
     }
 
-    .navbar-icon-heading-position {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-    }
+  .navbar-icon-heading-position {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+  }
 
   .navbar-set-3 {
     display: flex;
@@ -87,7 +87,6 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100%;
         font-size: 2rem;
     }
 
@@ -109,6 +108,43 @@ body {
   }
 
   
+}
+
+/* Navbar for vertical view of tabs */
+
+@media only screen and (max-width: 1160px) {
+   .header-height-min {
+    height: 25vh;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  .navbar-title {
+    font-size: 1rem;  
+    color: #FFFFFFD9;
+  }
+
+  .navbar-icon-heading-position {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .navbar-set-3 {
+    display: flex;
+    justify-content: center;
+  }
+
+  .navbar-set-2 {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+  }
+
+  .navbar {
+     display: block;
+  }
 }
 .stat-chart-div {
     display: flex;
