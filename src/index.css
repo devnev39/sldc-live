@@ -12,6 +12,11 @@ body {
         height: 40vh;
     }
 
+  .segment-button {
+    margin: 0 0.3rem 0 0.3rem;
+    font-weight: bold;
+  }
+
     .small-screen-divider {
         display: block;
     }
@@ -70,6 +75,11 @@ body {
     .small-screen-divider {
         display: none;
     }
+
+  .segment-button {
+    margin: 0 1rem 0 1rem;
+    font-weight: bold;
+  }
 
     .icon-size {
         font-size: 4rem;

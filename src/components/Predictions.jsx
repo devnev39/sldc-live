@@ -78,9 +78,7 @@ export default function Predictions() {
               options={[
                 {
                   label: (
-                    <div
-                      style={{ margin: "0 1rem 0 1rem", fontWeight: "bold" }}
-                    >
+                    <div className="segment-button">
                       <div>{dayjs().add(-1, "day").format("DD-MM-YYYY")}</div>
                       <div>Yesterday</div>
                     </div>
@@ -89,9 +87,7 @@ export default function Predictions() {
                 },
                 {
                   label: (
-                    <div
-                      style={{ margin: "0 1rem 0 1rem", fontWeight: "bold" }}
-                    >
+                    <div className="segment-button">
                       <div>{dayjs().format("DD-MM-YYYY")}</div>
                       <div>Today</div>
                     </div>
@@ -100,9 +96,7 @@ export default function Predictions() {
                 },
                 {
                   label: (
-                    <div
-                      style={{ margin: "0 1rem 0 1rem", fontWeight: "bold" }}
-                    >
+                    <div className="segment-button">
                       <div>{dayjs().add(1, "day").format("DD-MM-YYYY")}</div>
                       <div>Tomorrow</div>
                     </div>
