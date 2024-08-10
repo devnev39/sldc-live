@@ -5,7 +5,6 @@ import {
   Descriptions,
   Divider,
   Flex,
-  List,
   Row,
   Segmented,
   Select,
@@ -13,95 +12,19 @@ import {
 } from "antd";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-import initialPredictionChartData from "../charts/predictionChart";
 import { ThemeContext } from "../context/themeContext";
 import changeChartColor from "../charts/changeChartColor";
 import { useSelector } from "react-redux";
-import { firstInference, runIterativeInference } from "../inference/inference";
-import * as ort from "onnxruntime-web/webgpu";
 import { useContext, useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import { useSubDf } from "../hooks/useSubDf";
-import modelHistoryChart from "../charts/modelHistoryChart";
-
-ort.env.debug = true;
-ort.env.wasm.numThreads = 1;
+import { getModelViewDescriptor } from "../utils/ModelViewDescriptor";
+import useModelSession from "./useModelSession";
+import useRunInference from "../hooks/useRunInference";
+import useChartDataSetter from "../hooks/useChartDataSetter";
+import useModelChartDataSetter from "../hooks/useModelChartDataSetter";
 
 dayjs.extend(customParseFormat);
-
-const getModelViewDescriptor = (model) => {
-  const data = [
-    `Epochs: ${model.epochs}`,
-    `Window size: ${model.window_size}`,
-    `Tensorflow version: ${model.version_info.tf}`,
-    `Onnx version: ${model.version_info.onnx}`,
-  ];
-  return [
-    {
-      key: "1",
-      label: "Model name",
-      children: model.name,
-      span: 3,
-    },
-    {
-      key: "2",
-      label: "Model tag name",
-      children: <p className="model-tag">{model.tag_name}</p>,
-      span: 3,
-    },
-    {
-      key: "3",
-      label: "Average loss",
-      children: model.avg_loss,
-      span: 3,
-    },
-    {
-      key: "4",
-      label: "Mean squared error",
-      children: model.mse,
-      span: 3,
-    },
-    {
-      key: "5",
-      label: "Validation loss",
-      children: model.val_mse,
-      span: 3,
-    },
-    {
-      key: "8",
-      label: "Training datapoints",
-      children: (
-        <p className="model-training-data">
-          {model.train_data_size} ~ {Math.round(model.train_data_size / 24)}{" "}
-          days
-        </p>
-      ),
-      span: 3,
-    },
-    {
-      key: "6",
-      label: "Trained at",
-      children: dayjs(model.created_at.seconds * 1000).format(
-        "DD-MM-YYYY HH:mm:ss",
-      ),
-      span: 3,
-    },
-    {
-      key: "7",
-      label: "Other parameters",
-      span: 3,
-      children: (
-        <>
-          <List
-            bordered
-            dataSource={data}
-            renderItem={(item) => <List.Item>{item}</List.Item>}
-          />
-        </>
-      ),
-    },
-  ];
-};
 
 export default function Predictions() {
   const { isDarkTheme } = useContext(ThemeContext);
@@ -110,232 +33,32 @@ export default function Predictions() {
   const df = useSelector((state) => state.data.parsedDataFrame);
 
   const [modelIndex, setModelIndex] = useState(0);
-  const [modelSession, setModelSession] = useState(null);
 
-  const [chartData, setChartData] = useState(initialPredictionChartData);
-  const [modelChartData, setModelChartData] = useState(modelHistoryChart);
+  const modelSession = useModelSession(models, modelIndex);
 
   const [period, setPeriod] = useState(0);
+
+  const { subDf: subDfDefault, setSubDf: setSubDfDefault } = useSubDf(df);
+
+  const { subDf } = useRunInference(
+    modelSession,
+    subDfDefault,
+    setSubDfDefault,
+    models,
+    modelIndex,
+  );
+
+  const chartData = useChartDataSetter(subDf, period, models, df);
+
+  const modelChartData = useModelChartDataSetter(models);
 
   useEffect(() => {
     changeChartColor(isDarkTheme);
   }, [chartData, modelChartData]);
-  const { subDf, setSubDf } = useSubDf(df);
   // set subDf to today's data initially
   // predict on the first model loaded for today 00:00 to tomorrow 23:00
-  //
   // on model change predict and save the predictions in parsedDataFrame in redux
 
-  const loadModel = async () => {
-    const link = models[modelIndex].link;
-    const cache = await caches.open("onnx");
-    let resp = await cache.match(link);
-    if (resp == undefined) {
-      await cache.add(link);
-      resp = await cache.match(link);
-      console.log("Model cached!");
-    } else {
-      console.log("Model loaded from cache!");
-    }
-    const buffer = await resp.arrayBuffer();
-    const opt = {
-      executionProviders: ["webgpu", "wasm"],
-    };
-
-    const session = await ort.InferenceSession.create(buffer, opt);
-    setModelSession(session);
-  };
-
-  const runInference = async () => {
-    console.log("Running inference -> ");
-    if (
-      subDf.columns.filter((i) => i == models[modelIndex].tag_name).length != 0
-    )
-      return;
-    if (!modelSession) return;
-
-    let isFirstInference = true;
-
-    for (let model of models) {
-      if (subDf.columns.filter((i) => i == model.tag_name).length) {
-        isFirstInference = false;
-        break;
-      }
-    }
-
-    let subdf = subDf.copy();
-    console.log(subdf.shape);
-
-    if (isFirstInference) {
-      subdf = await firstInference(models[modelIndex], subDf, modelSession);
-      subdf = await runIterativeInference(
-        subdf,
-        models[modelIndex],
-        modelSession,
-      );
-    } else {
-      subdf = await runIterativeInference(
-        subdf,
-        models[modelIndex],
-        modelSession,
-        false,
-      );
-    }
-
-    console.log(subdf.shape);
-    setSubDf(subdf);
-  };
-
-  useEffect(() => {
-    if (!subDf) return;
-    runInference();
-  }, [subDf, modelSession]);
-
-  useEffect(() => {
-    loadModel();
-  }, [models, modelIndex]);
-
-  useEffect(() => {
-    if (!subDf) return;
-
-    setChartData(() => {
-      const copy = JSON.parse(JSON.stringify(initialPredictionChartData));
-
-      // Get subdf copy according to today parameter
-      let subdf = null;
-
-      const yesterdayStartHour = dayjs()
-        .add(-dayjs().hour() - 24, "hour")
-        .add(-dayjs().minute(), "minute")
-        .unix();
-
-      const todaysStartHour = dayjs()
-        .add(-dayjs().hour(), "hour")
-        .add(-dayjs().minute(), "minute")
-        .unix();
-
-      const tomorrowStartHour = dayjs()
-        .add(1, "day")
-        .add(-dayjs().hour(), "hour")
-        .add(-dayjs().minute(), "minute")
-        .unix();
-
-      if (period == 0) {
-        subdf = subDf.loc({
-          rows: subDf["created_at"]
-            .gt(todaysStartHour)
-            .and(subDf["created_at"].lt(tomorrowStartHour)),
-        });
-      } else if (period == -1) {
-        subdf = subDf.loc({
-          rows: subDf["created_at"]
-            .gt(yesterdayStartHour)
-            .and(subDf["created_at"].lt(todaysStartHour)),
-        });
-      } else {
-        subdf = subDf.loc({ rows: subDf["created_at"].gt(tomorrowStartHour) });
-      }
-
-      // set the chart values
-      //
-      copy.data.labels = subdf
-        .column("created_at")
-        .values.map((i) => dayjs(i * 1000).format("HH:mm"));
-
-      if (period == 0 && dayjs().hour() < subdf.shape[0]) {
-        const ts = subdf.iat(dayjs().hour(), 0);
-        copy.options.plugins.annotation = {
-          annotations: {
-            line1: {
-              type: "line",
-              xMin: dayjs(ts * 1000).format("HH:mm"),
-              xMax: dayjs(ts * 1000).format("HH:mm"),
-              label: {
-                display: true,
-                content: "Pure predictions beyond this",
-                position: "start",
-              },
-            },
-          },
-        };
-      }
-
-      copy.options.plugins.tooltip = {
-        callbacks: {
-          footer: (items) => {
-            let footer = "";
-            for (let i = 1; i < items.length; i++) {
-              footer += `${items[i].dataset.label} Error: ${Math.round(Math.abs(items[0].raw - items[i].raw))}\n`;
-            }
-            return footer;
-          },
-        },
-      };
-
-      let firstDataset = [];
-      if (period == 0) {
-        firstDataset = df
-          .loc({ rows: df["created_at"].gt(todaysStartHour) })
-          .column("state_demand").values;
-      } else if (period == -1) {
-        firstDataset = df
-          .loc({
-            rows: df["created_at"]
-              .gt(yesterdayStartHour)
-              .and(df["created_at"].lt(todaysStartHour)),
-          })
-          .column("state_demand").values;
-      }
-
-      copy.data.datasets[0] = {
-        data: firstDataset,
-        label: "Original State Demand",
-        type: "line",
-        fill: false,
-        borderColor: "rgb(54, 162, 235, 0.5)",
-        tension: 0.5,
-      };
-
-      for (let model of models) {
-        if (subdf.columns.filter((c) => c == model.tag_name).length) {
-          copy.data.datasets.push({
-            data: subdf.column(model.tag_name).values,
-            label: model.tag_name + " (predictions)",
-            type: "line",
-            fill: "-1",
-            elements: {
-              point: {
-                pointStyle: "triangle",
-                radius: 5,
-              },
-              line: {
-                borderWidth: 2,
-              },
-            },
-          });
-        }
-      }
-      return copy;
-    });
-  }, [subDf, period]);
-
-  useEffect(() => {
-    setModelChartData(() => {
-      const data = JSON.parse(JSON.stringify(modelHistoryChart));
-      data.data.labels = models.map((i) => i.tag_name);
-
-      const properties = ["mse", "val_mse"];
-
-      for (let i of properties) {
-        data.data.datasets.push({
-          label: i,
-          data: models.map((m) => m[i]),
-          type: "bar",
-        });
-      }
-      return data;
-    });
-  }, [models]);
   return (
     <>
       <Flex justify="center" align="center">
