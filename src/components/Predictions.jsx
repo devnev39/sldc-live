@@ -7,8 +7,8 @@ import {
   Flex,
   List,
   Row,
+  Segmented,
   Select,
-  Switch,
   Typography,
 } from "antd";
 import dayjs from "dayjs";
@@ -115,7 +115,7 @@ export default function Predictions() {
   const [chartData, setChartData] = useState(initialPredictionChartData);
   const [modelChartData, setModelChartData] = useState(modelHistoryChart);
 
-  const [today, setToday] = useState(true);
+  const [period, setPeriod] = useState(0);
 
   useEffect(() => {
     changeChartColor(isDarkTheme);
@@ -164,6 +164,7 @@ export default function Predictions() {
     }
 
     let subdf = subDf.copy();
+    console.log(subdf.shape);
 
     if (isFirstInference) {
       subdf = await firstInference(models[modelIndex], subDf, modelSession);
@@ -180,6 +181,8 @@ export default function Predictions() {
         false,
       );
     }
+
+    console.log(subdf.shape);
     setSubDf(subdf);
   };
 
@@ -201,22 +204,36 @@ export default function Predictions() {
       // Get subdf copy according to today parameter
       let subdf = null;
 
-      const tdl = dayjs()
+      const yesterdayStartHour = dayjs()
+        .add(-dayjs().hour() - 24, "hour")
+        .add(-dayjs().minute(), "minute")
+        .unix();
+
+      const todaysStartHour = dayjs()
         .add(-dayjs().hour(), "hour")
         .add(-dayjs().minute(), "minute")
         .unix();
-      const tdh = dayjs()
+
+      const tomorrowStartHour = dayjs()
         .add(1, "day")
         .add(-dayjs().hour(), "hour")
         .add(-dayjs().minute(), "minute")
         .unix();
 
-      if (today) {
+      if (period == 0) {
         subdf = subDf.loc({
-          rows: subDf["created_at"].gt(tdl).and(subDf["created_at"].lt(tdh)),
+          rows: subDf["created_at"]
+            .gt(todaysStartHour)
+            .and(subDf["created_at"].lt(tomorrowStartHour)),
+        });
+      } else if (period == -1) {
+        subdf = subDf.loc({
+          rows: subDf["created_at"]
+            .gt(yesterdayStartHour)
+            .and(subDf["created_at"].lt(todaysStartHour)),
         });
       } else {
-        subdf = subDf.loc({ rows: subDf["created_at"].gt(tdh) });
+        subdf = subDf.loc({ rows: subDf["created_at"].gt(tomorrowStartHour) });
       }
 
       // set the chart values
@@ -225,7 +242,7 @@ export default function Predictions() {
         .column("created_at")
         .values.map((i) => dayjs(i * 1000).format("HH:mm"));
 
-      if (today && dayjs().hour() < subdf.shape[0]) {
+      if (period == 0 && dayjs().hour() < subdf.shape[0]) {
         const ts = subdf.iat(dayjs().hour(), 0);
         copy.options.plugins.annotation = {
           annotations: {
@@ -254,16 +271,24 @@ export default function Predictions() {
           },
         },
       };
-      const today_start = dayjs()
-        .add(-dayjs().hour(), "hour")
-        .add(-dayjs().minute(), "minute")
-        .unix();
+
+      let firstDataset = [];
+      if (period == 0) {
+        firstDataset = df
+          .loc({ rows: df["created_at"].gt(todaysStartHour) })
+          .column("state_demand").values;
+      } else if (period == -1) {
+        firstDataset = df
+          .loc({
+            rows: df["created_at"]
+              .gt(yesterdayStartHour)
+              .and(df["created_at"].lt(todaysStartHour)),
+          })
+          .column("state_demand").values;
+      }
+
       copy.data.datasets[0] = {
-        data: today
-          ? df
-              .loc({ rows: df["created_at"].gt(today_start) })
-              .column("state_demand").values
-          : [],
+        data: firstDataset,
         label: "Original State Demand",
         type: "line",
         fill: false,
@@ -292,7 +317,7 @@ export default function Predictions() {
       }
       return copy;
     });
-  }, [subDf, today]);
+  }, [subDf, period]);
 
   useEffect(() => {
     setModelChartData(() => {
@@ -322,20 +347,70 @@ export default function Predictions() {
       <Row>
         <Col span={13} lg={{ span: 13 }} sm={{ span: 24 }} xs={{ span: 24 }}>
           <Flex justify="center" align="center" style={{ marginTop: "5vh" }}>
-            <Switch
-              className="switch-button"
-              checkedChildren={<>{"Tomorrow's predictions"}</>}
-              unCheckedChildren={<>{"Today's original and predictions"}</>}
-              onChange={(checked) => setToday(!checked)}
+            <Segmented
+              className="period-segment"
+              size="large"
+              value={period}
+              onChange={(value) => setPeriod(value)}
+              options={[
+                {
+                  label: (
+                    <div
+                      style={{ margin: "0 1rem 0 1rem", fontWeight: "bold" }}
+                    >
+                      <div>{dayjs().add(-1, "day").format("DD-MM-YYYY")}</div>
+                      <div>Yesterday</div>
+                    </div>
+                  ),
+                  value: -1,
+                },
+                {
+                  label: (
+                    <div
+                      style={{ margin: "0 1rem 0 1rem", fontWeight: "bold" }}
+                    >
+                      <div>{dayjs().format("DD-MM-YYYY")}</div>
+                      <div>Today</div>
+                    </div>
+                  ),
+                  value: 0,
+                },
+                {
+                  label: (
+                    <div
+                      style={{ margin: "0 1rem 0 1rem", fontWeight: "bold" }}
+                    >
+                      <div>{dayjs().add(1, "day").format("DD-MM-YYYY")}</div>
+                      <div>Tomorrow</div>
+                    </div>
+                  ),
+                  value: 1,
+                },
+              ]}
             />
           </Flex>
-          <Card style={{ marginTop: "5vh" }}>
+          <Card style={{ marginTop: "3vh" }}>
             <div className="chartjs-width" style={{ width: "100%" }}>
               <Line data={chartData.data} options={chartData.options} />
             </div>
+            <Divider />
             <Alert
+              description={
+                <div style={{ fontWeight: "500" }}>
+                  Based only on 7 hours of data on{" "}
+                  {dayjs().add(-2, "day").format("MMMM D YYYY")}, the day before
+                  yesterday, the model is projecting the above results.
+                </div>
+              }
+              message={
+                <div style={{ fontWeight: "bold" }}>About above graph</div>
+              }
+              type="info"
+              showIcon
+            />
+            <Alert
+              style={{ marginTop: "1vh" }}
               description="The trained models' forecast is displayed in the above graphs. A model with fewer colour area is more accurate and has less inaccuracy."
-              message="About above graph"
               type="info"
               showIcon
             />
@@ -396,7 +471,6 @@ export default function Predictions() {
                 bordered
                 items={getModelViewDescriptor(models[modelIndex])}
               />
-              {/* </Card> */}
             </div>
           </Card>
         </Col>

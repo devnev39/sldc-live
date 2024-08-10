@@ -96,9 +96,9 @@ const steps = [
       "This section presents the prediction of load demand for the state of Maharashtra. The predictions are for today and tomorrow.",
   },
   {
-    element: ".switch-button",
+    element: ".period-segment",
     intro:
-      "The graph below shows prediction and true values upto this hour. After the current hour, only pure predictions are visible. You can toggle the predictions for today or tomorrow with this toggle button.",
+      "The graph below shows prediction and true values upto this hour. After the current hour, only pure predictions are visible. You can toggle the predictions for today / yesterday / tomorrow with this selection.",
   },
   {
     element: ".model-select",

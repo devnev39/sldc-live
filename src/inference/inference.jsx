@@ -157,6 +157,7 @@ export const firstInference = async (model, subDf, modelSession) => {
  * Runs iterative inference on the subdf
  * subdf: Dataframe to be provided
  * model: Selected model object
+ * dptoPredict: Data points to predict in total (24 for two days prediction or 48 for three day prediction cycle)
  * isFirstInference: Pass false if not first inference else True by default
  * returns: subdf with set number of predictions
  *
@@ -168,7 +169,7 @@ export const runIterativeInference = async (
   isFirstInference = true,
 ) => {
   let valuesToPredict =
-    isFirstInference == false ? 48 : 48 + model.window_size - subdf.shape[0];
+    isFirstInference == false ? 72 : 72 + model.window_size - subdf.shape[0];
 
   // Initially make a scaled tempDf
   //
