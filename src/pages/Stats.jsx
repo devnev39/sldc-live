@@ -44,6 +44,9 @@ const Stats = () => {
         steps={steps}
         onExit={() => onExit()}
         initialStep={0}
+        options={{
+          hideNext: false,
+        }}
       />
       <Row style={{ marginTop: "1rem" }} className="stats-page-size">
         <Col span={10} xs={{ span: 24 }} md={{ span: 10 }}>

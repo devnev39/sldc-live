@@ -8,6 +8,7 @@ import {
   Row,
   Segmented,
   Select,
+  Spin,
   Typography,
 } from "antd";
 import dayjs from "dayjs";
@@ -25,6 +26,19 @@ import useChartDataSetter from "../../hooks/Analysis/useChartDataSetter";
 import useModelChartDataSetter from "../../hooks/Analysis/useModelChartDataSetter";
 
 dayjs.extend(customParseFormat);
+
+function useModelInferenceIndicator(model, subDf) {
+  const [isModelInferencing, setIsModelInferencing] = useState(true);
+
+  useEffect(() => {
+    if (!subDf) return;
+    if (subDf.columns.filter((c) => c == model.tag_name).length)
+      setIsModelInferencing(false);
+    else setIsModelInferencing(true);
+  }, [subDf, model]);
+
+  return isModelInferencing;
+}
 
 export default function Predictions() {
   const { isDarkTheme } = useContext(ThemeContext);
@@ -48,6 +62,12 @@ export default function Predictions() {
     modelIndex,
   );
 
+  const isModelInferencing = useModelInferenceIndicator(
+    models[modelIndex],
+    subDf,
+  );
+
+  // const isModelInferencing = true;
   const chartData = useChartDataSetter(subDf, period, models, df);
 
   const modelChartData = useModelChartDataSetter(models);
@@ -107,9 +127,15 @@ export default function Predictions() {
             />
           </Flex>
           <Card style={{ marginTop: "3vh" }}>
-            <div className="chartjs-width" style={{ width: "100%" }}>
-              <Line data={chartData.data} options={chartData.options} />
-            </div>
+            <Spin
+              spinning={isModelInferencing}
+              tip="Forecasting..."
+              size="large"
+            >
+              <div className="chartjs-width" style={{ width: "100%" }}>
+                <Line data={chartData.data} options={chartData.options} />
+              </div>
+            </Spin>
             <Divider />
             <Alert
               description={

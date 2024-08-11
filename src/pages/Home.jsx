@@ -68,8 +68,13 @@ const Home = () => {
       <Steps
         enabled={enabled}
         steps={steps}
-        initialStep={0}
         onExit={() => onIntroExit()}
+        initialStep={0}
+        options={{
+          showProgress: true,
+          skipLabel: "skip",
+          hideNext: false,
+        }}
       />
       <Row style={{ marginBottom: "1rem" }}>
         <Col>
