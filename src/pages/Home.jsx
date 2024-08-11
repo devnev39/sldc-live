@@ -4,12 +4,11 @@ import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../context/themeContext";
 import changeChartColor from "../charts/changeChartColor";
 import { Steps } from "intro.js-react";
-import "intro.js/introjs.css";
 import { NavbarContext } from "../context/navbarContext";
-import CardTemplate from "../components/CardTemplate";
-import ChartRow from "../components/ChartRow";
-import useCardPropSets from "../hooks/useCardPropSets";
-import useGetChartRows from "../hooks/useGetChartRows";
+import CardTemplate from "../components/Home/CardTemplate";
+import ChartRow from "../components/Home/ChartRow";
+import useCardPropSets from "../hooks/Home/useCardPropSets";
+import useGetChartRows from "../hooks/Home/useGetChartRows";
 
 const steps = [
   {

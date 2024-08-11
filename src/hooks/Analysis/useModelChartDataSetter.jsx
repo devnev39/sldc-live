@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import modelHistoryChart from "../charts/modelHistoryChart";
+import modelHistoryChart from "../../charts/modelHistoryChart";
 
 /**
  * Sets the model chart data with provided data

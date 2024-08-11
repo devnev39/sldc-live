@@ -7,7 +7,6 @@ import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../context/themeContext";
 import changeChartColor from "../charts/changeChartColor";
 import { Steps } from "intro.js-react";
-import "intro.js/introjs.css";
 import { NavbarContext } from "../context/navbarContext";
 
 const steps = [

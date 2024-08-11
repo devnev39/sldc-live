@@ -2,18 +2,18 @@ import { Checkbox, DatePicker, Divider, Flex, Modal, Typography } from "antd";
 import { Button } from "antd";
 import Title from "antd/es/typography/Title";
 import { useContext, useState } from "react";
-import { NavbarContext } from "../context/navbarContext";
+import { NavbarContext } from "../../context/navbarContext";
 import dayjs from "dayjs";
-import api from "../query/query";
+import api from "../../query/query";
 import {
   availableDownloads,
   defaultDownloads,
-} from "../commons/downloadOptions";
+} from "../../commons/downloadOptions";
 import {
   filteredDataToWorkbook,
   preprocessDocs,
   s2ab,
-} from "../preprocessor/preprocess";
+} from "../../preprocessor/preprocess";
 
 export const DownloadModal = () => {
   const [loading, setLoading] = useState(false);

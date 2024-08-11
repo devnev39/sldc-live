@@ -1,5 +1,8 @@
 import { useEffect } from "react";
-import { firstInference, runIterativeInference } from "../inference/inference";
+import {
+  firstInference,
+  runIterativeInference,
+} from "../../inference/inference";
 
 /**
  * Runs inference on the dataset with provided model session

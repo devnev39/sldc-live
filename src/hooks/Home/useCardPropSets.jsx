@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { getAverage, getValue, isIncreased } from "../utils/homeUtils";
+import { getAverage, getValue, isIncreased } from "../../utils/homeUtils";
 import { useEffect, useState } from "react";
 
 function useCardPropSets() {

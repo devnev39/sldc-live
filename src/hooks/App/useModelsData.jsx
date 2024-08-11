@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { clearModels, setModels } from "../features/data";
-import api from "../query/query";
+import { clearModels, setModels } from "../../features/data";
+import api from "../../query/query";
 
 export default function useModelsData() {
   const dispatch = useDispatch();

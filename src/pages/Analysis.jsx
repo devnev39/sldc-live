@@ -1,6 +1,5 @@
-import Predictions from "../components/Predictions";
-import Statistics from "../components/Statistics";
-import "intro.js/introjs.css";
+import Predictions from "../components/Analysis/Predictions";
+import Statistics from "../components/Analysis/Statistics";
 import { Steps } from "intro.js-react";
 import { useContext, useEffect, useState } from "react";
 import { NavbarContext } from "../context/navbarContext";

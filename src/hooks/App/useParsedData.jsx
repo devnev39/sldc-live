@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { clearDataFrame, createDataFrame } from "../features/data";
+import { clearDataFrame, createDataFrame } from "../../features/data";
 // import { Timestamp } from "firebase/firestore";
-import api from "../query/query";
+import api from "../../query/query";
 import dayjs from "dayjs";
 
-const CACHE_MIN = import.meta.env.VITE_CAHCE_MIN;
+const CACHE_MIN = import.meta.env.VITE_CACHE_MIN;
 
 export default function useParsedData() {
   const dispatch = useDispatch();
@@ -39,6 +39,7 @@ export default function useParsedData() {
         }
         const d = { docs: data, createdAtTs: dayjs().unix() };
         localStorage.setItem("parsedData", JSON.stringify(d));
+        console.log("Saved parsed data to cache!");
         dispatch(createDataFrame(data));
       });
     }

@@ -1,11 +1,11 @@
 import { useContext, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { NavbarContext } from "../context/navbarContext";
-import api from "../query/query";
-import { clearData, filterData, parseData } from "../features/data";
+import { NavbarContext } from "../../context/navbarContext";
+import api from "../../query/query";
+import { clearData, filterData, parseData } from "../../features/data";
 import dayjs from "dayjs";
 
-const CACHE_MIN = import.meta.env.VITE_CAHCE_MIN;
+const CACHE_MIN = import.meta.env.VITE_CACHE_MIN;
 
 export default function useRawData() {
   const { date } = useContext(NavbarContext);
@@ -34,6 +34,7 @@ export default function useRawData() {
           dispatch(clearData());
           const data = { docs: docs, createdAtTs: dayjs().unix() };
           localStorage.setItem(date.format("YYYY-MM-DD"), JSON.stringify(data));
+          console.log("Saved data to cache !");
           dispatch(parseData(docs));
           dispatch(filterData());
         })

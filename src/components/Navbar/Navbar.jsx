@@ -1,5 +1,5 @@
 import { Badge, Button, DatePicker, Menu } from "antd";
-import transmission from "../assets/transmission.svg?react";
+import transmission from "../../assets/transmission.svg?react";
 import Icon from "@ant-design/icons/lib/components/Icon";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
@@ -12,8 +12,8 @@ import {
 } from "@ant-design/icons";
 import { Header } from "antd/es/layout/layout";
 import { useContext, useEffect, useState } from "react";
-import { ThemeContext } from "../context/themeContext";
-import { NavbarContext } from "../context/navbarContext";
+import { ThemeContext } from "../../context/themeContext";
+import { NavbarContext } from "../../context/navbarContext";
 import { Steps } from "intro.js-react";
 import "intro.js/introjs.css";
 

@@ -7,15 +7,15 @@ import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { Content, Footer } from "antd/es/layout/layout";
 import { inject } from "@vercel/analytics";
-import { Navbar } from "./components/Navbar";
-import { DownloadModal } from "./components/DownloadModal";
+import { Navbar } from "./components/Navbar/Navbar";
+import { DownloadModal } from "./components/Navbar/DownloadModal";
 import { NavbarContext } from "./context/navbarContext";
 import FooterComponent from "./components/Footer";
 import Analysis from "./pages/Analysis";
 import { ThemeContext } from "./context/themeContext";
-import useRawData from "./hooks/useRawData";
-import useParsedData from "./hooks/useParsedData";
-import useModelsData from "./hooks/useModelsData";
+import useRawData from "./hooks/App/useRawData";
+import useParsedData from "./hooks/App/useParsedData";
+import useModelsData from "./hooks/App/useModelsData";
 
 inject();
 

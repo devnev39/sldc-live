@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import initialPredictionChartData from "../charts/predictionChart";
+import initialPredictionChartData from "../../charts/predictionChart";
 import { useEffect, useState } from "react";
 /**
  * Sets the chart data with latest provided data

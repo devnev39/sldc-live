@@ -1,9 +1,9 @@
 import { Card, Col, Divider, Flex, Row, Select, Typography } from "antd";
 import { useSelector } from "react-redux";
-import boxPlotChart from "../charts/boxPlotChart";
+import boxPlotChart from "../../charts/boxPlotChart";
 import { useContext, useEffect, useRef, useState } from "react";
-import { ThemeContext } from "../context/themeContext";
-import changeChartColor from "../charts/changeChartColor";
+import { ThemeContext } from "../../context/themeContext";
+import changeChartColor from "../../charts/changeChartColor";
 import { Chart as ChartJS } from "chart.js";
 
 export default function Statistics() {
