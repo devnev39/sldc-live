@@ -1,7 +1,5 @@
 import { Badge, Button, DatePicker, Menu } from "antd";
 import transmission from "../../assets/transmission.svg?react";
-// import transmission from "../../assets/tower.svg?react";
-import Icon from "@ant-design/icons/lib/components/Icon";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import {
@@ -15,8 +13,7 @@ import { Header } from "antd/es/layout/layout";
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../../context/themeContext";
 import { NavbarContext } from "../../context/navbarContext";
-import { Steps } from "intro.js-react";
-import "intro.js/introjs.css";
+import Icon from "@ant-design/icons/lib/components/Icon";
 
 dayjs.extend(customParseFormat);
 
@@ -41,20 +38,12 @@ const items = [
   },
 ];
 
-const steps = [
-  {
-    element: ".start-intro",
-    intro: "Press this button to know contents of any page!",
-  },
-];
-
 export const Navbar = () => {
   const { isDarkTheme, changeColorTheme } = useContext(ThemeContext);
   const { current, onClick, date, setDate, showModal, setShowIntro } =
     useContext(NavbarContext);
 
   const [spin, setSpin] = useState(true);
-  const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
     // This useEffect is used for :
@@ -68,33 +57,6 @@ export const Navbar = () => {
       clearInterval(i);
     };
   }, []);
-
-  useEffect(() => {
-    let introStatus = localStorage.getItem("intro");
-    if (introStatus) {
-      introStatus = JSON.parse(introStatus);
-      if (!introStatus.navbar) setEnabled(true);
-    } else {
-      setEnabled(true);
-    }
-  }, []);
-
-  const onIntroExit = () => {
-    // setEnabled(false);
-    let introStatus = localStorage.getItem("intro");
-    if (introStatus) {
-      introStatus = JSON.parse(introStatus);
-      introStatus.navbar = true;
-      localStorage.setItem("intro", JSON.stringify(introStatus));
-    } else {
-      introStatus = {
-        navbar: true,
-        analysis: false,
-        home: false,
-      };
-      localStorage.setItem("intro", JSON.stringify(introStatus));
-    }
-  };
 
   return (
     <Header className="header-height-min">
@@ -152,12 +114,6 @@ export const Navbar = () => {
           </div>
         </div>
       </div>
-      <Steps
-        enabled={enabled}
-        steps={steps}
-        initialStep={0}
-        onExit={() => onIntroExit()}
-      />
     </Header>
   );
 };

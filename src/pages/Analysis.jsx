@@ -41,12 +41,15 @@ export default function Analysis() {
     let introStatus = localStorage.getItem("intro");
     if (introStatus) {
       introStatus = JSON.parse(introStatus);
+      if (!introStatus.analysis) setShowIntro(true);
       introStatus.analysis = true;
       localStorage.setItem("intro", JSON.stringify(introStatus));
     } else {
+      setShowIntro(true);
       introStatus = {
         analysis: true,
         home: false,
+        navbar: false,
       };
       localStorage.setItem("intro", JSON.stringify(introStatus));
     }

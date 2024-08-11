@@ -12,12 +12,15 @@ import useGetChartRows from "../hooks/Home/useGetChartRows";
 
 const steps = [
   {
+    element: ".start-intro",
+    intro: "Press this button to know contents of any page!",
+  },
+  {
     element: ".home-heading",
     intro:
       "This page gives information about generation and demand. It gives a detailed breakdown on the generation for Maharashtra State.",
   },
 ];
-
 const Home = () => {
   const tables = useSelector((state) => state.data.tables);
 
@@ -38,6 +41,22 @@ const Home = () => {
   const onIntroExit = () => {
     setShowIntro(false);
     setEnabled(false);
+
+    let introStatus = localStorage.getItem("intro");
+    if (introStatus) {
+      introStatus = JSON.parse(introStatus);
+      if (!introStatus.home) setShowIntro(true);
+      introStatus.home = true;
+      localStorage.setItem("intro", JSON.stringify(introStatus));
+    } else {
+      setShowIntro(true);
+      introStatus = {
+        analysis: false,
+        home: true,
+        navbar: false,
+      };
+      localStorage.setItem("intro", JSON.stringify(introStatus));
+    }
   };
 
   useEffect(() => {
