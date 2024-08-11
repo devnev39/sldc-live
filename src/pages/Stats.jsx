@@ -21,16 +21,11 @@ const Stats = () => {
   const charts = useSelector((state) => state.data.charts);
   const { isDarkTheme } = useContext(ThemeContext);
 
-  const [renderCount, setRenderCount] = useState(0);
-  const { showIntro } = useContext(NavbarContext);
+  const { showIntro, setShowIntro } = useContext(NavbarContext);
   const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
-    if (renderCount == 0) {
-      setRenderCount(1);
-      return;
-    }
-    setEnabled(true);
+    setEnabled(showIntro);
   }, [showIntro]);
 
   useEffect(() => {
@@ -38,6 +33,7 @@ const Stats = () => {
   }, []);
 
   const onExit = () => {
+    setShowIntro(false);
     setEnabled(false);
   };
 

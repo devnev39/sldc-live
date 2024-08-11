@@ -23,8 +23,7 @@ const Home = () => {
 
   const { isDarkTheme } = useContext(ThemeContext);
 
-  const [renderCount, setRenderCount] = useState(0);
-  const { showIntro } = useContext(NavbarContext);
+  const { showIntro, setShowIntro } = useContext(NavbarContext);
 
   const [enabled, setEnabled] = useState(false);
 
@@ -33,14 +32,11 @@ const Home = () => {
   const [graphRow1, graphRow2, graphRow3] = useGetChartRows();
 
   useEffect(() => {
-    if (renderCount == 0) {
-      setRenderCount(1);
-      return;
-    }
-    setEnabled(true);
+    setEnabled(showIntro);
   }, [showIntro]);
 
   const onIntroExit = () => {
+    setShowIntro(false);
     setEnabled(false);
   };
 

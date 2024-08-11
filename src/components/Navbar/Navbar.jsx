@@ -143,7 +143,7 @@ export const Navbar = () => {
             </Badge>
             <Button
               className="start-intro"
-              onClick={() => setShowIntro((c) => !c)}
+              onClick={() => setShowIntro(true)}
               icon={<QuestionCircleOutlined />}
               type="primary"
               style={{ marginLeft: "1rem" }}

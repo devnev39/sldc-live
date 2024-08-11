@@ -53,8 +53,6 @@ export const ThemeContextProvider = ({ children }) => {
   useEffect(() => {
     if (isDarkTheme) {
       import("intro.js/themes/introjs-dark.css");
-    } else {
-      import("intro.js/themes/introjs-modern.css");
     }
   }, [isDarkTheme]);
 

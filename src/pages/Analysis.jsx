@@ -32,12 +32,12 @@ export default function Analysis() {
   // Show intro if it's first visit and current page is Analysis
   // Or showIntro changes
 
-  const { showIntro } = useContext(NavbarContext);
+  const { showIntro, setShowIntro } = useContext(NavbarContext);
   const [enabled, setEnabled] = useState(false);
-  const [renderCount, setRenderCount] = useState(0);
 
   const onIntroExit = () => {
-    // setEnabled(false);
+    setShowIntro(false);
+    setEnabled(false);
     let introStatus = localStorage.getItem("intro");
     if (introStatus) {
       introStatus = JSON.parse(introStatus);
@@ -63,11 +63,7 @@ export default function Analysis() {
   }, []);
 
   useEffect(() => {
-    if (renderCount == 0) {
-      setRenderCount(1);
-      return;
-    }
-    setEnabled(true);
+    setEnabled(showIntro);
   }, [showIntro]);
 
   return (
