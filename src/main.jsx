@@ -7,7 +7,8 @@ import { Chart, registerables } from "chart.js";
 import "./index.css";
 import { NavbarContextProvider } from "./context/navbarContext.jsx";
 import { ThemeContextProvider } from "./context/themeContext.jsx";
-
+import { injectSpeedInsights } from "@vercel/speed-insights";
+injectSpeedInsights();
 Chart.register(...registerables);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

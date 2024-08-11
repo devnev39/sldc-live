@@ -87,6 +87,15 @@ function useChartDataSetter(subDf, period, models, df) {
         },
       };
 
+      copy.options.plugins.legend = {
+        labels: {
+          font: {
+            size: 14,
+            weight: 700,
+          },
+        },
+      };
+
       let firstDataset = [];
       if (period == 0) {
         firstDataset = df
