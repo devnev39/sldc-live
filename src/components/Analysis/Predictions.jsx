@@ -142,23 +142,24 @@ export default function Predictions() {
               </div>
             </Spin>
             <Divider />
-            <Alert
-              description={
-                <div style={{ fontWeight: "500" }}>
-                  Based only on 7 hours of data on{" "}
-                  {dayjs().add(-2, "day").format("MMMM D YYYY")}, the day before
-                  yesterday, the model is projecting the above results.
-                </div>
-              }
-              message={
-                <div style={{ fontWeight: "bold" }}>About above graph</div>
-              }
-              type="info"
-              showIcon
-            />
+            {/* Hidden because model is not forecasting truly.....or depending on it's own values */}
+            {/* <Alert */}
+            {/*   description={ */}
+            {/*     <div style={{ fontWeight: "500" }}> */}
+            {/*       Based only on 7 hours of data on{" "} */}
+            {/*       {dayjs().add(-2, "day").format("MMMM D YYYY")}, the day before */}
+            {/*       yesterday, the model is projecting the above results. */}
+            {/*     </div> */}
+            {/*   } */}
+            {/*   message={ */}
+            {/*     <div style={{ fontWeight: "bold" }}>About above graph</div> */}
+            {/*   } */}
+            {/*   type="info" */}
+            {/*   showIcon */}
+            {/* /> */}
             <Alert
               style={{ marginTop: "1vh" }}
-              description="The trained models' forecast is displayed in the above graphs. A model with fewer colour area is more accurate and has less inaccuracy."
+              description="The trained models' forecast is displayed in the above graphs. A model with fewer colour area is more accurate and has less inaccuracy for future forecasting."
               type="info"
               showIcon
             />

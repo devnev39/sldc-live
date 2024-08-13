@@ -1,4 +1,4 @@
-import { List } from "antd";
+import { Button, Flex, List } from "antd";
 import dayjs from "dayjs";
 
 export const getModelViewDescriptor = (model) => {
@@ -19,6 +19,38 @@ export const getModelViewDescriptor = (model) => {
       key: "2",
       label: "Model tag name",
       children: <p className="model-tag">{model.tag_name}</p>,
+      span: 3,
+    },
+    {
+      key: "9",
+      label: "Model actions",
+      children: (
+        <Flex gap="small" wrap style={{ width: "50%" }}>
+          <Button
+            onClick={() =>
+              window
+                .open(`https://netron.app/?url=${model.link}`, "_blank")
+                .focus()
+            }
+            size="small"
+            danger
+          >
+            Visualize model
+          </Button>
+          <Button
+            size="small"
+            danger
+            onClick={() => {
+              const ele = document.createElement("a");
+              ele.setAttribute("href", model.link);
+              ele.setAttribute("download", `${model.tag_name}.onnx`);
+              ele.click();
+            }}
+          >
+            Download model
+          </Button>
+        </Flex>
+      ),
       span: 3,
     },
     {
