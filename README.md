@@ -4,10 +4,18 @@ The application SLDC Live monitors, records, and offers analysis of the demand a
 It accomplishes that by fusing several frameworks and technologies. Each job in the program consists of multiple subtasks.
 
 A detailed explanation of each step and its operation is provided below.
+
+Frontend - https://github.com/devnev39/sldc-live
+
+OCR Backend - https://github.com/devnev39/sldc-live-back
+
+ML Backend - https://github.com/devnev39/sldc-back-ml
+
 ## Table of content
 
 - [Features](#Features)
 - [Data collection](#Data-collection)
+- [Data download](#Data-download)
 - [Deep learning model for prediction](#Deep-learning-model-for-prediction)
 - [Prediction and statistics](#Prediction-and-statistics)
 - [Automated deep learning pipeline](#Automated-deep-learning-pipeline)
@@ -37,6 +45,9 @@ For showing all of the data like breakdown of the generation, 15-days data colle
 The data is captured each hour in a day. So in a day there are 24 observations. 
 
 [![My Skills](https://skillicons.dev/icons?i=firebase,gcp,docker)](https://skillicons.dev)
+
+## Data download
+The scraped data is accessible to everyone. Visit the application at https://sldc-live.vercel.app and click the download icon in the top right corner. You can download up to 15 days of data from the "Normal" tab for standard viewing. For data intended for ML/AI purposes, switch to the "Data for ML/AI" tab to download the relevant datasets.
 
 ## Deep learning model for prediction
 
