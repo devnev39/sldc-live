@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import frequencyChart from "../charts/frequencyChart";
 import stateGenChart from "../charts/stateGenChart";
 import generationDistributionChart from "../charts/generationDistributionChart";
-// import { Timestamp } from "firebase/firestore";
 import serverUsageChart from "../charts/serverUsageChart";
 import coalGenerationChart from "../charts/coalGenerationChart";
 import mumbaiExchangeChart from "../charts/mumbaiExchange";
@@ -14,7 +13,6 @@ import {
 import { clipDifference, filterDifference } from "../preprocessor/preprocess";
 import * as dfd from "danfojs/dist/danfojs-browser/src";
 import dayjs from "dayjs";
-// import timezone from "dayjs/plugin/timezone";
 
 // fields, stats, serverStats contains the latest object only
 // The series data is converted into
