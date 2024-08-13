@@ -20,7 +20,8 @@ export default function useModelsData() {
         const docs = [];
         for (const release of data) {
           const doc = await api.getModelDoc(release["tag_name"]);
-          docs.push(doc);
+          if (import.meta.env.PROD && doc.is_prod) docs.push(doc);
+          else if (!import.meta.env.PROD) docs.push(doc);
         }
         dispatch(setModels(docs));
       });
