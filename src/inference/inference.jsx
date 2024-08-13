@@ -73,6 +73,7 @@ export const windowAndGetData = (dataF, model) => {
  * model: Selected model object
  * subDf: Sub dataframe object (danfojs object)
  * modelSession: Modelsession built from onnx
+ * firstInferenceSize: Indicates default size of the subDf
  * Runs first inference for first inference on first model
  * After that this method doesn't need to be invoked.
  *
@@ -81,7 +82,12 @@ export const windowAndGetData = (dataF, model) => {
  *
  * returns: subdf with prediction column
  */
-export const firstInference = async (model, subDf, modelSession) => {
+export const firstInference = async (
+  model,
+  subDf,
+  modelSession,
+  firstInferenceSize,
+) => {
   // Make inference on today's data
   // Make a copy of subDf
   // Run inference on the data and return a subdf with added prediction
@@ -96,7 +102,7 @@ export const firstInference = async (model, subDf, modelSession) => {
   // 6. Add last row to the subdf
   // Return the subdf
   //
-  let subdf = subDf.copy();
+  let subdf = subDf.iloc({ rows: [`:${firstInferenceSize}`] });
 
   let tempDf = removeColumns(subdf, model.columns);
   // tempDf.print();
@@ -117,6 +123,7 @@ export const firstInference = async (model, subDf, modelSession) => {
   );
   const value = preds.pop();
 
+  if (subDf.shape[0] > firstInferenceSize) return preds;
   // created_at, frequency, state_demand, state_gen, hour, dayOfWeek, month, --
   subdf = subdf.addColumn(model.tag_name, preds);
 
@@ -159,6 +166,7 @@ export const firstInference = async (model, subDf, modelSession) => {
  * model: Selected model object
  * dptoPredict: Data points to predict in total (24 for two days prediction or 48 for three day prediction cycle)
  * isFirstInference: Pass false if not first inference else True by default
+ * halfColumn: Represents the half column that has been forecasted from the true values
  * returns: subdf with set number of predictions
  *
  */
@@ -167,22 +175,31 @@ export const runIterativeInference = async (
   model,
   modelSession,
   isFirstInference = true,
+  halfColumn,
 ) => {
   let valuesToPredict =
-    isFirstInference == false ? 72 : 72 + model.window_size - subdf.shape[0];
+    isFirstInference == false
+      ? 72 + model.window_size - halfColumn.length
+      : 72 + model.window_size - subdf.shape[0];
 
   // Initially make a scaled tempDf
   //
   let tempDf = null;
-  if (isFirstInference) {
-    tempDf = subdf.iloc({
-      rows: [`${subdf.shape[0] - model.window_size}:`],
-    });
-  } else {
-    tempDf = subdf.iloc({
-      rows: [`:${model.window_size}`],
-    });
-  }
+
+  // This approach is for true inference which the model is not capable of doing now
+  // if (isFirstInference) {
+  //   tempDf = subdf.iloc({
+  //     rows: [`${subdf.shape[0] - model.window_size}:`],
+  //   });
+  // } else {
+  //   tempDf = subdf.iloc({
+  //     rows: [`:${model.window_size}`],
+  //   });
+  // }
+  //
+  tempDf = subdf.iloc({ rows: [`${subdf.shape[0] - model.window_size}:`] });
+
+  // tempDf.addColumn(model.tag_name, halfColumn, {inplace: true});
 
   tempDf = removeColumns(tempDf, model.columns);
   scaleDf(tempDf, model);
@@ -202,9 +219,10 @@ export const runIterativeInference = async (
     let lastDay = subdf.column("created_at").iat(subdf.shape[0] - 1);
 
     if (!isFirstInference)
-      lastDay = dayjs(tempDf.index[tempDf.shape[0] - 1], "DD-MM-YYYY HH:mm:ss")
-        .add(-5.5, "hour")
-        .unix();
+      lastDay = dayjs(
+        tempDf.index[tempDf.shape[0] - 1],
+        "DD-MM-YYYY HH:mm:ss",
+      ).unix();
 
     tempDf = tempDf.append(
       [
@@ -269,8 +287,8 @@ export const runIterativeInference = async (
     valuesToPredict -= 1;
   }
   if (!isFirstInference) {
-    preds = Array.from({ length: model.window_size }, () => NaN).concat(preds);
-    subdf = subdf.addColumn(model.tag_name, preds);
+    preds = halfColumn.concat(preds);
+    subdf.addColumn(model.tag_name, preds, { inplace: true });
   }
   return subdf;
 };

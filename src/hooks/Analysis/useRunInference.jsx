@@ -13,7 +13,14 @@ import {
  * models: Model list
  * modelIndex: Selected model index
  */
-function useRunInference(modelSession, subDf, setSubDf, models, modelIndex) {
+function useRunInference(
+  modelSession,
+  subDf,
+  setSubDf,
+  models,
+  modelIndex,
+  defaultSubDfLen,
+) {
   const runInference = async () => {
     if (!subDf) return;
     console.log("Running inference -> ");
@@ -34,19 +41,35 @@ function useRunInference(modelSession, subDf, setSubDf, models, modelIndex) {
 
     let subdf = subDf.copy();
 
+    // if (isFirstInference) {
     if (isFirstInference) {
-      subdf = await firstInference(models[modelIndex], subDf, modelSession);
+      subdf = await firstInference(
+        models[modelIndex],
+        subDf,
+        modelSession,
+        defaultSubDfLen,
+      );
       subdf = await runIterativeInference(
         subdf,
         models[modelIndex],
         modelSession,
       );
     } else {
+      // Return the half predicted column till the defaultSubDf len and store in halfColumn
+      const halfColumn = await firstInference(
+        models[modelIndex],
+        subDf,
+        modelSession,
+        defaultSubDfLen,
+      );
+
+      // Predict the remaining datapoints till 72 and merge with halfColumn and return the subdf
       subdf = await runIterativeInference(
         subdf,
         models[modelIndex],
         modelSession,
         false,
+        halfColumn,
       );
     }
     setSubDf(subdf);

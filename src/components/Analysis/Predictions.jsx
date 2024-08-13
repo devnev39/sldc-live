@@ -52,7 +52,11 @@ export default function Predictions() {
 
   const [period, setPeriod] = useState(0);
 
-  const { subDf: subDfDefault, setSubDf: setSubDfDefault } = useSubDf(df);
+  const {
+    subDf: subDfDefault,
+    setSubDf: setSubDfDefault,
+    defaultSubDfLen,
+  } = useSubDf(df);
 
   const { subDf } = useRunInference(
     modelSession,
@@ -60,6 +64,7 @@ export default function Predictions() {
     setSubDfDefault,
     models,
     modelIndex,
+    defaultSubDfLen,
   );
 
   const isModelInferencing = useModelInferenceIndicator(
@@ -195,7 +200,9 @@ export default function Predictions() {
               <Col span={10}>
                 <Select
                   className="model-select"
-                  defaultValue={models.length ? models[0].tag_name : ""}
+                  defaultValue={
+                    models.length ? models[modelIndex].tag_name : ""
+                  }
                   options={models.map((m, i) => {
                     return {
                       value: i,
