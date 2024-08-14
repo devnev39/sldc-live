@@ -38,6 +38,7 @@ const initialState = {
   },
   parsedDataFrame: null,
   models: [],
+  status: {},
 };
 
 export const counterSlice = createSlice({
@@ -52,6 +53,11 @@ export const counterSlice = createSlice({
         state.tables = state.tables.concat(dataPoint.tables);
       });
     },
+
+    loadStatus: (state, action) => {
+      state.status = action.payload;
+    },
+
     parseData: (state, action) => {
       action.payload.forEach((dataPoint) => {
         let ts = dataPoint.created_at.seconds;
@@ -296,6 +302,7 @@ export const {
   setModels,
   updateModel,
   clearModels,
+  loadStatus,
 } = counterSlice.actions;
 
 export default counterSlice.reducer;

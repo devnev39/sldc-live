@@ -1,4 +1,12 @@
-import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
 import { db } from "../firebase/firebase";
 
 export default {
@@ -27,5 +35,12 @@ export default {
     );
     doc = await getDocs(doc);
     return doc.docs.map((i) => i.data())[0];
+  },
+
+  getStatus: async () => {
+    let status = doc(db, "configuration", "STATUS");
+    status = await getDoc(status);
+    console.log(status.data());
+    return status.data();
   },
 };

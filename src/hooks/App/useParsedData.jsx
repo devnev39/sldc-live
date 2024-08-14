@@ -1,6 +1,10 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { clearDataFrame, createDataFrame } from "../../features/data";
+import {
+  clearDataFrame,
+  createDataFrame,
+  loadStatus,
+} from "../../features/data";
 // import { Timestamp } from "firebase/firestore";
 import api from "../../query/query";
 import dayjs from "dayjs";
@@ -18,6 +22,9 @@ export default function useParsedData() {
         const diff = dayjs().diff(dayjs(data.createdAtTs * 1000), "minute");
         if (diff < CACHE_MIN) {
           dispatch(createDataFrame(data.docs));
+          api.getStatus().then((status) => {
+            dispatch(loadStatus(status));
+          });
           console.log("Loaded parsed data from cache !");
           return;
         }
@@ -41,6 +48,10 @@ export default function useParsedData() {
         localStorage.setItem("parsedData", JSON.stringify(d));
         console.log("Saved parsed data to cache!");
         dispatch(createDataFrame(data));
+
+        api.getStatus().then((status) => {
+          dispatch(loadStatus(status));
+        });
       });
     }
 

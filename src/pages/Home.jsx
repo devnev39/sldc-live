@@ -9,6 +9,7 @@ import CardTemplate from "../components/Home/CardTemplate";
 import ChartRow from "../components/Home/ChartRow";
 import useCardPropSets from "../hooks/Home/useCardPropSets";
 import useGetChartRows from "../hooks/Home/useGetChartRows";
+import dayjs from "dayjs";
 
 const steps = [
   {
@@ -23,6 +24,8 @@ const steps = [
 ];
 const Home = () => {
   const tables = useSelector((state) => state.data.tables);
+
+  const status = useSelector((state) => state.data.status);
 
   const { isDarkTheme } = useContext(ThemeContext);
 
@@ -76,6 +79,27 @@ const Home = () => {
           hideNext: false,
         }}
       />
+      {status.scada_stalled ? (
+        <>
+          <Flex justify="center" style={{ width: "100vw" }}>
+            <Alert
+              style={{ width: "50vw" }}
+              message={
+                <div style={{ fontWeight: "bold", fontSize: "1.5rem" }}>
+                  SCADA update stalled !
+                </div>
+              }
+              description={
+                <div style={{ fontWeight: "600", fontSize: "1rem" }}>
+                  {`The scada image update has been stalled for some reasons. The stall is for unknown time. The data is not REALTIME now, resulting in same data duplication. Last true update was at ${dayjs(status.stalled_at.seconds * 1000).format("DD/MM/YYYY HH:mm:ss")}. Sorry for the inconvinience!`}
+                </div>
+              }
+              type="warning"
+              showIcon
+            />
+          </Flex>
+        </>
+      ) : null}
       <Row style={{ marginBottom: "1rem" }}>
         <Col>
           <Alert
