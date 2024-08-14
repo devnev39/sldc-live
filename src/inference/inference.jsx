@@ -114,9 +114,13 @@ export const firstInference = async (
   const shape = [samples, model.window_size, model.columns.length];
 
   const out = await runSingleInference(data, shape, modelSession);
-  let preds = out.dense_1.cpuData.map((i) => {
-    return i * model.train_std.state_demand + model.train_mean.state_demand;
-  });
+  let preds = null;
+
+  for (let key of Object.keys(out)) {
+    preds = out[key].cpuData.map((i) => {
+      return i * model.train_std.state_demand + model.train_mean.state_demand;
+    });
+  }
 
   preds = Array.from({ length: model.window_size }, () => NaN).concat(
     Array.from(preds),
@@ -212,7 +216,10 @@ export const runIterativeInference = async (
 
     const out = await runSingleInference(data, shape, modelSession);
 
-    const value = out.dense_1.cpuData[0];
+    let value = null;
+    for (let key of Object.keys(out)) {
+      value = out[key].cpuData;
+    }
     const scaledValue =
       value * model.train_std.state_demand + model.train_mean.state_demand;
 

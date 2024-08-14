@@ -1,6 +1,7 @@
 import {
   Alert,
   Card,
+  Checkbox,
   Col,
   Descriptions,
   Divider,
@@ -47,7 +48,7 @@ export default function Predictions() {
   const df = useSelector((state) => state.data.parsedDataFrame);
 
   const [modelIndex, setModelIndex] = useState(0);
-
+  const [truePredictionMode, setTruePredictionMode] = useState(false);
   const modelSession = useModelSession(models, modelIndex);
 
   const [period, setPeriod] = useState(0);
@@ -56,7 +57,7 @@ export default function Predictions() {
     subDf: subDfDefault,
     setSubDf: setSubDfDefault,
     defaultSubDfLen,
-  } = useSubDf(df);
+  } = useSubDf(df, truePredictionMode);
 
   const { subDf } = useRunInference(
     modelSession,
@@ -216,6 +217,18 @@ export default function Predictions() {
                 ></Select>
               </Col>
             </Row>
+            {import.meta.env.PROD == false ? (
+              <>
+                <div>
+                  <Checkbox
+                    defaultChecked={truePredictionMode}
+                    onChange={(e) => setTruePredictionMode(e.target.checked)}
+                  >
+                    Enable true prediction
+                  </Checkbox>
+                </div>
+              </>
+            ) : null}
             <div style={{ marginTop: "1rem" }}>
               <Descriptions
                 columns={2}
