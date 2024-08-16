@@ -2,11 +2,10 @@ import { Modal, Tabs } from "antd";
 import { Button } from "antd";
 import Title from "antd/es/typography/Title";
 import { useContext, useState } from "react";
-import { NavbarContext } from "../../context/navbarContext";
 import { FaFileCsv } from "react-icons/fa";
+import { NavbarContext } from "../../context/index.js";
 import { PiMicrosoftExcelLogoFill } from "react-icons/pi";
-import NormalDataDownloadTab from "./NormalDataDownload";
-import DatasetDownloadTab from "./DatasetDownloadTab";
+import { NormalDataDownloadTab, DatasetDownloadTab } from "./index.js";
 
 export const DownloadModal = () => {
   const [loading, setLoading] = useState(false);

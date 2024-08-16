@@ -1,18 +1,20 @@
 import { Divider, Flex, Typography } from "antd";
-import cloudRun from "../assets/cloud_run.svg?react";
-import eventarc from "../assets/eventarc.svg?react";
-import firebase from "../assets/firebase.svg?react";
-import google_cloud from "../assets/google_cloud.svg?react";
-import ocr from "../assets/ocr.svg?react";
-import ocr_white from "../assets/ocr_white.svg?react";
-import arrow from "../assets/arrow.svg?react";
-import arrow_white from "../assets/arrow_white.svg?react";
-import react from "../assets/react.svg?react";
-import redux from "../assets/redux.svg?react";
-import ant from "../assets/ant.svg?react";
+import {
+  cloudRun,
+  eventarc,
+  firebase,
+  google_cloud,
+  ocr,
+  ocr_white,
+  arrow,
+  arrow_white,
+  react,
+  redux,
+  ant,
+} from "../assets/index.js";
 import Icon from "@ant-design/icons/lib/components/Icon";
 import { useContext } from "react";
-import { ThemeContext } from "../context/themeContext";
+import { ThemeContext } from "../context/index.js";
 
 const About = () => {
   const { isDarkTheme: theme } = useContext(ThemeContext);

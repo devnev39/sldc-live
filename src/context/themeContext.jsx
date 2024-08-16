@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
-import changeChartColor from "../charts/changeChartColor";
 import "intro.js/introjs.css";
+import { changeChartColor } from "../charts/index.js";
 
 export const ThemeContext = createContext(false);
 

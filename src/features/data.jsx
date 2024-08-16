@@ -8,10 +8,7 @@ import {
   privateGenerationChart,
   mumbaiExchangeChart,
 } from "../charts/index.js";
-import {
-  centralSectorColumns,
-  centralSectorData,
-} from "../tables/centralSectorTabel";
+import { centralSectorColumns, centralSectorData } from "../tables/index.js";
 import { clipDifference, filterDifference } from "../preprocessor/preprocess";
 import * as dfd from "danfojs/dist/danfojs-browser/src";
 import dayjs from "dayjs";

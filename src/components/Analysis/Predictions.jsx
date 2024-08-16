@@ -13,18 +13,20 @@ import {
   Typography,
 } from "antd";
 import dayjs from "dayjs";
-import customParseFormat from "dayjs/plugin/customParseFormat";
-import { ThemeContext } from "../../context/themeContext";
-import changeChartColor from "../../charts/changeChartColor";
 import { useSelector } from "react-redux";
-import { useContext, useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
-import { useSubDf } from "../../hooks/Analysis/useSubDf";
+import { useContext, useEffect, useState } from "react";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+import { ThemeContext } from "../../context/index.js";
+import { changeChartColor } from "../../charts/index.js";
+import { useSubDf } from "../../hooks/Analysis/index.js";
 import { getModelViewDescriptor } from "./ModelViewDescriptor";
-import useModelSession from "../../hooks/Analysis/useModelSession";
-import useRunInference from "../../hooks/Analysis/useRunInference";
-import useChartDataSetter from "../../hooks/Analysis/useChartDataSetter";
-import useModelChartDataSetter from "../../hooks/Analysis/useModelChartDataSetter";
+import {
+  useModelSession,
+  useRunInference,
+  useChartDataSetter,
+  useModelChartDataSetter,
+} from "../../hooks/Analysis/index.js";
 
 dayjs.extend(customParseFormat);
 

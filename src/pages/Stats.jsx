@@ -4,10 +4,10 @@ import { useSelector } from "react-redux";
 import { Line } from "react-chartjs-2";
 import { green, red } from "@ant-design/colors";
 import { useContext, useEffect, useState } from "react";
-import { ThemeContext } from "../context/themeContext";
-import changeChartColor from "../charts/changeChartColor";
 import { Steps } from "intro.js-react";
-import { NavbarContext } from "../context/navbarContext";
+import { ThemeContext } from "../context/index.js";
+import { changeChartColor } from "../charts/index.js";
+import { NavbarContext } from "../context/index.js";
 
 const steps = [
   {

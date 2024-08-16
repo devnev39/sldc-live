@@ -1,15 +1,13 @@
 import { Alert, Card, Col, Divider, Flex, Row, Table, Typography } from "antd";
 import { useSelector } from "react-redux";
 import { useContext, useEffect, useState } from "react";
-import { ThemeContext } from "../context/themeContext";
-import changeChartColor from "../charts/changeChartColor";
-import { Steps } from "intro.js-react";
-import { NavbarContext } from "../context/navbarContext";
-import CardTemplate from "../components/Home/CardTemplate";
-import ChartRow from "../components/Home/ChartRow";
-import useCardPropSets from "../hooks/Home/useCardPropSets";
-import useGetChartRows from "../hooks/Home/useGetChartRows";
 import dayjs from "dayjs";
+import { Steps } from "intro.js-react";
+import { ThemeContext } from "../context/index.js";
+import { changeChartColor } from "../charts/index.js";
+import { NavbarContext } from "../context/navbarContext";
+import { CardTemplate, ChartRow } from "../components/Home/index.js";
+import { useCardPropSets, useGetChartRows } from "../hooks/Home/index.js";
 
 const steps = [
   {

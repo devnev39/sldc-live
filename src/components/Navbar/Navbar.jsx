@@ -11,9 +11,8 @@ import {
 } from "@ant-design/icons";
 import { Header } from "antd/es/layout/layout";
 import { useContext, useEffect, useState } from "react";
-import { ThemeContext } from "../../context/themeContext";
-import { NavbarContext } from "../../context/navbarContext";
 import Icon from "@ant-design/icons/lib/components/Icon";
+import { ThemeContext, NavbarContext } from "../../context/index.js";
 
 dayjs.extend(customParseFormat);
 
