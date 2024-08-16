@@ -40,7 +40,6 @@ export default {
   getStatus: async () => {
     let status = doc(db, "configuration", "STATUS");
     status = await getDoc(status);
-    console.log(status.data());
     return status.data();
   },
 };
