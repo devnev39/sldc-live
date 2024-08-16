@@ -1,2 +1,2 @@
-export { default as centralSectorTable } from "./centralSectorTable.jsx";
-export { default as regionalExchTable } from "./regionalExchTable.jsx";
+export { centralSectorData } from "./centralSectorTable.jsx";
+export { centralSectorColumns } from "./centralSectorTable.jsx";
