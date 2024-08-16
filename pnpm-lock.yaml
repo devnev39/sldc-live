@@ -50,12 +50,9 @@ importers:
       firebase:
         specifier: ^10.8.1
         version: 10.8.1
-      intro.js:
-        specifier: 8.0.0-beta.1
-        version: 8.0.0-beta.1
       intro.js-react:
         specifier: ^1.0.0
-        version: 1.0.0(intro.js@8.0.0-beta.1)(react@18.2.0)
+        version: 1.0.0(intro.js@7.2.0)(react@18.2.0)
       onnxruntime-common:
         specifier: ^1.17.1
         version: 1.18.0
@@ -2815,8 +2812,8 @@ packages:
       intro.js: '>=2.5.0'
       react: '>=0.14.0'
 
-  intro.js@8.0.0-beta.1:
-    resolution: {integrity: sha512-5FJhzEM7PUKbVt8yvCwGwutPm1cgl+bRKDzATzfK7P68It/quO1sfn9hegxX52VIu+eB6kKRikLzqFQzLIbB+w==}
+  intro.js@7.2.0:
+    resolution: {integrity: sha512-qbMfaB70rOXVBceIWNYnYTpVTiZsvQh/MIkfdQbpA9di9VBfj1GigUPfcCv3aOfsbrtPcri8vTLTA4FcEDcHSQ==}
 
   is-array-buffer@3.0.4:
     resolution: {integrity: sha512-wcjaerHw0ydZwfhiKbXJWLDY8A7yV7KhjQOpb83hGgGfId/aQa4TOvwyzn2PuswW2gPCYEL/nEAiSVpdOj1lXw==}
@@ -7703,12 +7700,12 @@ snapshots:
       hasown: 2.0.1
       side-channel: 1.0.6
 
-  intro.js-react@1.0.0(intro.js@8.0.0-beta.1)(react@18.2.0):
+  intro.js-react@1.0.0(intro.js@7.2.0)(react@18.2.0):
     dependencies:
-      intro.js: 8.0.0-beta.1
+      intro.js: 7.2.0
       react: 18.2.0
 
-  intro.js@8.0.0-beta.1: {}
+  intro.js@7.2.0: {}
 
   is-array-buffer@3.0.4:
     dependencies:

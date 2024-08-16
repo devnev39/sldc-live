@@ -1,7 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import changeChartColor from "../charts/changeChartColor";
-import "intro.js/introjs.css";
-
+import "./introjs.css";
 export const ThemeContext = createContext(false);
 
 /**
@@ -52,7 +51,7 @@ export const ThemeContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (isDarkTheme) {
-      import("intro.js/themes/introjs-dark.css");
+      import("./introjs-dark.css");
     }
   }, [isDarkTheme]);
 
