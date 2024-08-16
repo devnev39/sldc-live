@@ -25,7 +25,6 @@
     "danfojs": "^1.1.2",
     "dayjs": "^1.11.10",
     "firebase": "^10.8.1",
-    "intro.js": "8.0.0-beta.1",
     "intro.js-react": "^1.0.0",
     "onnxruntime-common": "^1.17.1",
     "onnxruntime-web": "^1.17.1",
