@@ -1,11 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import frequencyChart from "../charts/frequencyChart";
-import stateGenChart from "../charts/stateGenChart";
-import generationDistributionChart from "../charts/generationDistributionChart";
-import serverUsageChart from "../charts/serverUsageChart";
-import coalGenerationChart from "../charts/coalGenerationChart";
-import mumbaiExchangeChart from "../charts/mumbaiExchange";
-import privateGenerationChart from "../charts/privateGenerationChart";
+import {
+  frequencyChart,
+  stateGenChart,
+  generationDistributionChart,
+  serverUsageChart,
+  coalGenerationChart,
+  privateGenerationChart,
+  mumbaiExchangeChart,
+} from "../charts/index.js";
 import {
   centralSectorColumns,
   centralSectorData,
