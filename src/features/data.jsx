@@ -66,7 +66,10 @@ export const counterSlice = createSlice({
 
         state.charts.frequencyChart.data.datasets[0].data =
           state.charts.frequencyChart.data.datasets[0].data.concat(
-            parseFloat(dataPoint.fields.frequency),
+            clipDifference(
+              state.charts.frequencyChart.data.datasets[0].data,
+              parseFloat(dataPoint.fields.frequency),
+            ),
           );
 
         // State Gen field
