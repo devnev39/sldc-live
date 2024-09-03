@@ -27,6 +27,7 @@ import {
   useChartDataSetter,
   useModelChartDataSetter,
 } from "../../hooks/Analysis/index.js";
+import { Tag } from "antd";
 
 dayjs.extend(customParseFormat);
 
@@ -172,6 +173,11 @@ export default function Predictions() {
             {/*   type="info" */}
             {/*   showIcon */}
             {/* /> */}
+            {truePredictionMode ? (
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <Tag color="volcano">True Predictions</Tag>
+              </div>
+            ) : null}
             <Alert
               style={{ marginTop: "1vh" }}
               description="The trained models' forecast is displayed in the above graphs. A model with fewer colour area is more accurate and has less inaccuracy for future forecasting."
