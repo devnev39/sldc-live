@@ -56,19 +56,19 @@ export const getModelViewDescriptor = (model) => {
     {
       key: "3",
       label: "Average loss",
-      children: model.avg_loss,
+      children: model.avg_loss.toFixed(3),
       span: 3,
     },
     {
       key: "4",
       label: "Mean squared error",
-      children: model.mse,
+      children: model.mse.toFixed(3),
       span: 3,
     },
     {
       key: "5",
       label: "Validation loss",
-      children: model.val_mse,
+      children: model.val_mse.toFixed(3),
       span: 3,
     },
     {
