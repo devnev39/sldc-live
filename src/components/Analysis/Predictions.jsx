@@ -159,24 +159,34 @@ export default function Predictions() {
             </Spin>
             <Divider />
             {/* Hidden because model is not forecasting truly.....or depending on it's own values */}
-            {/* <Alert */}
-            {/*   description={ */}
-            {/*     <div style={{ fontWeight: "500" }}> */}
-            {/*       Based only on 7 hours of data on{" "} */}
-            {/*       {dayjs().add(-2, "day").format("MMMM D YYYY")}, the day before */}
-            {/*       yesterday, the model is projecting the above results. */}
-            {/*     </div> */}
-            {/*   } */}
-            {/*   message={ */}
-            {/*     <div style={{ fontWeight: "bold" }}>About above graph</div> */}
-            {/*   } */}
-            {/*   type="info" */}
-            {/*   showIcon */}
-            {/* /> */}
+
             {truePredictionMode ? (
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <Tag color="volcano">True Predictions</Tag>
-              </div>
+              <>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    margin: "1rem",
+                  }}
+                >
+                  <Tag color="volcano">True Predictions</Tag>
+                </div>
+                <Alert
+                  description={
+                    <div style={{ fontWeight: "500" }}>
+                      Based only on 7 hours of data on{" "}
+                      {dayjs().add(-2, "day").format("MMMM D YYYY")}, the day
+                      before yesterday, the model is projecting the above
+                      results.
+                    </div>
+                  }
+                  message={
+                    <div style={{ fontWeight: "bold" }}>About above graph</div>
+                  }
+                  type="info"
+                  showIcon
+                />
+              </>
             ) : null}
             <Alert
               style={{ marginTop: "1vh" }}
