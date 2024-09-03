@@ -80,6 +80,18 @@ export default function Predictions() {
 
   const modelChartData = useModelChartDataSetter(models);
 
+  // True prediction check
+
+  useEffect(() => {
+    let config = localStorage.getItem("config");
+    if (config) {
+      config = JSON.parse(config);
+      if (config.enableTruePrediction) {
+        setTruePredictionMode(true);
+      }
+    }
+  }, []);
+
   useEffect(() => {
     changeChartColor(isDarkTheme);
   }, [chartData, modelChartData]);
