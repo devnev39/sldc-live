@@ -34,11 +34,27 @@ const modelHistoryChart = {
         display: true,
         title: {
           display: true,
-          text: "Model parameters (lower is better)",
+          text: "Model losses (lower is better)",
           font: {
             size: "16px",
             weight: "500",
           },
+        },
+      },
+      y1: {
+        type: "linear",
+        display: true,
+        position: "right",
+        title: {
+          display: true,
+          text: "Model parameters",
+          font: {
+            size: "16px",
+            weight: "500",
+          },
+        },
+        grid: {
+          drawOnChartArea: false, // only want the grid lines for one axis to show up
         },
       },
     },

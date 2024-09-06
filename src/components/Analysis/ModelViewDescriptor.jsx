@@ -60,6 +60,14 @@ export const getModelViewDescriptor = (model) => {
       span: 3,
     },
     {
+      key: "9",
+      label: "Model parameters",
+      children: model.parameters,
+      span: 3,
+      contentStyle: { backgroundColor: "rgba(255,0,0,0.2)" },
+      labelStyle: { backgroundColor: "rgba(255,0,0,0.2)" },
+    },
+    {
       key: "4",
       label: "Mean squared error",
       children: model.mse.toFixed(3),
@@ -70,6 +78,8 @@ export const getModelViewDescriptor = (model) => {
       label: "Validation loss",
       children: model.val_mse.toFixed(3),
       span: 3,
+      contentStyle: { backgroundColor: "rgba(255,0,0,0.2)" },
+      labelStyle: { backgroundColor: "rgba(255,0,0,0.2)" },
     },
     {
       key: "8",
@@ -81,6 +91,8 @@ export const getModelViewDescriptor = (model) => {
         </p>
       ),
       span: 3,
+      contentStyle: { backgroundColor: "rgba(255,0,0,0.2)" },
+      labelStyle: { backgroundColor: "rgba(255,0,0,0.2)" },
     },
     {
       key: "6",
