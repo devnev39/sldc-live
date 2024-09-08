@@ -36,6 +36,7 @@ function useModelInferenceIndicator(model, subDf) {
 
   useEffect(() => {
     if (!subDf) return;
+    if (!model) return;
     if (subDf.columns.filter((c) => c == model.tag_name).length)
       setIsModelInferencing(false);
     else setIsModelInferencing(true);
@@ -255,15 +256,18 @@ export default function Predictions() {
                 <Switch
                   defaultChecked={truePredictionMode}
                   size="small"
-                  // onChange={(checked) => setTruePredictionMode(checked)}
+                  onChange={(checked) => setTruePredictionMode(checked)}
+                  loading={isModelInferencing}
                 ></Switch>
               </Flex>
               <div style={{ marginTop: "1rem" }}>
-                <Descriptions
-                  columns={2}
-                  bordered
-                  items={getModelViewDescriptor(models[modelIndex])}
-                />
+                {models.length ? (
+                  <Descriptions
+                    columns={2}
+                    bordered
+                    items={getModelViewDescriptor(models[modelIndex])}
+                  />
+                ) : null}
               </div>
             </Flex>
           </Card>
