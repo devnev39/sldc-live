@@ -1,7 +1,6 @@
 import {
   Alert,
   Card,
-  Checkbox,
   Col,
   Descriptions,
   Divider,
@@ -28,6 +27,7 @@ import {
   useModelChartDataSetter,
 } from "../../hooks/Analysis/index.js";
 import { Tag } from "antd";
+import { Switch } from "antd";
 
 dayjs.extend(customParseFormat);
 
@@ -218,54 +218,54 @@ export default function Predictions() {
               </Flex>
             }
           >
-            <Row>
-              <Col span={13}>
-                <Typography.Text strong style={{ fontSize: "1.2rem" }}>
-                  Select inference model
-                </Typography.Text>
-              </Col>
-              <Col span={1}>
-                <Typography.Text strong style={{ fontSize: "1.2rem" }}>
-                  :
-                </Typography.Text>
-              </Col>
-              <Col span={10}>
-                <Select
-                  className="model-select"
-                  defaultValue={
-                    models.length ? models[modelIndex].tag_name : ""
-                  }
-                  options={models.map((m, i) => {
-                    return {
-                      value: i,
-                      label: m.tag_name,
-                    };
-                  })}
-                  onChange={(e) => {
-                    setModelIndex(e);
-                  }}
-                ></Select>
-              </Col>
-            </Row>
-            {import.meta.env.PROD == false ? (
-              <>
-                <div>
-                  <Checkbox
-                    defaultChecked={truePredictionMode}
-                    onChange={(e) => setTruePredictionMode(e.target.checked)}
-                  >
-                    Enable true prediction
-                  </Checkbox>
-                </div>
-              </>
-            ) : null}
-            <div style={{ marginTop: "1rem" }}>
-              <Descriptions
-                columns={2}
-                bordered
-                items={getModelViewDescriptor(models[modelIndex])}
-              />
-            </div>
+            <Flex vertical gap={"large"}>
+              <Row>
+                <Col span={13}>
+                  <Typography.Text strong style={{ fontSize: "1.2rem" }}>
+                    Select inference model
+                  </Typography.Text>
+                </Col>
+                <Col span={1}>
+                  <Typography.Text strong style={{ fontSize: "1.2rem" }}>
+                    :
+                  </Typography.Text>
+                </Col>
+                <Col span={10}>
+                  <Select
+                    className="model-select"
+                    defaultValue={
+                      models.length ? models[modelIndex].tag_name : ""
+                    }
+                    options={models.map((m, i) => {
+                      return {
+                        value: i,
+                        label: m.tag_name,
+                      };
+                    })}
+                    onChange={(e) => {
+                      setModelIndex(e);
+                    }}
+                  ></Select>
+                </Col>
+              </Row>
+              <Flex gap="large" align="center" style={{ height: "100%" }}>
+                <Typography.Title level={5} style={{ margin: 0 }}>
+                  Enable true prediction :
+                </Typography.Title>
+                <Switch
+                  defaultChecked={truePredictionMode}
+                  size="small"
+                  // onChange={(checked) => setTruePredictionMode(checked)}
+                ></Switch>
+              </Flex>
+              <div style={{ marginTop: "1rem" }}>
+                <Descriptions
+                  columns={2}
+                  bordered
+                  items={getModelViewDescriptor(models[modelIndex])}
+                />
+              </div>
+            </Flex>
           </Card>
         </Col>
       </Row>
