@@ -260,7 +260,7 @@ export default function Predictions() {
                   onChange={(checked) => setTruePredictionMode(checked)}
                   loading={isModelInferencing}
                 ></Switch>
-                {import.meta.env.DEV ? (
+                {import.meta.env.PROD ? (
                   <Alert
                     style={{ marginTop: "1vh" }}
                     description="Temporary disabled for some reasons !"
