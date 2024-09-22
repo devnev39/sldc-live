@@ -254,20 +254,19 @@ export default function Predictions() {
                   Enable true prediction :
                 </Typography.Title>
                 <Switch
-                  disabled={import.meta.env.PROD}
                   defaultChecked={truePredictionMode}
                   size="small"
                   onChange={(checked) => setTruePredictionMode(checked)}
                   loading={isModelInferencing}
                 ></Switch>
-                {import.meta.env.PROD ? (
-                  <Alert
-                    style={{ marginTop: "1vh" }}
-                    description="Temporary disabled for some reasons !"
-                    type="warning"
-                    showIcon
-                  />
-                ) : null}
+                {/* {import.meta.env.PROD ? ( */}
+                {/*   <Alert */}
+                {/*     style={{ marginTop: "1vh" }} */}
+                {/*     description="Temporary disabled for some reasons !" */}
+                {/*     type="warning" */}
+                {/*     showIcon */}
+                {/*   /> */}
+                {/* ) : null} */}
               </Flex>
               <div style={{ marginTop: "1rem" }}>
                 {models.length ? (

@@ -12,15 +12,19 @@ function useModelChartDataSetter(models) {
       const data = JSON.parse(JSON.stringify(modelHistoryChart));
       data.data.labels = models.map((i) => i.tag_name);
 
-      const properties = ["mse", "val_mse", "parameters"];
+      const properties = {
+        mse: "bar",
+        val_mse: "line",
+        parameters: "line",
+      };
 
-      for (let i of properties) {
+      for (let i of Object.keys(properties)) {
         data.data.datasets.push({
           label: i,
           data: models.map((m) =>
             i != "parameters" ? m[i] : Number(m[i].split("(")[0]),
           ),
-          type: i != "parameters" ? "bar" : "line",
+          type: properties[i],
           yAxisID: i != "parameters" ? "y" : "y1",
         });
       }

@@ -23,6 +23,7 @@ export default function useModelsData() {
           if (import.meta.env.PROD && doc.is_prod) docs.push(doc);
           else if (!import.meta.env.PROD) docs.push(doc);
         }
+        docs.sort((a, b) => a.val_mse - b.val_mse);
         dispatch(setModels(docs));
       });
   }, [dispatch]);
